@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, '.')));
 let registeredUsers = [];
 
 // Şifrə panelini idarə etmək üçün gizli şifrə
-const ADMIN_PASSWORD = "admin1234_nkshop";
+const ADMIN_PASSWORD = "Nihad2505";
 
 // 1. Müştəri qeydiyyatdan keçəndə məlumatları qəbul edən mexanizm
 app.post('/api/register', (req, res) => {
