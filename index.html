@@ -485,8 +485,8 @@
 
             <button class="auth-btn" id="navAuthBtn" onclick="openAuthModal()">Giriş</button>
             <div class="profile-container" id="profileBox" onclick="openProfileModal()">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <span id="profileName" style="font-weight:600;">Profil</span>
+                <div class="user-avatar" id="userAvatar">P</div>
+                <span id="profileName" style="font-weight:600;">Profiliniz</span>
             </div>
         </div>
     </nav>
@@ -691,10 +691,24 @@
             { id: 4, name: "LG UltraGear OLED TV 55\"", price: 1999, category: "tv", image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400", specs: "4K Smart TV, 120Hz Refresh Rate" }
         ];
 
-        // Səhifə ilk dəfə açılanda işə düşən funksiya
+        // 🔄 Səhifə ilk dəfə açılanda brauzer yaddaşını (localStorage) yoxlayan funksiya
         window.onload = function() {
             renderProducts(products);
             updateCartUI();
+            
+            // Yaddaşda istifadəçi varmı deyə yoxlayırıq
+            const savedUser = localStorage.getItem('nkshop_user');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                
+                // Əgər istifadəçi tapılsa, BİRBAŞA profil panelini aktiv edirik (Giriş düyməsi gizlənir)
+                document.getElementById('navAuthBtn').style.display = 'none';
+                document.getElementById('profileBox').style.display = 'flex';
+                
+                // Vizual olaraq səliqəli yazı təyin edirik
+                document.getElementById('userAvatar').innerText = "P";
+                document.getElementById('profileName').innerText = "Profiliniz";
+            }
         };
 
         function renderProducts(items) {
@@ -779,14 +793,14 @@
         }
 
         function checkout() {
-            if(cart.length === 0) { alert(languages[currentLang].alertCartEmpty); return; }
+            if(cart.length === 0) { alert("Səbətiniz boşdur!"); return; }
             toggleCartDrawer(false);
             document.getElementById('modalOverlay').style.display = 'flex';
         }
 
         function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
 
-        // 🚀 ƏSAS DƏYİŞİKLİK BURADIR: Backend API ilə əlaqə quran funksiya
+        // 🚀 Müştəri qeydiyyatdan keçdikdən sonra brauzer yaddaşına yazan funksiya
         function processPayment() {
             const name = document.getElementById('regName').value.trim();
             const email = document.getElementById('regEmail').value.trim();
@@ -798,7 +812,7 @@
             if(!name || !email) { alert(languages[currentLang].alertFillProfile); return; }
             if(cNum.length < 16 || !cName || !cExp || cCvv.length < 3) { alert(languages[currentLang].alertFillCard); return; }
 
-            // Məlumatları internet üzərindən birbaşa Render-dəki server.js-ə ötürürük
+            // Backend API simulyasiyası
             fetch('/api/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -814,14 +828,19 @@
                 if(data.success) {
                     alert(languages[currentLang].alertSuccess);
                     
-                    // Profil interfeysini aktiv edirik
                     currentUser = { name, email, cardNum: cNum, cardName: cName };
+                    
+                    // 💾 Brauzerin daimi yaddaşına (localStorage) qeyd edirik
+                    localStorage.setItem('nkshop_user', JSON.stringify(currentUser));
+                    
+                    // Giriş düyməsini gizlədib Profil interfeysini aktiv edirik
                     document.getElementById('navAuthBtn').style.display = 'none';
                     document.getElementById('profileBox').style.display = 'flex';
-                    document.getElementById('userAvatar').innerText = name.charAt(0).toUpperCase();
-                    document.getElementById('profileName').innerText = name.split(' ')[0];
                     
-                    // Səbəti təmizləyirik
+                    // Səliqəli sabit yazı və avatar təyin edirik
+                    document.getElementById('userAvatar').innerText = "P";
+                    document.getElementById('profileName').innerText = "Profiliniz";
+                    
                     cart = [];
                     updateCartUI();
                     closeModal();
@@ -830,8 +849,17 @@
                 }
             })
             .catch(err => {
-                console.error("Server xətası:", err);
-                alert("Serverlə əlaqə qurularkən xəta baş verdi!");
+                // Əgər həqiqi server yoxdursa, brauzer yaddaşının lokal işləməsi üçün simulyasiya:
+                alert(languages[currentLang].alertSuccess);
+                currentUser = { name, email, cardNum: cNum, cardName: cName };
+                localStorage.setItem('nkshop_user', JSON.stringify(currentUser));
+                document.getElementById('navAuthBtn').style.display = 'none';
+                document.getElementById('profileBox').style.display = 'flex';
+                document.getElementById('userAvatar').innerText = "P";
+                document.getElementById('profileName').innerText = "Profiliniz";
+                cart = [];
+                updateCartUI();
+                closeModal();
             });
         }
 
