@@ -15,11 +15,36 @@
         }
 
         body {
-            background-color: #f4f6f9;
+            /* Şəffaf və estetik texnoloji arxa fon */
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.03) 0%, rgba(15, 52, 96, 0.05) 100%),
+                        radial-gradient(circle at 20% 30%, rgba(233, 69, 96, 0.02) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(15, 52, 96, 0.03) 0%, transparent 50%),
+                        #f8fafd;
             color: #333;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            position: relative;
+        }
+
+        /* Arxa fondakı balaca texnoloji elementlər (Pattern) */
+        body::before {
+            content: "💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.12;
+            font-size: 28px;
+            letter-spacing: 45px;
+            line-height: 90px;
+            word-break: break-all;
+            pointer-events: none;
+            padding: 20px;
+            overflow: hidden;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
         }
 
         /* Naviqasiya Paneli (Bar) */
@@ -196,13 +221,14 @@
             justify-content: center;
             gap: 12px;
             padding: 20px 5%;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             flex-wrap: wrap;
         }
 
         .category-btn {
-            background-color: #f0f2f5;
+            background-color: rgba(240, 242, 245, 0.8);
             border: none;
             padding: 10px 20px;
             border-radius: 25px;
@@ -235,7 +261,8 @@
         }
 
         .product-card {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
@@ -243,12 +270,13 @@
             flex-direction: column;
             justify-content: space-between;
             transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #eaeaea;
+            border: 1px solid rgba(234, 234, 234, 0.8);
         }
 
         .product-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            background-color: #ffffff;
         }
 
         .product-clickable {
@@ -305,6 +333,7 @@
             width: 100%;
             transition: background 0.2s;
             text-align: center;
+            white-space: nowrap; /* Yazının aşağı sətirə keçməsini tam əngəlləyir */
         }
 
         .btn:hover { background-color: #e94560; }
@@ -471,10 +500,22 @@
             .auth-btn { padding: 8px 14px; font-size: 14px; }
             .category-bar { display: flex; flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding: 12px 4%; gap: 8px; -webkit-overflow-scrolling: touch; }
             .category-btn { flex: 0 0 auto; padding: 8px 16px; font-size: 13px; }
+            
+            /* Mobil Məhsul Kartı və Düymə Optimizasiyası */
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .product-img { height: 140px; }
-            .product-title { font-size: 13px; height: 36px; }
-            .product-price { font-size: 16px; }
+            .product-card { padding: 12px; }
+            .product-img { height: 140px; margin-bottom: 8px; }
+            .product-title { font-size: 13px; height: 36px; margin-bottom: 6px; }
+            .product-price { font-size: 15px; margin-bottom: 3px; }
+            .product-credit { font-size: 11px; padding: 2px 6px; margin-bottom: 10px; }
+            
+            /* Səbətə əlavə et düyməsinin mobil nizamlanması */
+            .product-card .btn { 
+                padding: 10px 4px; 
+                font-size: 12px; 
+                letter-spacing: -0.3px;
+            }
+            
             .cart-modal { max-width: 100%; width: 100%; right: -100%; }
             .cart-modal.open { right: 0; }
             .modal-box { width: 92%; padding: 20px; }
@@ -488,6 +529,11 @@
             .profile-container { padding: 4px; }
             .footer-grid { grid-template-columns: repeat(1, 1fr); gap: 20px; text-align: center; }
             .footer-col h3 { border-left: none; border-bottom: 2px solid #e94560; display: inline-block; padding-bottom: 4px; padding-left: 0; }
+            
+            /* Çox kiçik ekranlar üçün düymə mətni yığcamlaşdırılır */
+            .product-card .btn {
+                font-size: 11px;
+            }
         }
     </style>
 </head>
@@ -718,7 +764,6 @@
         let cart = [];
         let currentUser = null;
 
-        // Dil lüğəti
         const langData = {
             az: {
                 cartLabel: "Səbət",
@@ -925,7 +970,7 @@
                 lblViewProfileName: "Имя, Фамилия:",
                 lblViewProfileEmail: "Эл. адрес:",
                 lblViewProfileCard: "Привязанная карта:",
-                lblViewProfileStatus: "Статус:",
+                lblViewProfileStatus: "Status:",
                 viewProfileStatusValue: "Активный клиент",
                 btnLogout: "Выйти из аккаунта",
                 lblDetailPrice: "Цена наличными:",
@@ -996,7 +1041,7 @@
                 currentUser = JSON.parse(savedUser);
                 loginUserInterface();
             }
-            changeLanguage('az'); // İlkin olaraq Azərbaycan dilini tətbiq edirik
+            changeLanguage('az');
         };
 
         function renderProducts(items) {
@@ -1222,7 +1267,6 @@
 
         function toggleLangDropdown() { document.getElementById('langMenu').classList.toggle('show'); }
         
-        // DİLİN DƏYİŞDİRİLMƏSİ FUNKSİYASI
         function changeLanguage(lang) {
             currentLang = lang;
             document.getElementById('currentLangBtn').innerText = lang.toUpperCase();
@@ -1230,7 +1274,6 @@
             
             const trans = langData[lang];
             
-            // Navbar və Kateqoriyalar
             document.getElementById('navCartLabel').innerText = trans.cartLabel;
             if(!currentUser) {
                 document.getElementById('navAuthBtn').innerText = trans.authBtn;
@@ -1246,12 +1289,10 @@
             document.getElementById('cat_washer').innerText = trans.cat_washer;
             document.getElementById('cat_dishwasher').innerText = trans.cat_dishwasher;
             
-            // Səbət Modalı
             document.getElementById('cartTitleText').innerText = trans.cartTitleText;
             document.getElementById('totalLabel').innerText = trans.totalLabel;
             document.getElementById('checkoutBtnText').innerText = trans.checkoutBtnText;
             
-            // Giriş / Qeydiyyat
             document.getElementById('tabLogin').innerText = trans.tabLogin;
             document.getElementById('tabRegister').innerText = trans.tabRegister;
             document.getElementById('lblLoginEmail').innerText = trans.lblLoginEmail;
@@ -1269,7 +1310,6 @@
             document.getElementById('lblCardCvv').innerText = trans.lblCardCvv;
             document.getElementById('btnRegisterSubmit').innerText = trans.btnRegisterSubmit;
             
-            // Profil Modalı
             document.getElementById('pTitle').innerText = trans.pTitle;
             document.getElementById('lblViewProfileName').innerText = trans.lblViewProfileName;
             document.getElementById('lblViewProfileEmail').innerText = trans.lblViewProfileEmail;
@@ -1278,21 +1318,18 @@
             document.getElementById('viewProfileStatusValue').innerText = trans.viewProfileStatusValue;
             document.getElementById('btnLogout').innerText = trans.btnLogout;
             
-            // Detal Modalı
             document.getElementById('lblDetailPrice').innerText = trans.lblDetailPrice;
             document.getElementById('lblDetailCredit').innerText = trans.lblDetailCredit;
             document.getElementById('lblDetailWarranty').innerText = trans.lblDetailWarranty;
             document.getElementById('detailWarrantyValue').innerText = trans.detailWarrantyValue;
             document.getElementById('detailAddToCartBtn').innerText = trans.detailAddToCartBtn;
             
-            // Şikayət Modalı
             document.getElementById('compTitle').innerText = trans.compTitle;
             document.getElementById('compSubtitle').innerText = trans.compSubtitle;
             document.getElementById('lblCompEmail').innerText = trans.lblCompEmail;
             document.getElementById('lblCompMessage').innerText = trans.lblCompMessage;
             document.getElementById('btnCompSubmit').innerText = trans.btnCompSubmit;
             
-            // Footer
             document.getElementById('fTitleAbout').innerText = trans.fTitleAbout;
             document.getElementById('fTextAbout').innerText = trans.fTextAbout;
             document.getElementById('fTitleLinks').innerText = trans.fTitleLinks;
@@ -1313,7 +1350,6 @@
             document.getElementById('valAddress').innerText = trans.valAddress;
             document.getElementById('fCopyright').innerText = trans.fCopyright;
             
-            // Yenidən renderlər
             renderProducts(products);
             updateCartUI();
         }
