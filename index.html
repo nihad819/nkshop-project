@@ -74,7 +74,9 @@
             font-size: 16px;
         }
 
+        /* Başlanğıcda gizli olması üçün display: none verdik */
         .cart-count-badge {
+            display: none;
             background-color: #fff;
             color: #e94560;
             font-size: 12px;
@@ -537,8 +539,9 @@
             }
             .category-btn {
                 flex: 0 0 auto;
-                padding: 8px 16px;
+                padding: 8px 166px;
                 font-size: 13px;
+                padding: 8px 16px;
             }
 
             .products-grid { 
@@ -580,16 +583,15 @@
         }
 
         @media (max-width: 480px) {
-            /* Telefonda 'Səbət' mətnini gizlədir, amma ikon (🛒) və rəqəm qalır */
             .nav-cart-btn .cart-text {
                 display: none; 
             }
             .nav-cart-btn {
                 padding: 8px 10px;
-                gap: 5px; /* İkon ilə rəqəm arasındakı məsafə */
+                gap: 5px;
             }
             .cart-icon {
-                font-size: 18px; /* Mobildə ikon bir az daha aydın görünsün */
+                font-size: 18px;
             }
             #profileBox span {
                 display: none; 
@@ -1082,7 +1084,15 @@
                 });
             }
 
-            countBadge.innerText = totalCount;
+            // MƏNTİQ DƏYİŞİKLİYİ: Əgər məhsul sayı 0-dırsa, rəqəm nişanını tamamilə gizlət, yoxsa göstər
+            if (totalCount > 0) {
+                countBadge.innerText = totalCount;
+                countBadge.style.display = 'inline-block'; // Görünür et
+            } else {
+                countBadge.innerText = '0';
+                countBadge.style.display = 'none'; // Gizlət
+            }
+
             totalSpan.innerText = `${totalPrice} ${languages[currentLang].currency}`;
         }
 
