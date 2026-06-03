@@ -560,55 +560,55 @@
 
             <div id="formLogin" class="auth-form-section active">
                 <div class="form-group">
-                    <label>E-poçt Ünvanı:</label>
-                    <input type="email" id="loginEmail" placeholder="Məs. ali@mail.com">
+                    <label id="lblLoginEmail">E-poçt Ünvanı:</label>
+                    <input type="email" id="loginEmail" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label>Şifre:</label>
-                    <input type="password" id="loginPassword" placeholder="******">
+                    <label id="lblLoginPassword">Şifrə:</label>
+                    <input type="password" id="loginPassword" placeholder="">
                 </div>
-                <button class="btn" style="margin-top:10px;" onclick="processLogin()">Giriş</button>
+                <button class="btn" id="btnLoginSubmit" style="margin-top:10px;" onclick="processLogin()">Giriş</button>
             </div>
 
             <div id="formRegister" class="auth-form-section">
                 <div class="form-group">
-                    <label>Ad, Soyad:</label>
-                    <input type="text" id="regName" placeholder="Məs. Əli Məmmədov">
+                    <label id="lblRegName">Ad, Soyad:</label>
+                    <input type="text" id="regName" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label>E-poçt Ünvanı:</label>
-                    <input type="email" id="regEmail" placeholder="Məs. ali@mail.com">
+                    <label id="lblRegEmail">E-poçt Ünvanı:</label>
+                    <input type="email" id="regEmail" placeholder="">
                 </div>
                 
                 <div class="form-group">
-                    <label>Şifrə:</label>
-                    <input type="password" id="regPassword" placeholder="Ən azı 6 simvol">
+                    <label id="lblRegPassword">Şifrə:</label>
+                    <input type="password" id="regPassword" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label>Şifrənin Təkrarı:</label>
-                    <input type="password" id="regPasswordConfirm" placeholder="Şifrəni yenidən yazın">
+                    <label id="lblRegPasswordConfirm">Şifrənin Təkrarı:</label>
+                    <input type="password" id="regPasswordConfirm" placeholder="">
                 </div>
 
-                <h4 style="margin: 15px 0 10px 0; color:#e94560; border-bottom: 1px solid #eee; padding-bottom:5px;">Kart Məlumatları (Ödənişlər üçün)</h4>
+                <h4 id="lblCardSectionTitle" style="margin: 15px 0 10px 0; color:#e94560; border-bottom: 1px solid #eee; padding-bottom:5px;">Kart Məlumatları (Ödənişlər üçün)</h4>
                 <div class="form-group">
-                    <label>Kart Sahibi:</label>
-                    <input type="text" id="cardName" placeholder="Məs. ALI MAMMADOV">
+                    <label id="lblCardName">Kart Sahibi:</label>
+                    <input type="text" id="cardName" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label>Kart Nömrəsi (16 rəqəmli):</label>
-                    <input type="text" id="cardNumber" maxlength="16" placeholder="0000000000000000">
+                    <label id="lblCardNumber">Kart Nömrəsi (16 rəqəmli):</label>
+                    <input type="text" id="cardNumber" maxlength="16" placeholder="">
                 </div>
                 <div class="card-row">
                     <div class="form-group" style="flex:1;">
-                        <label>Bitmə tarixi:</label>
-                        <input type="text" id="cardExpiry" maxlength="5" placeholder="AA/İİ">
+                        <label id="lblCardExpiry">Bitmə tarixi:</label>
+                        <input type="text" id="cardExpiry" maxlength="5" placeholder="">
                     </div>
                     <div class="form-group" style="flex:1;">
-                        <label>CVV/CVC:</label>
-                        <input type="password" id="cardCvv" maxlength="3" placeholder="***">
+                        <label id="lblCardCvv">CVV/CVC:</label>
+                        <input type="password" id="cardCvv" maxlength="3" placeholder="">
                     </div>
                 </div>
-                <button class="btn" style="margin-top:10px;" onclick="processRegister()">Hesab Yarat</button>
+                <button class="btn" id="btnRegisterSubmit" style="margin-top:10px;" onclick="processRegister()">Hesab Yarat</button>
             </div>
         </div>
     </div>
@@ -618,12 +618,12 @@
             <span class="close-modal-btn" onclick="closeProfileModal()">&times;</span>
             <h3 id="pTitle" style="margin-bottom:20px; color:#1a1a2e;">Şəxsi Profil</h3>
             <div style="display:flex; flex-direction:column; gap:12px;">
-                <div><span class="detail-label">Ad, Soyad:</span> <span id="viewProfileName">-</span></div>
-                <div><span class="detail-label">E-poçt:</span> <span id="viewProfileEmail">-</span></div>
-                <div><span class="detail-label">Bağlı Kart:</span> <span id="viewProfileCard">-</span></div>
-                <div><span class="detail-label">Status:</span> <span style="color:green; font-weight:700;">Aktiv Müştəri</span></div>
+                <div><span class="detail-label" id="lblViewProfileName">Ad, Soyad:</span> <span id="viewProfileName">-</span></div>
+                <div><span class="detail-label" id="lblViewProfileEmail">E-poçt:</span> <span id="viewProfileEmail">-</span></div>
+                <div><span class="detail-label" id="lblViewProfileCard">Bağlı Kart:</span> <span id="viewProfileCard">-</span></div>
+                <div><span class="detail-label" id="lblViewProfileStatus">Status:</span> <span id="viewProfileStatusValue" style="color:green; font-weight:700;">Aktiv Müştəri</span></div>
             </div>
-            <button class="btn" style="margin-top:25px; background-color:#e94560;" onclick="logout()">Hesabdan Çıx</button>
+            <button class="btn" id="btnLogout" style="margin-top:25px; background-color:#e94560;" onclick="logout()">Hesabdan Çıx</button>
         </div>
     </div>
 
@@ -634,16 +634,16 @@
             <img src="" id="detailImg" class="detail-img" alt="Məhsul">
             
             <div class="detail-row">
-                <span class="detail-label">Nağd Qiymət:</span>
+                <span class="detail-label" id="lblDetailPrice">Nağd Qiymət:</span>
                 <span class="detail-value" id="detailPrice" style="color:#e94560; font-size:18px;">0 AZN</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">Kredit Şərtləri:</span>
+                <span class="detail-label" id="lblDetailCredit">Kredit Şərtləri:</span>
                 <span class="detail-value" id="detailCredit" style="color:#2bc87d;">0 AZN x 0 ay</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">Zəmanət:</span>
-                <span class="detail-value">1 il</span>
+                <span class="detail-label" id="lblDetailWarranty">Zəmanət:</span>
+                <span class="detail-value" id="detailWarrantyValue">1 il</span>
             </div>
 
             <div class="detail-specs" id="detailSpecs"></div>
@@ -663,53 +663,53 @@
         <div class="modal-box">
             <span class="close-modal-btn" onclick="closeComplaintModal()">&times;</span>
             <h3 id="compTitle" style="margin-bottom:15px; color:#1a1a2e;">Şikayət və Təkliflər</h3>
-            <p style="font-size:13px; color:#666; margin-bottom:15px;">Bizə rəyinizi bildirin.</p>
+            <p id="compSubtitle" style="font-size:13px; color:#666; margin-bottom:15px;">Bizə rəyinizi bildirin.</p>
             
             <div class="form-group">
-                <label>Sizin E-poçt Ünvanınız:</label>
-                <input type="email" id="compEmail" placeholder="Məs. adiniz@mail.com" required>
+                <label id="lblCompEmail">Sizin E-poçt Ünvanınız:</label>
+                <input type="email" id="compEmail" placeholder="" required>
             </div>
             <div class="form-group">
-                <label>Mesajınız / Şikayətiniz:</label>
-                <textarea id="compMessage" rows="4" placeholder="Problemi və ya təklifinizi ətraflı yazın..." required></textarea>
+                <label id="lblCompMessage">Mesajınız / Şikayətiniz:</label>
+                <textarea id="compMessage" rows="4" placeholder="" required></textarea>
             </div>
-            <button class="btn" onclick="submitComplaint()">Göndər və Geri Qayıt</button>
+            <button class="btn" id="btnCompSubmit" onclick="submitComplaint()">Göndər və Geri Qayıt</button>
         </div>
     </div>
 
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h3>O NKSHOP</h3>
-                <p>NKSHOP — Azərbaycanın aparıcı texnologiya mağazalarından biridir.</p>
+                <h3 id="fTitleAbout">O NKSHOP</h3>
+                <p id="fTextAbout">NKSHOP — Azərbaycanın aparıcı texnologiya mağazalarından biridir.</p>
             </div>
             <div class="footer-col">
-                <h3>Faydalı Linklər</h3>
+                <h3 id="fTitleLinks">Faydalı Linklər</h3>
                 <ul>
-                    <li><a onclick="openInfoModal('campaigns')">Kampaniyalar</a></li>
-                    <li><a onclick="openInfoModal('stores')">Mağazalarımız</a></li>
-                    <li><a onclick="openComplaintModal()" style="color:#e94560; font-weight:bold;">Şikayət və Təkliflər</a></li>
-                    <li><a onclick="openInfoModal('faq')">Tez-Tez Verilən Suallar</a></li>
+                    <li><a onclick="openInfoModal('campaigns')" id="fLinkCamp">Kampaniyalar</a></li>
+                    <li><a onclick="openInfoModal('stores')" id="fLinkStores">Mağazalarımız</a></li>
+                    <li><a onclick="openComplaintModal()" id="fLinkComp" style="color:#e94560; font-weight:bold;">Şikayət və Təkliflər</a></li>
+                    <li><a onclick="openInfoModal('faq')" id="fLinkFaq">Tez-Tez Verilən Suallar</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>Qaydalar</h3>
+                <h3 id="fTitleRules">Qaydalar</h3>
                 <ul>
-                    <li><a onclick="openInfoModal('credit')">Kredit Şərtləri</a></li>
-                    <li><a onclick="openInfoModal('return')">Geri Qayıtma Siyasəti</a></li>
-                    <li><a onclick="openInfoModal('delivery')">Çatdırılma və Ödəniş</a></li>
-                    <li><a onclick="openInfoModal('privacy')">Məxfilik Siyasəti</a></li>
+                    <li><a onclick="openInfoModal('credit')" id="fLinkCredit">Kredit Şərtləri</a></li>
+                    <li><a onclick="openInfoModal('return')" id="fLinkReturn">Geri Qayıtma Siyasəti</a></li>
+                    <li><a onclick="openInfoModal('delivery')" id="fLinkDeliv">Çatdırılma və Ödəniş</a></li>
+                    <li><a onclick="openInfoModal('privacy')" id="fLinkPriv">Məxfilik Siyasəti</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>Əlaqə</h3>
-                <p><b>Koll-Mərkəz:</b> *1005</p>
-                <p><b>İş saatları:</b> <span>Hər gün: 09:00 - 21:00</span></p>
-                <p><b>Ünvan:</b> <span>Bakı şəhəri, Azadlıq prospekti 105</span></p>
+                <h3 id="fTitleContact">Əlaqə</h3>
+                <p><b id="lblCallCenter">Koll-Mərkəz:</b> *1005</p>
+                <p><b id="lblWorkHours">İş saatları:</b> <span id="valWorkHours">Hər gün: 09:00 - 21:00</span></p>
+                <p><b id="lblAddress">Ünvan:</b> <span id="valAddress">Bakı şəhəri, Azadlıq prospekti 105</span></p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 NKSHOP. Bütün hüquqlar qorunur.</p>
+            <p id="fCopyright">© 2026 NKSHOP. Bütün hüquqlar qorunur.</p>
         </div>
     </footer>
 
@@ -717,6 +717,268 @@
         let currentLang = 'az';
         let cart = [];
         let currentUser = null;
+
+        // Dil lüğəti
+        const langData = {
+            az: {
+                cartLabel: "Səbət",
+                authBtn: "Giriş / Qeydiyyat",
+                profileName: "Profiliniz",
+                cat_all: "Hamısı",
+                cat_phone: "Smartfonlar",
+                cat_computer: "Kompüterlər",
+                cat_tv: "Televizorlar",
+                cat_tablet: "Planşetlər",
+                cat_washer: "Paltaryuyanlar",
+                cat_dishwasher: "Qabyuyanlar",
+                cartTitleText: "Səbətiniz",
+                totalLabel: "Cəmi:",
+                checkoutBtnText: "Sifarişi Rəsmiləşdir",
+                tabLogin: "Giriş Et",
+                tabRegister: "Qeydiyyat",
+                lblLoginEmail: "E-poçt Ünvanı:",
+                lblLoginPassword: "Şifrə:",
+                btnLoginSubmit: "Giriş",
+                lblRegName: "Ad, Soyad:",
+                lblRegEmail: "E-poçt Ünvanı:",
+                lblRegPassword: "Şifrə:",
+                lblRegPasswordConfirm: "Şifrənin Təkrarı:",
+                lblCardSectionTitle: "Kart Məlumatları (Ödənişlər üçün)",
+                lblCardName: "Kart Sahibi:",
+                lblCardNumber: "Kart Nömrəsi (16 rəqəmli):",
+                lblCardExpiry: "Bitmə tarixi:",
+                lblCardCvv: "CVV/CVC:",
+                btnRegisterSubmit: "Hesab Yarat",
+                pTitle: "Şəxsi Profil",
+                lblViewProfileName: "Ad, Soyad:",
+                lblViewProfileEmail: "E-poçt:",
+                lblViewProfileCard: "Bağlı Kart:",
+                lblViewProfileStatus: "Status:",
+                viewProfileStatusValue: "Aktiv Müştəri",
+                btnLogout: "Hesabdan Çıx",
+                lblDetailPrice: "Nağd Qiymət:",
+                lblDetailCredit: "Kredit Şərtləri:",
+                lblDetailWarranty: "Zəmanət:",
+                detailWarrantyValue: "1 il",
+                detailAddToCartBtn: "Səbətə Əlavə Et",
+                compTitle: "Şikayət və Təkliflər",
+                compSubtitle: "Bizə rəyinizi bildirin.",
+                lblCompEmail: "Sizin E-poçt Ünvanınız:",
+                lblCompMessage: "Mesajınız / Şikayətiniz:",
+                btnCompSubmit: "Göndər və Geri Qayıt",
+                fTitleAbout: "O NKSHOP",
+                fTextAbout: "NKSHOP — Azərbaycanın aparıcı texnologiya mağazalarından biridir.",
+                fTitleLinks: "Faydalı Linklər",
+                fLinkCamp: "Kampaniyalar",
+                fLinkStores: "Mağazalarımız",
+                fLinkComp: "Şikayət və Təkliflər",
+                fLinkFaq: "Tez-Tez Verilən Suallar",
+                fTitleRules: "Qaydalar",
+                fLinkCredit: "Kredit Şərtləri",
+                fLinkReturn: "Geri Qayıtma Siyasəti",
+                fLinkDeliv: "Çatdırılma və Ödəniş",
+                fLinkPriv: "Məxfilik Siyasəti",
+                fTitleContact: "Əlaqə",
+                lblCallCenter: "Koll-Mərkəz:",
+                lblWorkHours: "İş saatları:",
+                valWorkHours: "Hər gün: 09:00 - 21:00",
+                lblAddress: "Ünvan:",
+                valAddress: "Bakı şəhəri, Azadlıq prospekti 105",
+                fCopyright: "© 2026 NKSHOP. Bütün hüquqlar qorunur.",
+                infoModalTitle: "Məlumat",
+                infoSoon: "Bu bölmə yaxın zamanlarda aktivləşəcək.",
+                alertFillAuth: "Zəhmət olmasa Ad və E-poçt sahələrini doldurun!",
+                alertPassShort: "Şifrə ən azı 6 simvoldan ibarət olmalıdır!",
+                alertPassMismatch: "Daxil etdiyiniz şifrələr bir-biri ilə üst-üstə düşmür!",
+                alertCardIncomplete: "Zəhmət olmasa bank kartı məlumatlarını doğru daxil edin!",
+                alertUserExists: "Bu e-poçt ünvanı ilə artıq qeydiyyatdan keçilib! Giriş bölməsinə keçin.",
+                alertRegSuccess: "Qeydiyyatınız uğurla tamamlandı!",
+                alertLoginEmpty: "Zəhmət olmasa e-poçt və şifrənizi daxil edin!",
+                alertWelcome: "Xoş gəldiniz",
+                alertWrongPass: "Daxil etdiyiniz şifrə yanlışdır!",
+                alertUserNotFound: "Bu e-poçt ünvanı tapılmadı! Zəhmət olmasa öncə Qeydiyyatdan keçin.",
+                alertLogout: "Hesabdan çıxış edildi.",
+                alertCartEmpty: "Səbətiniz boşdur!",
+                alertCheckoutAuth: "Sifarişi tamamlamaq üçün öncə Giriş edin və ya Qeydiyyatdan keçin!",
+                alertCheckoutSuccess: "Hörmətli {name}, {total} məbləğində ödəniş qeydiyyatda olan {card} nömrəli kartınızdan uğurla çıxıldı! Sifarişiniz təsdiqləndi.",
+                alertCompSuccess: "Rəyiniz göndərildi!",
+                cartEmptyText: "Səbətiniz boşdur.",
+                creditText: "ay",
+                addToCartBtnText: "Səbətə Əlavə Et"
+            },
+            en: {
+                cartLabel: "Cart",
+                authBtn: "Login / Register",
+                profileName: "Your Profile",
+                cat_all: "All",
+                cat_phone: "Smartphones",
+                cat_computer: "Computers",
+                cat_tv: "TVs",
+                cat_tablet: "Tablets",
+                cat_washer: "Washing Machines",
+                cat_dishwasher: "Dishwashers",
+                cartTitleText: "Your Cart",
+                totalLabel: "Total:",
+                checkoutBtnText: "Checkout",
+                tabLogin: "Login",
+                tabRegister: "Register",
+                lblLoginEmail: "Email Address:",
+                lblLoginPassword: "Password:",
+                btnLoginSubmit: "Login",
+                lblRegName: "Full Name:",
+                lblRegEmail: "Email Address:",
+                lblRegPassword: "Password:",
+                lblRegPasswordConfirm: "Confirm Password:",
+                lblCardSectionTitle: "Card Details (For Payments)",
+                lblCardName: "Cardholder Name:",
+                lblCardNumber: "Card Number (16 digits):",
+                lblCardExpiry: "Expiry Date:",
+                lblCardCvv: "CVV/CVC:",
+                btnRegisterSubmit: "Create Account",
+                pTitle: "Personal Profile",
+                lblViewProfileName: "Full Name:",
+                lblViewProfileEmail: "Email:",
+                lblViewProfileCard: "Linked Card:",
+                lblViewProfileStatus: "Status:",
+                viewProfileStatusValue: "Active Customer",
+                btnLogout: "Logout",
+                lblDetailPrice: "Cash Price:",
+                lblDetailCredit: "Credit Terms:",
+                lblDetailWarranty: "Warranty:",
+                detailWarrantyValue: "1 year",
+                detailAddToCartBtn: "Add to Cart",
+                compTitle: "Complaints & Suggestions",
+                compSubtitle: "Let us know your feedback.",
+                lblCompEmail: "Your Email Address:",
+                lblCompMessage: "Your Message / Complaint:",
+                btnCompSubmit: "Submit and Return",
+                fTitleAbout: "About NKSHOP",
+                fTextAbout: "NKSHOP — One of the leading technology stores in Azerbaijan.",
+                fTitleLinks: "Useful Links",
+                fLinkCamp: "Campaigns",
+                fLinkStores: "Our Stores",
+                fLinkComp: "Complaints & Suggestions",
+                fLinkFaq: "FAQ",
+                fTitleRules: "Regulations",
+                fLinkCredit: "Credit Conditions",
+                fLinkReturn: "Return Policy",
+                fLinkDeliv: "Delivery & Payment",
+                fLinkPriv: "Privacy Policy",
+                fTitleContact: "Contact",
+                lblCallCenter: "Call Center:",
+                lblWorkHours: "Working Hours:",
+                valWorkHours: "Every day: 09:00 - 21:00",
+                lblAddress: "Address:",
+                valAddress: "Baku city, Azadlig avenue 105",
+                fCopyright: "© 2026 NKSHOP. All rights reserved.",
+                infoModalTitle: "Information",
+                infoSoon: "This section will be activated soon.",
+                alertFillAuth: "Please fill in Name and Email fields!",
+                alertPassShort: "Password must be at least 6 characters long!",
+                alertPassMismatch: "The passwords you entered do not match!",
+                alertCardIncomplete: "Please enter correct bank card details!",
+                alertUserExists: "This email address is already registered! Go to login section.",
+                alertRegSuccess: "Your registration has been successfully completed!",
+                alertLoginEmpty: "Please enter your email and password!",
+                alertWelcome: "Welcome",
+                alertWrongPass: "The password you entered is incorrect!",
+                alertUserNotFound: "This email address was not found! Please register first.",
+                alertLogout: "Logged out of account.",
+                alertCartEmpty: "Your cart is empty!",
+                alertCheckoutAuth: "Please login or register first to complete the order!",
+                alertCheckoutSuccess: "Dear {name}, the payment of {total} was successfully deducted from your registered card ending in {card}! Your order is confirmed.",
+                alertCompSuccess: "Your feedback has been sent!",
+                cartEmptyText: "Your cart is empty.",
+                creditText: "months",
+                addToCartBtnText: "Add to Cart"
+            },
+            ru: {
+                cartLabel: "Корзина",
+                authBtn: "Вход / Регистрация",
+                profileName: "Ваш профиль",
+                cat_all: "Все",
+                cat_phone: "Смартфоны",
+                cat_computer: "Компьютеры",
+                cat_tv: "Телевизоры",
+                cat_tablet: "Планшеты",
+                cat_washer: "Стиральные машины",
+                cat_dishwasher: "Посудомоечные",
+                cartTitleText: "Ваша корзина",
+                totalLabel: "Итого:",
+                checkoutBtnText: "Оформить заказ",
+                tabLogin: "Войти",
+                tabRegister: "Регистрация",
+                lblLoginEmail: "Эл. адрес:",
+                lblLoginPassword: "Пароль:",
+                btnLoginSubmit: "Войти",
+                lblRegName: "Имя, Фамилия:",
+                lblRegEmail: "Эл. адрес:",
+                lblRegPassword: "Пароль:",
+                lblRegPasswordConfirm: "Повторите пароль:",
+                lblCardSectionTitle: "Данные карты (Для оплаты)",
+                lblCardName: "Владелец карты:",
+                lblCardNumber: "Номер карты (16 цифр):",
+                lblCardExpiry: "Срок действия:",
+                lblCardCvv: "CVV/CVC:",
+                btnRegisterSubmit: "Создать аккаунт",
+                pTitle: "Личный профиль",
+                lblViewProfileName: "Имя, Фамилия:",
+                lblViewProfileEmail: "Эл. адрес:",
+                lblViewProfileCard: "Привязанная карта:",
+                lblViewProfileStatus: "Статус:",
+                viewProfileStatusValue: "Активный клиент",
+                btnLogout: "Выйти из аккаунта",
+                lblDetailPrice: "Цена наличными:",
+                lblDetailCredit: "Условия кредита:",
+                lblDetailWarranty: "Гарантия:",
+                detailWarrantyValue: "1 год",
+                detailAddToCartBtn: "Добавить в корзину",
+                compTitle: "Жалобы и предложения",
+                compSubtitle: "Оставьте свой отзыв.",
+                lblCompEmail: "Ваш эл. адрес:",
+                lblCompMessage: "Ваше сообщение / Жалоба:",
+                btnCompSubmit: "Отправить и вернуться",
+                fTitleAbout: "О NKSHOP",
+                fTextAbout: "NKSHOP — один из ведущих магазинов технологий в Азербайджане.",
+                fTitleLinks: "Полезные ссылки",
+                fLinkCamp: "Кампании",
+                fLinkStores: "Наши магазины",
+                fLinkComp: "Жалобы и предложения",
+                fLinkFaq: "Часто задаваемые вопросы",
+                fTitleRules: "Правила",
+                fLinkCredit: "Условия кредита",
+                fLinkReturn: "Политика возврата",
+                fLinkDeliv: "Доставка и оплата",
+                fLinkPriv: "Политика конфиденциальности",
+                fTitleContact: "Контакты",
+                lblCallCenter: "Колл-центр:",
+                lblWorkHours: "Рабочие часы:",
+                valWorkHours: "Каждый день: 09:00 - 21:00",
+                lblAddress: "Адрес:",
+                valAddress: "город Баку, проспект Азадлыг 105",
+                fCopyright: "© 2026 NKSHOP. Все права защищены.",
+                infoModalTitle: "Информация",
+                infoSoon: "Этот раздел будет активирован в ближайшее время.",
+                alertFillAuth: "Пожалуйста, заполните поля Имя и Эл. адрес!",
+                alertPassShort: "Пароль должен состоять минимум из 6 символов!",
+                alertPassMismatch: "Введенные вами пароли не совпадают!",
+                alertCardIncomplete: "Пожалуйста, введите правильные данные банковской карты!",
+                alertUserExists: "Этот эл. адрес уже зарегистрирован! Перейдите в раздел входа.",
+                alertRegSuccess: "Ваша регистрация успешно завершена!",
+                alertLoginEmpty: "Пожалуйста, введите эл. адрес и пароль!",
+                alertWelcome: "Добро пожаловать",
+                alertWrongPass: "Введенный вами пароль неверный!",
+                alertUserNotFound: "Этот эл. адрес не найден! Пожалуйста, сначала зарегистрируйтесь.",
+                alertLogout: "Вышли из аккаунта.",
+                alertCartEmpty: "Ваша корзина пуста!",
+                alertCheckoutAuth: "Пожалуйста, сначала войдите или зарегистрируйтесь, чтобы завершить заказ!",
+                alertCheckoutSuccess: "Уважаемый(ая) {name}, платеж в размере {total} был успешно списан с вашей зарегистрированной карты, заканчивающейся на {card}! Ваш заказ подтвержден.",
+                alertCompSuccess: "Ваш отзыв отправлен!",
+                cartEmptyText: "Ваша корзина пуста.",
+                creditText: "мес",
+                addToCartBtnText: "В корзину"
+            }
+        };
 
         const products = [
             { id: 1, name: "iPhone 15 Pro Max 256GB", price: 3199, category: "phone", image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400", specs: "A17 Pro Chip, 48MP Kamera, Titanium Dizayn" },
@@ -734,28 +996,34 @@
                 currentUser = JSON.parse(savedUser);
                 loginUserInterface();
             }
+            changeLanguage('az'); // İlkin olaraq Azərbaycan dilini tətbiq edirik
         };
 
         function renderProducts(items) {
             const container = document.getElementById('productsContainer');
             container.innerHTML = '';
             items.forEach(p => {
+                let creditMonths = currentLang === 'az' ? 'ay' : (currentLang === 'en' ? 'months' : 'мес');
+                let btnText = langData[currentLang].addToCartBtnText;
+                
                 container.innerHTML += `
                     <div class="product-card">
                         <div class="product-clickable" onclick="openProductDetailModal(${p.id})">
                             <img src="${p.image}" class="product-img" alt="${p.name}">
                             <div class="product-title">${p.name}</div>
                             <div class="product-price">${p.price} AZN</div>
-                            <div class="product-credit">${Math.round(p.price/12)} AZN x 12 ay</div>
+                            <div class="product-credit">${Math.round(p.price/12)} AZN x 12 ${creditMonths}</div>
                         </div>
-                        <button class="btn" onclick="addToCart(${p.id})">Səbətə Əlavə Et</button>
+                        <button class="btn" onclick="addToCart(${p.id})">${btnText}</button>
                     </div>
                 `;
             });
         }
 
         function filterProducts(cat, btn) {
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.category-bar').forEach(bar => {
+                bar.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            });
             btn.classList.add('active');
             if(cat === 'all') { renderProducts(products); } 
             else { renderProducts(products.filter(p => p.category === cat)); }
@@ -774,7 +1042,6 @@
             }
         }
 
-        // QEYDİYYAT PROSESİ (2-li Parol Yoxlanışı ilə)
         function processRegister() {
             const name = document.getElementById('regName').value.trim();
             const email = document.getElementById('regEmail').value.trim().toLowerCase();
@@ -785,18 +1052,15 @@
             const cExp = document.getElementById('cardExpiry').value.trim();
             const cCvv = document.getElementById('cardCvv').value.trim();
 
-            if(!name || !email) { alert("Zəhmət olmasa Ad və E-poçt sahələrini doldurun!"); return; }
-            if(password.length < 6) { alert("Şifrə ən azı 6 simvoldan ibarət olmalıdır!"); return; }
-            
-            // 2-li parol yoxlanışı
-            if(password !== passwordConfirm) { alert("Daxil etdiyiniz şifrələr bir-biri ilə üst-üstə düşmür!"); return; }
-            
-            if(cNum.length < 16 || !cName || !cExp || cCvv.length < 3) { alert("Zəhmət olmasa bank kartı məlumatlarını doğru daxil edin!"); return; }
+            if(!name || !email) { alert(langData[currentLang].alertFillAuth); return; }
+            if(password.length < 6) { alert(langData[currentLang].alertPassShort); return; }
+            if(password !== passwordConfirm) { alert(langData[currentLang].alertPassMismatch); return; }
+            if(cNum.length < 16 || !cName || !cExp || cCvv.length < 3) { alert(langData[currentLang].alertCardIncomplete); return; }
 
             let usersBase = JSON.parse(localStorage.getItem('nkshop_users_db')) || [];
             const userExists = usersBase.find(u => u.email === email);
             if(userExists) {
-                alert("Bu e-poçt ünvanı ilə artıq qeydiyyatdan keçilib! Giriş bölməsinə keçin.");
+                alert(langData[currentLang].alertUserExists);
                 return;
             }
 
@@ -807,34 +1071,32 @@
             currentUser = newUser;
             localStorage.setItem('nkshop_logged_in_user', JSON.stringify(currentUser));
             
-            alert("Qeydiyyatınız uğurla tamamlandı!");
+            alert(langData[currentLang].alertRegSuccess);
             loginUserInterface();
             closeModal();
         }
 
-        // GİRİŞ PROSESİ (Parol Yoxlanışı ilə)
         function processLogin() {
             const email = document.getElementById('loginEmail').value.trim().toLowerCase();
             const pass = document.getElementById('loginPassword').value;
 
-            if(!email || !pass) { alert("Zəhmət olmasa e-poçt və şifrənizi daxil edin!"); return; }
+            if(!email || !pass) { alert(langData[currentLang].alertLoginEmpty); return; }
 
             let usersBase = JSON.parse(localStorage.getItem('nkshop_users_db')) || [];
             const user = usersBase.find(u => u.email === email);
 
             if(user) {
-                // Şifrə yoxlanışı
                 if(user.password === pass) {
                     currentUser = user;
                     localStorage.setItem('nkshop_logged_in_user', JSON.stringify(currentUser));
-                    alert(`Xoş gəldiniz, ${user.name}!`);
+                    alert(`${langData[currentLang].alertWelcome}, ${user.name}!`);
                     loginUserInterface();
                     closeModal();
                 } else {
-                    alert("Daxil etdiyiniz şifrə yanlışdır!");
+                    alert(langData[currentLang].alertWrongPass);
                 }
             } else {
-                alert("Bu e-poçt ünvanı tapılmadı! Zəhmət olmasa öncə Qeydiyyatdan keçin.");
+                alert(langData[currentLang].alertUserNotFound);
             }
         }
 
@@ -851,7 +1113,7 @@
             document.getElementById('navAuthBtn').style.display = 'block';
             document.getElementById('profileBox').style.display = 'none';
             closeProfileModal();
-            alert("Hesabdan çıxış edildi.");
+            alert(langData[currentLang].alertLogout);
         }
 
         function addToCart(id) {
@@ -872,7 +1134,7 @@
             let totalPrice = 0;
 
             if(cart.length === 0) {
-                cartItemsContainer.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">Səbətiniz boşdur.</p>`;
+                cartItemsContainer.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">${langData[currentLang].cartEmptyText}</p>`;
             } else {
                 cart.forEach(c => {
                     totalPrice += c.price * c.qty;
@@ -911,16 +1173,21 @@
         }
 
         function checkout() {
-            if(cart.length === 0) { alert("Səbətiniz boşdur!"); return; }
+            if(cart.length === 0) { alert(langData[currentLang].alertCartEmpty); return; }
             
             if(!currentUser) {
-                alert("Sifarişi tamamlamaq üçün öncə Giriş edin və ya Qeydiyyatdan keçin!");
+                alert(langData[currentLang].alertCheckoutAuth);
                 toggleCartDrawer(false);
                 openAuthModal();
                 return;
             }
 
-            alert(`Hörmətli ${currentUser.name}, ${document.getElementById('cartTotal').innerText} məbləğində ödəniş qeydiyyatda olan ${currentUser.cardNum.slice(-4)} nömrəli kartınızdan uğurla çıxıldı! Sifarişiniz təsdiqləndi.`);
+            let successMsg = langData[currentLang].alertCheckoutSuccess
+                .replace('{name}', currentUser.name)
+                .replace('{total}', document.getElementById('cartTotal').innerText)
+                .replace('{card}', currentUser.cardNum.slice(-4));
+
+            alert(successMsg);
             cart = [];
             updateCartUI();
             toggleCartDrawer(false);
@@ -941,10 +1208,12 @@
         function openProductDetailModal(id) {
             const p = products.find(item => item.id === id);
             if(!p) return;
+            let creditMonths = currentLang === 'az' ? 'ay' : (currentLang === 'en' ? 'months' : 'мес');
+            
             document.getElementById('detailTitle').innerText = p.name;
             document.getElementById('detailImg').src = p.image;
             document.getElementById('detailPrice').innerText = p.price + " AZN";
-            document.getElementById('detailCredit').innerText = Math.round(p.price/12) + " AZN x 12 ay";
+            document.getElementById('detailCredit').innerText = Math.round(p.price/12) + " AZN x 12 " + creditMonths;
             document.getElementById('detailSpecs').innerText = p.specs;
             document.getElementById('detailAddToCartBtn').onclick = function() { addToCart(p.id); closeProductDetailModal(); };
             document.getElementById('productDetailModalOverlay').style.display = 'flex';
@@ -952,16 +1221,112 @@
         function closeProductDetailModal() { document.getElementById('productDetailModalOverlay').style.display = 'none'; }
 
         function toggleLangDropdown() { document.getElementById('langMenu').classList.toggle('show'); }
+        
+        // DİLİN DƏYİŞDİRİLMƏSİ FUNKSİYASI
         function changeLanguage(lang) {
             currentLang = lang;
             document.getElementById('currentLangBtn').innerText = lang.toUpperCase();
             document.getElementById('langMenu').classList.remove('show');
+            
+            const trans = langData[lang];
+            
+            // Navbar və Kateqoriyalar
+            document.getElementById('navCartLabel').innerText = trans.cartLabel;
+            if(!currentUser) {
+                document.getElementById('navAuthBtn').innerText = trans.authBtn;
+            } else {
+                document.getElementById('profileName').innerText = trans.profileName;
+            }
+            
+            document.getElementById('cat_all').innerText = trans.cat_all;
+            document.getElementById('cat_phone').innerText = trans.cat_phone;
+            document.getElementById('cat_computer').innerText = trans.cat_computer;
+            document.getElementById('cat_tv').innerText = trans.cat_tv;
+            document.getElementById('cat_tablet').innerText = trans.cat_tablet;
+            document.getElementById('cat_washer').innerText = trans.cat_washer;
+            document.getElementById('cat_dishwasher').innerText = trans.cat_dishwasher;
+            
+            // Səbət Modalı
+            document.getElementById('cartTitleText').innerText = trans.cartTitleText;
+            document.getElementById('totalLabel').innerText = trans.totalLabel;
+            document.getElementById('checkoutBtnText').innerText = trans.checkoutBtnText;
+            
+            // Giriş / Qeydiyyat
+            document.getElementById('tabLogin').innerText = trans.tabLogin;
+            document.getElementById('tabRegister').innerText = trans.tabRegister;
+            document.getElementById('lblLoginEmail').innerText = trans.lblLoginEmail;
+            document.getElementById('lblLoginPassword').innerText = trans.lblLoginPassword;
+            document.getElementById('btnLoginSubmit').innerText = trans.btnLoginSubmit;
+            
+            document.getElementById('lblRegName').innerText = trans.lblRegName;
+            document.getElementById('lblRegEmail').innerText = trans.lblRegEmail;
+            document.getElementById('lblRegPassword').innerText = trans.lblRegPassword;
+            document.getElementById('lblRegPasswordConfirm').innerText = trans.lblRegPasswordConfirm;
+            document.getElementById('lblCardSectionTitle').innerText = trans.lblCardSectionTitle;
+            document.getElementById('lblCardName').innerText = trans.lblCardName;
+            document.getElementById('lblCardNumber').innerText = trans.lblCardNumber;
+            document.getElementById('lblCardExpiry').innerText = trans.lblCardExpiry;
+            document.getElementById('lblCardCvv').innerText = trans.lblCardCvv;
+            document.getElementById('btnRegisterSubmit').innerText = trans.btnRegisterSubmit;
+            
+            // Profil Modalı
+            document.getElementById('pTitle').innerText = trans.pTitle;
+            document.getElementById('lblViewProfileName').innerText = trans.lblViewProfileName;
+            document.getElementById('lblViewProfileEmail').innerText = trans.lblViewProfileEmail;
+            document.getElementById('lblViewProfileCard').innerText = trans.lblViewProfileCard;
+            document.getElementById('lblViewProfileStatus').innerText = trans.lblViewProfileStatus;
+            document.getElementById('viewProfileStatusValue').innerText = trans.viewProfileStatusValue;
+            document.getElementById('btnLogout').innerText = trans.btnLogout;
+            
+            // Detal Modalı
+            document.getElementById('lblDetailPrice').innerText = trans.lblDetailPrice;
+            document.getElementById('lblDetailCredit').innerText = trans.lblDetailCredit;
+            document.getElementById('lblDetailWarranty').innerText = trans.lblDetailWarranty;
+            document.getElementById('detailWarrantyValue').innerText = trans.detailWarrantyValue;
+            document.getElementById('detailAddToCartBtn').innerText = trans.detailAddToCartBtn;
+            
+            // Şikayət Modalı
+            document.getElementById('compTitle').innerText = trans.compTitle;
+            document.getElementById('compSubtitle').innerText = trans.compSubtitle;
+            document.getElementById('lblCompEmail').innerText = trans.lblCompEmail;
+            document.getElementById('lblCompMessage').innerText = trans.lblCompMessage;
+            document.getElementById('btnCompSubmit').innerText = trans.btnCompSubmit;
+            
+            // Footer
+            document.getElementById('fTitleAbout').innerText = trans.fTitleAbout;
+            document.getElementById('fTextAbout').innerText = trans.fTextAbout;
+            document.getElementById('fTitleLinks').innerText = trans.fTitleLinks;
+            document.getElementById('fLinkCamp').innerText = trans.fLinkCamp;
+            document.getElementById('fLinkStores').innerText = trans.fLinkStores;
+            document.getElementById('fLinkComp').innerText = trans.fLinkComp;
+            document.getElementById('fLinkFaq').innerText = trans.fLinkFaq;
+            document.getElementById('fTitleRules').innerText = trans.fTitleRules;
+            document.getElementById('fLinkCredit').innerText = trans.fLinkCredit;
+            document.getElementById('fLinkReturn').innerText = trans.fLinkReturn;
+            document.getElementById('fLinkDeliv').innerText = trans.fLinkDeliv;
+            document.getElementById('fLinkPriv').innerText = trans.fLinkPriv;
+            document.getElementById('fTitleContact').innerText = trans.fTitleContact;
+            document.getElementById('lblCallCenter').innerText = trans.lblCallCenter;
+            document.getElementById('lblWorkHours').innerText = trans.lblWorkHours;
+            document.getElementById('valWorkHours').innerText = trans.valWorkHours;
+            document.getElementById('lblAddress').innerText = trans.lblAddress;
+            document.getElementById('valAddress').innerText = trans.valAddress;
+            document.getElementById('fCopyright').innerText = trans.fCopyright;
+            
+            // Yenidən renderlər
+            renderProducts(products);
+            updateCartUI();
         }
 
         function openComplaintModal() { document.getElementById('complaintModalOverlay').style.display = 'flex'; }
         function closeComplaintModal() { document.getElementById('complaintModalOverlay').style.display = 'none'; }
-        function submitComplaint() { alert("Rəyiniz göndərildi!"); closeComplaintModal(); }
-        function openInfoModal(type) { document.getElementById('infoModalBody').innerText = "Bu bölmə yaxın zamanlarda aktivləşəcək."; document.getElementById('infoModalOverlay').style.display = 'flex'; }
+        function submitComplaint() { alert(langData[currentLang].alertCompSuccess); closeComplaintModal(); }
+        
+        function openInfoModal(type) { 
+            document.getElementById('infoModalTitle').innerText = langData[currentLang].infoModalTitle;
+            document.getElementById('infoModalBody').innerText = langData[currentLang].infoSoon; 
+            document.getElementById('infoModalOverlay').style.display = 'flex'; 
+        }
         function closeInfoModal() { document.getElementById('infoModalOverlay').style.display = 'none'; }
     </script>
 </body>
