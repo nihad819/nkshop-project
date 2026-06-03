@@ -1,3 +1,4 @@
+require('dotenv').config(); // 1. Ən başa bu sətri əlavə etdik
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -14,8 +15,8 @@ app.use(express.static(path.join(__dirname, '.')));
 // Qeydiyyatdan keçənlərin siyahısını yadda saxlayan müvəqqəti baza
 let registeredUsers = [];
 
-// Şifrə panelini idarə etmək üçün gizli şifrə
-const ADMIN_PASSWORD = "Nihad2505";
+// Şifrə panelini idarə etmək üçün gizli şifrə (İndi .env faylından oxuyur)
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 // 1. Müştəri qeydiyyatdan keçəndə məlumatları qəbul edən mexanizm
 app.post('/api/register', (req, res) => {
@@ -106,7 +107,6 @@ app.get('/admin', (req, res) => {
         </div>
 
         <script>
-            // Səhifə yüklənəndə avtomatik yoxla
             window.onload = function() {
                 const savedPass = sessionStorage.getItem('admin_password');
                 if (savedPass) {
@@ -125,28 +125,22 @@ app.get('/admin', (req, res) => {
                 })
                 .then(res => {
                     if(!res.ok) {
-                        sessionStorage.removeItem('admin_password'); // Səhvdirsə yaddaşdan sil
+                        sessionStorage.removeItem('admin_password');
                         throw new Error('Səhv şifrə!');
                     }
                     return res.json();
                 })
                 .then(data => {
-                    // Şifrə düzdürsə brauzer yaddaşına yazırıq (Səhifə yenilənəndə itməməsi üçün)
                     sessionStorage.setItem('admin_password', pass);
-
                     document.getElementById('authBlock').style.display = 'none';
                     document.getElementById('adminContent').style.display = 'block';
-                    
                     document.getElementById('totalUsersCount').innerText = data.users.length;
-                    
                     const tbody = document.getElementById('tableBody');
                     tbody.innerHTML = '';
-                    
                     if(data.users.length === 0) {
                         tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#888;">Hələ qeydiyyatdan keçən yoxdur.</td></tr>';
                         return;
                     }
-
                     data.users.forEach(u => {
                         const tr = document.createElement('tr');
                         tr.innerHTML = \`
@@ -174,7 +168,6 @@ app.get('/admin', (req, res) => {
     `);
 });
 
-// Əsas səhifə olaraq index.html-i açır
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
