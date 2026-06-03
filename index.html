@@ -164,6 +164,32 @@
             color: white;
         }
 
+        /* Giriş/Qeydiyyat Modalının Tab Stili */
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.2s;
+        }
+        .auth-tab.active {
+            color: #e94560;
+            border-bottom: 2px solid #e94560;
+        }
+        .auth-form-section {
+            display: none;
+        }
+        .auth-form-section.active {
+            display: block;
+        }
+
         /* Kateqoriya Filterləri */
         .category-bar {
             display: flex;
@@ -483,9 +509,9 @@
                 </div>
             </div>
 
-            <button class="auth-btn" id="navAuthBtn" onclick="openAuthModal()">Giriş</button>
+            <button class="auth-btn" id="navAuthBtn" onclick="openAuthModal()">Giriş / Qeydiyyat</button>
             <div class="profile-container" id="profileBox" onclick="openProfileModal()">
-                <div class="user-avatar" id="userAvatar">P</div>
+                <div class="user-avatar" id="userAvatar">U</div>
                 <span id="profileName" style="font-weight:600;">Profiliniz</span>
             </div>
         </div>
@@ -524,38 +550,50 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-box">
             <span class="close-modal-btn" onclick="closeModal()">&times;</span>
-            <h3 id="mRegTitle">Müştəri və Ödəniş Məlumatları</h3>
             
-            <div class="form-group">
-                <label id="mLabelName">Ad, Soyad:</label>
-                <input type="text" id="regName" placeholder="Məs. Əli Məmmədov">
-            </div>
-            <div class="form-group">
-                <label id="mLabelEmail">E-poçt Ünvanı:</label>
-                <input type="email" id="regEmail" placeholder="Məs. ali@mail.com">
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Giriş Et</div>
+                <div class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Qeydiyyat</div>
             </div>
 
-            <h4 id="mCardTitle" style="margin: 20px 0 10px 0; color:#e94560; border-bottom: 1px solid #eee; padding-bottom:5px;">Kart Məlumatları</h4>
-            <div class="form-group">
-                <label id="mLabelCardName">Kart Sahibi:</label>
-                <input type="text" id="cardName" placeholder="Məs. ALI MAMMADOV">
-            </div>
-            <div class="form-group">
-                <label id="mLabelCardNum">Kart Nömrəsi (16 rəqəmli):</label>
-                <input type="text" id="cardNumber" maxlength="16" placeholder="0000000000000000">
-            </div>
-            <div class="card-row">
-                <div class="form-group" style="flex:1;">
-                    <label id="mLabelExpiry">Bitmə tarixi:</label>
-                    <input type="text" id="cardExpiry" maxlength="5" placeholder="AA/İİ">
+            <div id="formLogin" class="auth-form-section active">
+                <div class="form-group">
+                    <label>E-poçt Ünvanı:</label>
+                    <input type="email" id="loginEmail" placeholder="Məs. ali@mail.com">
                 </div>
-                <div class="form-group" style="flex:1;">
-                    <label>CVV/CVC:</label>
-                    <input type="password" id="cardCvv" maxlength="3" placeholder="***">
-                </div>
+                <button class="btn" style="margin-top:10px;" onclick="processLogin()">Giriş</button>
             </div>
 
-            <button class="btn" style="margin-top:10px;" onclick="processPayment()" id="mBtnConfirm">Ödənişi Tamamla</button>
+            <div id="formRegister" class="auth-form-section">
+                <div class="form-group">
+                    <label>Ad, Soyad:</label>
+                    <input type="text" id="regName" placeholder="Məs. Əli Məmmədov">
+                </div>
+                <div class="form-group">
+                    <label>E-poçt Ünvanı:</label>
+                    <input type="email" id="regEmail" placeholder="Məs. ali@mail.com">
+                </div>
+                <h4 style="margin: 15px 0 10px 0; color:#e94560; border-bottom: 1px solid #eee; padding-bottom:5px;">Kart Məlumatları (Ödənişlər üçün)</h4>
+                <div class="form-group">
+                    <label>Kart Sahibi:</label>
+                    <input type="text" id="cardName" placeholder="Məs. ALI MAMMADOV">
+                </div>
+                <div class="form-group">
+                    <label>Kart Nömrəsi (16 rəqəmli):</label>
+                    <input type="text" id="cardNumber" maxlength="16" placeholder="0000000000000000">
+                </div>
+                <div class="card-row">
+                    <div class="form-group" style="flex:1;">
+                        <label>Bitmə tarixi:</label>
+                        <input type="text" id="cardExpiry" maxlength="5" placeholder="AA/İİ">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>CVV/CVC:</label>
+                        <input type="password" id="cardCvv" maxlength="3" placeholder="***">
+                    </div>
+                </div>
+                <button class="btn" style="margin-top:10px;" onclick="processRegister()">Hesab Yarat</button>
+            </div>
         </div>
     </div>
 
@@ -564,12 +602,12 @@
             <span class="close-modal-btn" onclick="closeProfileModal()">&times;</span>
             <h3 id="pTitle" style="margin-bottom:20px; color:#1a1a2e;">Şəxsi Profil</h3>
             <div style="display:flex; flex-direction:column; gap:12px;">
-                <div><span class="detail-label" id="pNameLabel">Ad, Soyad:</span> <span id="viewProfileName">-</span></div>
-                <div><span class="detail-label" id="pEmailLabel">E-poçt:</span> <span id="viewProfileEmail">-</span></div>
-                <div><span class="detail-label" id="pCardLabel">Bağlı Kart:</span> <span id="viewProfileCard">-</span></div>
-                <div><span class="detail-label" id="pStatusLabel">Status:</span> <span id="pStatusValue" style="color:green; font-weight:700;">Aktiv</span></div>
+                <div><span class="detail-label">Ad, Soyad:</span> <span id="viewProfileName">-</span></div>
+                <div><span class="detail-label">E-poçt:</span> <span id="viewProfileEmail">-</span></div>
+                <div><span class="detail-label">Bağlı Kart:</span> <span id="viewProfileCard">-</span></div>
+                <div><span class="detail-label">Status:</span> <span style="color:green; font-weight:700;">Aktiv Müştəri</span></div>
             </div>
-            <button class="btn" style="margin-top:25px;" onclick="closeProfileModal()" id="pBtnClose">Bağla</button>
+            <button class="btn" style="margin-top:25px; background-color:#e94560;" onclick="logout()">Hesabdan Çıx</button>
         </div>
     </div>
 
@@ -580,16 +618,16 @@
             <img src="" id="detailImg" class="detail-img" alt="Məhsul">
             
             <div class="detail-row">
-                <span class="detail-label" id="dPriceLabel">Nağd Qiymət:</span>
+                <span class="detail-label">Nağd Qiymət:</span>
                 <span class="detail-value" id="detailPrice" style="color:#e94560; font-size:18px;">0 AZN</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label" id="dCreditLabel">Kredit Şərtləri:</span>
+                <span class="detail-label">Kredit Şərtləri:</span>
                 <span class="detail-value" id="detailCredit" style="color:#2bc87d;">0 AZN x 0 ay</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label" id="dWarrantyLabel">Zəmanət:</span>
-                <span class="detail-value" id="dWarrantyValue">1 il</span>
+                <span class="detail-label">Zəmanət:</span>
+                <span class="detail-value">1 il</span>
             </div>
 
             <div class="detail-specs" id="detailSpecs"></div>
@@ -609,14 +647,14 @@
         <div class="modal-box">
             <span class="close-modal-btn" onclick="closeComplaintModal()">&times;</span>
             <h3 id="compTitle" style="margin-bottom:15px; color:#1a1a2e;">Şikayət və Təkliflər</h3>
-            <p id="compDesc" style="font-size:13px; color:#666; margin-bottom:15px;">Bizə rəyinizi bildirin.</p>
+            <p style="font-size:13px; color:#666; margin-bottom:15px;">Bizə rəyinizi bildirin.</p>
             
             <div class="form-group">
-                <label id="compLabelEmail">Sizin E-poçt Ünvanınız:</label>
+                <label>Sizin E-poçt Ünvanınız:</label>
                 <input type="email" id="compEmail" placeholder="Məs. adiniz@mail.com" required>
             </div>
             <div class="form-group">
-                <label id="compLabelMessage">Mesajınız / Şikayətiniz:</label>
+                <label>Mesajınız / Şikayətiniz:</label>
                 <textarea id="compMessage" rows="4" placeholder="Problemi və ya təklifinizi ətraflı yazın..." required></textarea>
             </div>
             <button class="btn" onclick="submitComplaint()">Göndər və Geri Qayıt</button>
@@ -626,59 +664,40 @@
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h3 id="fColAboutTitle">O NKSHOP</h3>
-                <p id="fColAboutDesc">NKSHOP — Azərbaycanın aparıcı texnologiya mağazalarından biridir.</p>
+                <h3>O NKSHOP</h3>
+                <p>NKSHOP — Azərbaycanın aparıcı texnologiya mağazalarından biridir.</p>
             </div>
             <div class="footer-col">
-                <h3 id="fColLinksTitle">Faydalı Linklər</h3>
+                <h3>Faydalı Linklər</h3>
                 <ul>
-                    <li><a onclick="openInfoModal('campaigns')" id="fLink1">Kampaniyalar</a></li>
-                    <li><a onclick="openInfoModal('stores')" id="fLink2">Mağazalarımız</a></li>
-                    <li><a onclick="openComplaintModal()" id="fLink3" style="color:#e94560; font-weight:bold;">Şikayət və Təkliflər</a></li>
-                    <li><a onclick="openInfoModal('faq')" id="fLink4">Tez-Tez Verilən Suallar</a></li>
+                    <li><a onclick="openInfoModal('campaigns')">Kampaniyalar</a></li>
+                    <li><a onclick="openInfoModal('stores')">Mağazalarımız</a></li>
+                    <li><a onclick="openComplaintModal()" style="color:#e94560; font-weight:bold;">Şikayət və Təkliflər</a></li>
+                    <li><a onclick="openInfoModal('faq')">Tez-Tez Verilən Suallar</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 id="fColRulesTitle">Qaydalar</h3>
+                <h3>Qaydalar</h3>
                 <ul>
-                    <li><a onclick="openInfoModal('credit')" id="fRule1">Kredit Şərtləri</a></li>
-                    <li><a onclick="openInfoModal('return')" id="fRule2">Geri Qayıtma Siyasəti</a></li>
-                    <li><a onclick="openInfoModal('delivery')" id="fRule3">Çatdırılma və Ödəniş</a></li>
-                    <li><a onclick="openInfoModal('privacy')" id="fRule4">Məxfilik Siyasəti</a></li>
+                    <li><a onclick="openInfoModal('credit')">Kredit Şərtləri</a></li>
+                    <li><a onclick="openInfoModal('return')">Geri Qayıtma Siyasəti</a></li>
+                    <li><a onclick="openInfoModal('delivery')">Çatdırılma və Ödəniş</a></li>
+                    <li><a onclick="openInfoModal('privacy')">Məxfilik Siyasəti</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3 id="fColContactTitle">Əlaqə</h3>
-                <p><b id="fContactCall">Koll-Mərkəz:</b> *1005</p>
-                <p><b id="fContactHours">İş saatları:</b> <span id="fHoursValue">Hər gün: 09:00 - 21:00</span></p>
-                <p><b id="fContactAddress">Ünvan:</b> <span id="fAddressText">Bakı şəhəri, Azadlıq prospekti 105</span></p>
+                <h3>Əlaqə</h3>
+                <p><b>Koll-Mərkəz:</b> *1005</p>
+                <p><b>İş saatları:</b> <span>Hər gün: 09:00 - 21:00</span></p>
+                <p><b>Ünvan:</b> <span>Bakı şəhəri, Azadlıq prospekti 105</span></p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p id="fCopyright">© 2026 NKSHOP. Bütün hüquqlar qorunur.</p>
+            <p>© 2026 NKSHOP. Bütün hüquqlar qorunur.</p>
         </div>
     </footer>
 
     <script>
-        // Dillər Siyahısı
-        const languages = {
-            az: {
-                currency: "AZN", month: "ay", creditText: "Faizsiz taksit", addToCart: "Səbətə əlavə et", emptyCart: "Səbətiniz boşdur.",
-                navAuthBtn: "Giriş", navCartLabel: "Səbət", alertSuccess: "Təbriklər! Ödənişiniz uğurla tamamlandı.",
-                alertFillProfile: "Zəhmət olmasa profil qeydiyyat məlumatlarını doldurun!", alertFillCard: "Zəhmət olmasa 16 rəqəmli bank kartı məlumatlarını doğru daxil edin!"
-            },
-            en: {
-                currency: "AZN", month: "mo", creditText: "Interest-free credit", addToCart: "Add to cart", emptyCart: "Your cart is empty.",
-                navAuthBtn: "Login", navCartLabel: "Cart", alertSuccess: "Congratulations! Payment completed.",
-                alertFillProfile: "Please fill in your profile details!", alertFillCard: "Please enter correct 16-digit card details!"
-            },
-            ru: {
-                currency: "AZN", month: "мес", creditText: "Беспроцентная рассрочка", addToCart: "В корзину", emptyCart: "Ваша корзина пуста.",
-                navAuthBtn: "Вход", navCartLabel: "Корзина", alertSuccess: "Поздравляем! Оплата успешно завершена.",
-                alertFillProfile: "Пожалуйста, заполните данные профиля!", alertFillCard: "Пожалуйста, введите корректные данные карты!"
-            }
-        };
-
         let currentLang = 'az';
         let cart = [];
         let currentUser = null;
@@ -691,23 +710,15 @@
             { id: 4, name: "LG UltraGear OLED TV 55\"", price: 1999, category: "tv", image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400", specs: "4K Smart TV, 120Hz Refresh Rate" }
         ];
 
-        // 🔄 Səhifə ilk dəfə açılanda brauzer yaddaşını (localStorage) yoxlayan funksiya
+        // Səhifə yüklənəndə brauzer yaddaşını yoxla
         window.onload = function() {
             renderProducts(products);
             updateCartUI();
             
-            // Yaddaşda istifadəçi varmı deyə yoxlayırıq
-            const savedUser = localStorage.getItem('nkshop_user');
+            const savedUser = localStorage.getItem('nkshop_logged_in_user');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
-                
-                // Əgər istifadəçi tapılsa, BİRBAŞA profil panelini aktiv edirik (Giriş düyməsi gizlənir)
-                document.getElementById('navAuthBtn').style.display = 'none';
-                document.getElementById('profileBox').style.display = 'flex';
-                
-                // Vizual olaraq səliqəli yazı təyin edirik
-                document.getElementById('userAvatar').innerText = "P";
-                document.getElementById('profileName').innerText = "Profiliniz";
+                loginUserInterface();
             }
         };
 
@@ -736,6 +747,93 @@
             else { renderProducts(products.filter(p => p.category === cat)); }
         }
 
+        // Giriş və Qeydiyyat pəncərələri arasında keçid etmək
+        function switchAuthTab(type) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form-section').forEach(f => f.classList.remove('active'));
+
+            if(type === 'login') {
+                document.getElementById('tabLogin').classList.add('active');
+                document.getElementById('formLogin').classList.add('active');
+            } else {
+                document.getElementById('tabRegister').classList.add('active');
+                document.getElementById('formRegister').classList.add('active');
+            }
+        }
+
+        // QEYDİYYAT PROSESİ
+        function processRegister() {
+            const name = document.getElementById('regName').value.trim();
+            const email = document.getElementById('regEmail').value.trim().toLowerCase();
+            const cName = document.getElementById('cardName').value.trim();
+            const cNum = document.getElementById('cardNumber').value.trim();
+            const cExp = document.getElementById('cardExpiry').value.trim();
+            const cCvv = document.getElementById('cardCvv').value.trim();
+
+            if(!name || !email) { alert("Zəhmət olmasa Ad və E-poçt sahələrini doldurun!"); return; }
+            if(cNum.length < 16 || !cName || !cExp || cCvv.length < 3) { alert("Zəhmət olmasa bank kartı məlumatlarını doğru daxil edin!"); return; }
+
+            // Bütün qeydiyyatdan keçən istifadəçiləri bazada (localStorage-da) saxlayırıq
+            let usersBase = JSON.parse(localStorage.getItem('nkshop_users_db')) || [];
+            
+            // E-poçt unikal olmalıdır
+            const userExists = usersBase.find(u => u.email === email);
+            if(userExists) {
+                alert("Bu e-poçt ünvanı ilə artıq qeydiyyatdan keçilib! Giriş bölməsinə keçin.");
+                return;
+            }
+
+            const newUser = { name, email, cardNum: cNum, cardName: cName };
+            usersBase.push(newUser);
+            localStorage.setItem('nkshop_users_db', JSON.stringify(usersBase));
+
+            // Eyni zamanda sistemi birbaşa loqin etdiririk
+            currentUser = newUser;
+            localStorage.setItem('nkshop_logged_in_user', JSON.stringify(currentUser));
+            
+            alert("Qeydiyyatınız uğurla tamamlandı!");
+            loginUserInterface();
+            closeModal();
+        }
+
+        // GİRİŞ PROSESİ
+        function processLogin() {
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            if(!email) { alert("Zəhmət olmasa e-poçt ünvanınızı daxil edin!"); return; }
+
+            let usersBase = JSON.parse(localStorage.getItem('nkshop_users_db')) || [];
+            const user = usersBase.find(u => u.email === email);
+
+            if(user) {
+                currentUser = user;
+                localStorage.setItem('nkshop_logged_in_user', JSON.stringify(currentUser));
+                alert(`Xoş gəldiniz, ${user.name}!`);
+                loginUserInterface();
+                closeModal();
+            } else {
+                alert("Bu e-poçt ünvanı tapılmadı! Zəhmət olmasa öncə Qeydiyyatdan keçin.");
+            }
+        }
+
+        // İstifadəçi daxil olandan sonra interfeysin dəyişməsi
+        function loginUserInterface() {
+            document.getElementById('navAuthBtn').style.display = 'none';
+            document.getElementById('profileBox').style.display = 'flex';
+            document.getElementById('userAvatar').innerText = currentUser.name.charAt(0).toUpperCase();
+            document.getElementById('profileName').innerText = currentUser.name;
+        }
+
+        // Hesabdan Çıxış
+        function logout() {
+            localStorage.removeItem('nkshop_logged_in_user');
+            currentUser = null;
+            document.getElementById('navAuthBtn').style.display = 'block';
+            document.getElementById('profileBox').style.display = 'none';
+            closeProfileModal();
+            alert("Hesabdan çıxış edildi.");
+        }
+
+        // Sifariş və Səbət Məntiqləri
         function addToCart(id) {
             const item = products.find(p => p.id === id);
             const exist = cart.find(c => c.id === id);
@@ -754,7 +852,7 @@
             let totalPrice = 0;
 
             if(cart.length === 0) {
-                cartItemsContainer.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">${languages[currentLang].emptyCart}</p>`;
+                cartItemsContainer.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">Səbətiniz boşdur.</p>`;
             } else {
                 cart.forEach(c => {
                     totalPrice += c.price * c.qty;
@@ -794,76 +892,23 @@
 
         function checkout() {
             if(cart.length === 0) { alert("Səbətiniz boşdur!"); return; }
+            
+            // Əgər giriş etməyibsə, sifarişdən qabaq məcburi qeydiyyat/giriş pəncərəsi açılsın
+            if(!currentUser) {
+                alert("Sifarişi tamamlamaq üçün öncə Giriş edin və ya Qeydiyyatdan keçin!");
+                toggleCartDrawer(false);
+                openAuthModal();
+                return;
+            }
+
+            alert(`Hörmətli ${currentUser.name}, ${document.getElementById('cartTotal').innerText} məbləğində ödəniş qeydiyyatda olan ${currentUser.cardNum.slice(-4)} nömrəli kartınızdan uğurla çıxıldı! Sifarişiniz təsdiqləndi.`);
+            cart = [];
+            updateCartUI();
             toggleCartDrawer(false);
-            document.getElementById('modalOverlay').style.display = 'flex';
-        }
-
-        function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
-
-        // 🚀 Müştəri qeydiyyatdan keçdikdən sonra brauzer yaddaşına yazan funksiya
-        function processPayment() {
-            const name = document.getElementById('regName').value.trim();
-            const email = document.getElementById('regEmail').value.trim();
-            const cName = document.getElementById('cardName').value.trim();
-            const cNum = document.getElementById('cardNumber').value.trim();
-            const cExp = document.getElementById('cardExpiry').value.trim();
-            const cCvv = document.getElementById('cardCvv').value.trim();
-
-            if(!name || !email) { alert(languages[currentLang].alertFillProfile); return; }
-            if(cNum.length < 16 || !cName || !cExp || cCvv.length < 3) { alert(languages[currentLang].alertFillCard); return; }
-
-            // Backend API simulyasiyası
-            fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    cardName: cName,
-                    cardNumber: cNum
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
-                    alert(languages[currentLang].alertSuccess);
-                    
-                    currentUser = { name, email, cardNum: cNum, cardName: cName };
-                    
-                    // 💾 Brauzerin daimi yaddaşına (localStorage) qeyd edirik
-                    localStorage.setItem('nkshop_user', JSON.stringify(currentUser));
-                    
-                    // Giriş düyməsini gizlədib Profil interfeysini aktiv edirik
-                    document.getElementById('navAuthBtn').style.display = 'none';
-                    document.getElementById('profileBox').style.display = 'flex';
-                    
-                    // Səliqəli sabit yazı və avatar təyin edirik
-                    document.getElementById('userAvatar').innerText = "P";
-                    document.getElementById('profileName').innerText = "Profiliniz";
-                    
-                    cart = [];
-                    updateCartUI();
-                    closeModal();
-                } else {
-                    alert("Xəta baş verdi: " + data.message);
-                }
-            })
-            .catch(err => {
-                // Əgər həqiqi server yoxdursa, brauzer yaddaşının lokal işləməsi üçün simulyasiya:
-                alert(languages[currentLang].alertSuccess);
-                currentUser = { name, email, cardNum: cNum, cardName: cName };
-                localStorage.setItem('nkshop_user', JSON.stringify(currentUser));
-                document.getElementById('navAuthBtn').style.display = 'none';
-                document.getElementById('profileBox').style.display = 'flex';
-                document.getElementById('userAvatar').innerText = "P";
-                document.getElementById('profileName').innerText = "Profiliniz";
-                cart = [];
-                updateCartUI();
-                closeModal();
-            });
         }
 
         function openAuthModal() { document.getElementById('modalOverlay').style.display = 'flex'; }
+        function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
         
         function openProfileModal() {
             if(!currentUser) return;
@@ -892,17 +937,7 @@
             currentLang = lang;
             document.getElementById('currentLangBtn').innerText = lang.toUpperCase();
             document.getElementById('langMenu').classList.remove('show');
-            updateCartUI();
         }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.lang-btn')) {
-                const dropdowns = document.getElementsByClassName("lang-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].classList.contains('show')) { dropdowns[i].classList.remove('show'); }
-                }
-            }
-        };
 
         function openComplaintModal() { document.getElementById('complaintModalOverlay').style.display = 'flex'; }
         function closeComplaintModal() { document.getElementById('complaintModalOverlay').style.display = 'none'; }
