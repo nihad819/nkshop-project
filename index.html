@@ -330,6 +330,8 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             position: relative;
             animation: fadeIn 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         @keyframes fadeIn {
@@ -561,6 +563,10 @@
                     <label>E-poçt Ünvanı:</label>
                     <input type="email" id="loginEmail" placeholder="Məs. ali@mail.com">
                 </div>
+                <div class="form-group">
+                    <label>Şifre:</label>
+                    <input type="password" id="loginPassword" placeholder="******">
+                </div>
                 <button class="btn" style="margin-top:10px;" onclick="processLogin()">Giriş</button>
             </div>
 
@@ -573,6 +579,16 @@
                     <label>E-poçt Ünvanı:</label>
                     <input type="email" id="regEmail" placeholder="Məs. ali@mail.com">
                 </div>
+                
+                <div class="form-group">
+                    <label>Şifrə:</label>
+                    <input type="password" id="regPassword" placeholder="Ən azı 6 simvol">
+                </div>
+                <div class="form-group">
+                    <label>Şifrənin Təkrarı:</label>
+                    <input type="password" id="regPasswordConfirm" placeholder="Şifrəni yenidən yazın">
+                </div>
+
                 <h4 style="margin: 15px 0 10px 0; color:#e94560; border-bottom: 1px solid #eee; padding-bottom:5px;">Kart Məlumatları (Ödənişlər üçün)</h4>
                 <div class="form-group">
                     <label>Kart Sahibi:</label>
@@ -702,7 +718,6 @@
         let cart = [];
         let currentUser = null;
 
-        // Statik Məhsullar Siyahısı
         const products = [
             { id: 1, name: "iPhone 15 Pro Max 256GB", price: 3199, category: "phone", image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400", specs: "A17 Pro Chip, 48MP Kamera, Titanium Dizayn" },
             { id: 2, name: "Samsung Galaxy S24 Ultra", price: 2799, category: "phone", image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400", specs: "Snapdragon 8 Gen 3, 200MP Kamera, S-Pen" },
@@ -710,7 +725,6 @@
             { id: 4, name: "LG UltraGear OLED TV 55\"", price: 1999, category: "tv", image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400", specs: "4K Smart TV, 120Hz Refresh Rate" }
         ];
 
-        // Səhifə yüklənəndə brauzer yaddaşını yoxla
         window.onload = function() {
             renderProducts(products);
             updateCartUI();
@@ -747,7 +761,6 @@
             else { renderProducts(products.filter(p => p.category === cat)); }
         }
 
-        // Giriş və Qeydiyyat pəncərələri arasında keçid etmək
         function switchAuthTab(type) {
             document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.auth-form-section').forEach(f => f.classList.remove('active'));
@@ -761,33 +774,36 @@
             }
         }
 
-        // QEYDİYYAT PROSESİ
+        // QEYDİYYAT PROSESİ (2-li Parol Yoxlanışı ilə)
         function processRegister() {
             const name = document.getElementById('regName').value.trim();
             const email = document.getElementById('regEmail').value.trim().toLowerCase();
+            const password = document.getElementById('regPassword').value;
+            const passwordConfirm = document.getElementById('regPasswordConfirm').value;
             const cName = document.getElementById('cardName').value.trim();
             const cNum = document.getElementById('cardNumber').value.trim();
             const cExp = document.getElementById('cardExpiry').value.trim();
             const cCvv = document.getElementById('cardCvv').value.trim();
 
             if(!name || !email) { alert("Zəhmət olmasa Ad və E-poçt sahələrini doldurun!"); return; }
+            if(password.length < 6) { alert("Şifrə ən azı 6 simvoldan ibarət olmalıdır!"); return; }
+            
+            // 2-li parol yoxlanışı
+            if(password !== passwordConfirm) { alert("Daxil etdiyiniz şifrələr bir-biri ilə üst-üstə düşmür!"); return; }
+            
             if(cNum.length < 16 || !cName || !cExp || cCvv.length < 3) { alert("Zəhmət olmasa bank kartı məlumatlarını doğru daxil edin!"); return; }
 
-            // Bütün qeydiyyatdan keçən istifadəçiləri bazada (localStorage-da) saxlayırıq
             let usersBase = JSON.parse(localStorage.getItem('nkshop_users_db')) || [];
-            
-            // E-poçt unikal olmalıdır
             const userExists = usersBase.find(u => u.email === email);
             if(userExists) {
                 alert("Bu e-poçt ünvanı ilə artıq qeydiyyatdan keçilib! Giriş bölməsinə keçin.");
                 return;
             }
 
-            const newUser = { name, email, cardNum: cNum, cardName: cName };
+            const newUser = { name, email, password, cardNum: cNum, cardName: cName };
             usersBase.push(newUser);
             localStorage.setItem('nkshop_users_db', JSON.stringify(usersBase));
 
-            // Eyni zamanda sistemi birbaşa loqin etdiririk
             currentUser = newUser;
             localStorage.setItem('nkshop_logged_in_user', JSON.stringify(currentUser));
             
@@ -796,26 +812,32 @@
             closeModal();
         }
 
-        // GİRİŞ PROSESİ
+        // GİRİŞ PROSESİ (Parol Yoxlanışı ilə)
         function processLogin() {
             const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-            if(!email) { alert("Zəhmət olmasa e-poçt ünvanınızı daxil edin!"); return; }
+            const pass = document.getElementById('loginPassword').value;
+
+            if(!email || !pass) { alert("Zəhmət olmasa e-poçt və şifrənizi daxil edin!"); return; }
 
             let usersBase = JSON.parse(localStorage.getItem('nkshop_users_db')) || [];
             const user = usersBase.find(u => u.email === email);
 
             if(user) {
-                currentUser = user;
-                localStorage.setItem('nkshop_logged_in_user', JSON.stringify(currentUser));
-                alert(`Xoş gəldiniz, ${user.name}!`);
-                loginUserInterface();
-                closeModal();
+                // Şifrə yoxlanışı
+                if(user.password === pass) {
+                    currentUser = user;
+                    localStorage.setItem('nkshop_logged_in_user', JSON.stringify(currentUser));
+                    alert(`Xoş gəldiniz, ${user.name}!`);
+                    loginUserInterface();
+                    closeModal();
+                } else {
+                    alert("Daxil etdiyiniz şifrə yanlışdır!");
+                }
             } else {
                 alert("Bu e-poçt ünvanı tapılmadı! Zəhmət olmasa öncə Qeydiyyatdan keçin.");
             }
         }
 
-        // İstifadəçi daxil olandan sonra interfeysin dəyişməsi
         function loginUserInterface() {
             document.getElementById('navAuthBtn').style.display = 'none';
             document.getElementById('profileBox').style.display = 'flex';
@@ -823,7 +845,6 @@
             document.getElementById('profileName').innerText = currentUser.name;
         }
 
-        // Hesabdan Çıxış
         function logout() {
             localStorage.removeItem('nkshop_logged_in_user');
             currentUser = null;
@@ -833,7 +854,6 @@
             alert("Hesabdan çıxış edildi.");
         }
 
-        // Sifariş və Səbət Məntiqləri
         function addToCart(id) {
             const item = products.find(p => p.id === id);
             const exist = cart.find(c => c.id === id);
@@ -893,7 +913,6 @@
         function checkout() {
             if(cart.length === 0) { alert("Səbətiniz boşdur!"); return; }
             
-            // Əgər giriş etməyibsə, sifarişdən qabaq məcburi qeydiyyat/giriş pəncərəsi açılsın
             if(!currentUser) {
                 alert("Sifarişi tamamlamaq üçün öncə Giriş edin və ya Qeydiyyatdan keçin!");
                 toggleCartDrawer(false);
