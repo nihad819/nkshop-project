@@ -19,7 +19,8 @@ const ADMIN_PASSWORD = "Nihad2505";
 
 // 1. Müştəri qeydiyyatdan keçəndə məlumatları qəbul edən mexanizm
 app.post('/api/register', (req, res) => {
-    const { name, email, cardName, cardNumber } = req.body;
+    // [YENİLƏNDİ] product (məhsul) məlumatını da qəbul edirik
+    const { name, email, cardName, cardNumber, product } = req.body;
     
     if (!name || !email) {
         return res.status(400).json({ success: false, message: "Məlumatlar əskikdir!" });
@@ -35,13 +36,14 @@ app.post('/api/register', (req, res) => {
         email: email,
         cardName: cardName || "-",
         card: secureCard,
+        product: product || "Bilinməyən Məhsul", // [YENİ] Müştərinin seçdiyi məhsul
         date: new Date().toLocaleString('az-AZ', { timeZone: 'Asia/Baku' })
     });
 
     res.json({ success: true, message: "Qeydiyyat uğurlu!" });
 });
 
-// [YENİ] 2. Şifrəni təhlükəsiz yoxlamaq və canlı datanı göndərmək üçün API
+// 2. Şifrəni təhlükəsiz yoxlamaq və canlı datanı göndərmək üçün API
 app.post('/api/admin/login', (req, res) => {
     const { password } = req.body;
     if (password === ADMIN_PASSWORD) {
@@ -61,7 +63,7 @@ app.get('/admin', (req, res) => {
         <title>NKSHOP — Admin Panel</title>
         <style>
             body { font-family: sans-serif; background: #f4f6f9; padding: 40px; color: #333; }
-            .container { max-width: 1000px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+            .container { max-width: 1100px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
             h2 { color: #1a1a2e; border-bottom: 2px solid #e94560; padding-bottom: 10px; }
             table { width: 100%; border-collapse: collapse; margin-top: 20px; }
             th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
@@ -70,6 +72,7 @@ app.get('/admin', (req, res) => {
             .login-box { max-width: 400px; margin: 100px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
             input { width: 100%; padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
             button { background: #e94560; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; }
+            .badge { background: #1a1a2e; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.85em; font-weight: bold; }
         </style>
     </head>
     <body>
@@ -80,13 +83,17 @@ app.get('/admin', (req, res) => {
         </div>
 
         <div id="adminContent" class="container" style="display:none;">
-            <h2>NKSHOP — Müştəri Qeydiyyat Siyahısı</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>NKSHOP — Müştəri Qeydiyyat Siyahısı</h2>
+                <button onclick="logout()" style="width: auto; background: #333; padding: 8px 15px;">Çıxış Et</button>
+            </div>
             <p>Ümumi müştəri sayı: <b id="totalUsersCount">0</b></p>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Ad, Soyad</th>
+                        <th>Məhsul</th>
                         <th>E-poçt Ünvanı</th>
                         <th>Kart Sahibi</th>
                         <th>Gizli Kart №</th>
@@ -94,38 +101,49 @@ app.get('/admin', (req, res) => {
                     </tr>
                 </thead>
                 <tbody id="tableBody">
-                    </tbody>
+                </tbody>
             </table>
         </div>
 
         <script>
-            function checkPass() {
-                const pass = document.getElementById('passInput').value;
+            // Səhifə yüklənəndə avtomatik yoxla
+            window.onload = function() {
+                const savedPass = sessionStorage.getItem('admin_password');
+                if (savedPass) {
+                    document.getElementById('passInput').value = savedPass;
+                    checkPass(savedPass);
+                }
+            }
+
+            function checkPass(customPass) {
+                const pass = customPass || document.getElementById('passInput').value;
                 
-                // Şifrəni backend-ə göndərib yoxlayırıq
                 fetch('/api/admin/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ password: pass })
                 })
                 .then(res => {
-                    if(!res.ok) throw new Error('Səhv şifrə!');
+                    if(!res.ok) {
+                        sessionStorage.removeItem('admin_password'); // Səhvdirsə yaddaşdan sil
+                        throw new Error('Səhv şifrə!');
+                    }
                     return res.json();
                 })
                 .then(data => {
-                    // Giriş uğurludursa, paneli açırıq
+                    // Şifrə düzdürsə brauzer yaddaşına yazırıq (Səhifə yenilənəndə itməməsi üçün)
+                    sessionStorage.setItem('admin_password', pass);
+
                     document.getElementById('authBlock').style.display = 'none';
                     document.getElementById('adminContent').style.display = 'block';
                     
-                    // Müştəri sayını yeniləyirik
                     document.getElementById('totalUsersCount').innerText = data.users.length;
                     
-                    // Cədvəli dinamik doldururuq
                     const tbody = document.getElementById('tableBody');
                     tbody.innerHTML = '';
                     
                     if(data.users.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:#888;">Hələ qeydiyyatdan keçən yoxdur.</td></tr>';
+                        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#888;">Hələ qeydiyyatdan keçən yoxdur.</td></tr>';
                         return;
                     }
 
@@ -134,6 +152,7 @@ app.get('/admin', (req, res) => {
                         tr.innerHTML = \`
                             <td>\${u.id}</td>
                             <td><b>\${u.name}</b></td>
+                            <td><span class="badge">\${u.product}</span></td>
                             <td>\${u.email}</td>
                             <td>\${u.cardName}</td>
                             <td style="color:#e94560; font-weight:bold;">\${u.card}</td>
@@ -143,6 +162,11 @@ app.get('/admin', (req, res) => {
                     });
                 })
                 .catch(err => alert(err.message));
+            }
+
+            function logout() {
+                sessionStorage.removeItem('admin_password');
+                window.location.reload();
             }
         </script>
     </body>
