@@ -2,90 +2,106 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <title>LUST SUMMER CAFE</title>
+    <title>LUST SUMMER | Kafe & Bistro</title>
     <style>
-        /* "Lust Summer" Estetikası */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&family=Montserrat:wght@300;400&display=swap');
+
         :root {
-            --primary: #e67e22; /* Gün batımı narıncısı */
-            --bg: #fdf6e4;      /* Qum rəngi */
-            --text: #2c3e50;    /* Dəniz mavisi tonunda tünd */
+            --warm-sand: #e8dcc4;
+            --faded-blue: #7a8c99;
+            --sunset-orange: #d18a66;
+            --cream: #f9f7f2;
         }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Georgia', serif; /* Daha nostalji şrift */
+            background-color: var(--cream);
+            color: #4a4a4a;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        .navbar { background-color: #2c3e50; }
-        .nav-logo { color: var(--primary); font-family: 'Playfair Display', serif; }
-        
-        .category-btn.active { background-color: var(--primary); }
-        
-        .product-card {
-            border-radius: 30px 0 30px 0; /* Daha maraqlı kəsim */
-            border: 2px solid #e67e22;
-            background: #fff;
+        /* Hero Bölməsi - O yay ab-havası üçün */
+        .header {
+            text-align: center;
+            padding: 80px 20px;
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200');
+            background-size: cover;
+            background-position: center;
+            color: white;
         }
 
-        .btn { background-color: var(--primary); }
-        
-        /* Kafe üçün menyu başlıqları */
-        .menu-header { text-align: center; padding: 40px; font-size: 30px; font-style: italic; }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .menu-grid {
+            max-width: 1000px;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .menu-item h3 { margin: 0; font-family: 'Playfair Display', serif; color: var(--sunset-orange); }
+
+        /* "Aesthetic" düymə */
+        .order-btn {
+            background: transparent;
+            border: 1px solid var(--faded-blue);
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .order-btn:hover { background: var(--faded-blue); color: white; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-logo">LUST SUMMER CAFE</div>
-        <div class="nav-controls">
-            <button class="nav-cart-btn" onclick="toggleCartDrawer(true)">☕ Səbət</button>
-        </div>
-    </nav>
-
-    <div class="menu-header">"Həyat bir yay kimidir, qısa və unudulmaz..."</div>
-
-    <div class="category-bar">
-        <button class="category-btn active" onclick="filterMenu('coffee', this)">Qəhvələr</button>
-        <button class="category-btn" onclick="filterMenu('dessert', this)">Desertlər</button>
-        <button class="category-btn" onclick="filterMenu('cocktail', this)">Kokteyllər</button>
+    <div class="header">
+        <h1>LUST SUMMER</h1>
+        <p>Günün yorğunluğunu dəniz küləyi ilə çıxarın...</p>
     </div>
 
-    <main class="main-content">
-        <div class="products-grid" id="productsContainer"></div>
-    </main>
+    <div class="menu-grid">
+        <!-- Menyu Nümunələri -->
+        <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=200" alt="Qəhvə">
+            <div>
+                <h3>İsti Yay Qəhvəsi</h3>
+                <p>Nostalji dadlar ilə.</p>
+                <button class="order-btn">Sifariş</button>
+            </div>
+        </div>
+        
+        <div class="menu-item">
+            <img src="https://images.unsplash.com/photo-1579613832111-ac74f7ce7e60?w=200" alt="Desert">
+            <div>
+                <h3>Gün Batımı Tartı</h3>
+                <p>Təzə meyvələrlə.</p>
+                <button class="order-btn">Sifariş</button>
+            </div>
+        </div>
+    </div>
 
-    <script>
-        // Kafe menyusu verilənlər bazası
-        const menuItems = [
-            { id: 1, cat: 'coffee', name: 'Yay Qəhvəsi (Signature)', price: 7, img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400' },
-            { id: 2, cat: 'coffee', name: 'Soyuq Brew', price: 6, img: 'https://images.unsplash.com/photo-1517701160238-8e6d27575298?w=400' },
-            { id: 3, cat: 'dessert', name: 'Limonlu Tart', price: 9, img: 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400' },
-            { id: 4, cat: 'cocktail', name: 'Sunset Breeze', price: 12, img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400' }
-        ];
-
-        function renderMenu(cat = 'coffee') {
-            const container = document.getElementById("productsContainer");
-            container.innerHTML = "";
-            menuItems.filter(i => i.cat === cat).forEach(item => {
-                container.innerHTML += `
-                    <div class="product-card">
-                        <img src="${item.img}" class="product-img">
-                        <h3>${item.name}</h3>
-                        <p>${item.price} AZN</p>
-                        <button class="btn">Sifariş Et</button>
-                    </div>
-                `;
-            });
-        }
-
-        function filterMenu(cat, btn) {
-            document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            renderMenu(cat);
-        }
-
-        renderMenu();
-    </script>
 </body>
 </html>
