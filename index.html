@@ -34,7 +34,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.12;
+            opacity: 0.08;
             font-size: 28px;
             letter-spacing: 45px;
             line-height: 90px;
@@ -42,10 +42,9 @@
             pointer-events: none;
             padding: 20px;
             overflow: hidden;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
         }
 
-        /* Naviqasiya Paneli (Bar) */
+        /* Naviqasiya Paneli */
         .navbar {
             background-color: #1a1a2e;
             color: #fff;
@@ -88,13 +87,7 @@
             position: relative;
         }
 
-        .nav-cart-btn:hover {
-            background-color: #cf3a53;
-        }
-
-        .cart-icon {
-            font-size: 16px;
-        }
+        .nav-cart-btn:hover { background-color: #cf3a53; }
 
         .cart-count-badge {
             display: none;
@@ -108,423 +101,98 @@
             text-align: center;
         }
 
-        .lang-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .lang-btn {
-            background-color: #161625;
-            color: #fff;
-            padding: 10px 15px;
-            border: 1px solid #333;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .lang-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: #ffffff;
-            min-width: 100px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            border-radius: 6px;
-            z-index: 1100;
-            overflow: hidden;
-        }
-
-        .lang-content a {
-            color: #333;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-weight: 500;
-        }
-
-        .lang-content a:hover {
-            background-color: #f1f1f1;
-        }
-
+        .lang-dropdown { position: relative; display: inline-block; }
+        .lang-btn { background-color: #161625; color: #fff; padding: 10px 15px; border: 1px solid #333; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .lang-content { display: none; position: absolute; right: 0; background-color: #ffffff; min-width: 100px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); border-radius: 6px; z-index: 1100; overflow: hidden; }
+        .lang-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; font-weight: 500; }
+        .lang-content a:hover { background-color: #f1f1f1; }
         .show { display: block; }
 
-        .auth-btn {
-            background-color: #0f3460;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
+        .auth-btn { background-color: #0f3460; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; }
         .auth-btn:hover { background-color: #164b8a; }
 
         .profile-container {
-            display: none;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            background: rgba(255,255,255,0.1);
-            padding: 5px 12px;
-            border-radius: 20px;
+            display: none; align-items: center; gap: 10px; cursor: pointer; background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 20px;
         }
 
-        .user-avatar {
-            width: 32px;
-            height: 32px;
-            background-color: #e94560;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-        }
+        .user-avatar { width: 32px; height: 32px; background-color: #e94560; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
 
-        /* Giriş/Qeydiyyat Modalının Tab Stili */
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #eee;
-        }
-        .auth-tab {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #666;
-            transition: all 0.2s;
-        }
-        .auth-tab.active {
-            color: #e94560;
-            border-bottom: 2px solid #e94560;
-        }
-        .auth-form-section {
-            display: none;
-        }
-        .auth-form-section.active {
-            display: block;
-        }
+        /* Kateqoriyalar */
+        .category-bar { display: flex; justify-content: center; gap: 12px; padding: 20px 5%; background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: 0 2px 5px rgba(0,0,0,0.05); flex-wrap: wrap; }
+        .category-btn { background-color: rgba(240, 242, 245, 0.8); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: 600; color: #555; transition: all 0.2s; }
+        .category-btn.active, .category-btn:hover { background-color: #e94560; color: white; box-shadow: 0 4px 10px rgba(233, 69, 96, 0.3); }
 
-        /* Kateqoriya Filterləri */
-        .category-bar {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            padding: 20px 5%;
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            background-color: rgba(240, 242, 245, 0.8);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #555;
-            transition: all 0.2s;
-        }
-
-        .category-btn.active, .category-btn:hover {
-            background-color: #e94560;
-            color: white;
-            box-shadow: 0 4px 10px rgba(233, 69, 96, 0.3);
-        }
-
-        /* Əsas Səhifə Strukturu */
-        .main-content {
-            max-width: 1400px;
-            width: 100%;
-            margin: 30px auto;
-            padding: 0 5%;
-            flex: 1;
-        }
-
-        /* Məhsul Şəbəkəsi (Grid) */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
+        /* Əsas Səhifə */
+        .main-content { max-width: 1400px; width: 100%; margin: 30px auto; padding: 0 5%; flex: 1; }
+        .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
 
         .product-card {
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(5px);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(234, 234, 234, 0.8);
+            background-color: rgba(255, 255, 255, 0.9); border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid rgba(234, 234, 234, 0.8);
         }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); background-color: #ffffff; }
+        .product-clickable { cursor: pointer; }
+        .product-img { width: 100%; height: 180px; object-fit: cover; margin-bottom: 15px; border-radius: 8px; background-color: #f7f7f7; }
+        .product-title { font-size: 14px; font-weight: 600; margin-bottom: 10px; height: 42px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: #222; }
+        .product-price { font-size: 19px; font-weight: 700; color: #1a1a2e; margin-bottom: 5px; }
+        .product-credit { font-size: 12px; color: #2bc87d; background-color: #eafaf1; padding: 4px 8px; border-radius: 4px; display: inline-block; font-weight: 600; margin-bottom: 15px; }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            background-color: #ffffff;
-        }
-
-        .product-clickable {
-            cursor: pointer;
-        }
-
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            margin-bottom: 15px;
-            border-radius: 8px;
-        }
-
-        .product-title {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            height: 42px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            color: #222;
-        }
-
-        .product-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 5px;
-        }
-
-        .product-credit {
-            font-size: 12px;
-            color: #2bc87d;
-            background-color: #eafaf1;
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            background-color: #1a1a2e;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            width: 100%;
-            transition: background 0.2s;
-            text-align: center;
-            white-space: nowrap;
-        }
-
+        .btn { background-color: #1a1a2e; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%; transition: background 0.2s; text-align: center; }
         .btn:hover { background-color: #e94560; }
 
-        /* Modallar Üçün Ortaq Stil */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-box {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative;
-            animation: fadeIn 0.3s ease;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        @keyframes fadeIn {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .close-modal-btn {
-            position: absolute;
-            top: 15px; right: 15px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #888;
-        }
+        /* Modallar */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(4px); }
+        .modal-box { background: #fff; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; max-height: 90vh; overflow-y: auto; }
+        .close-modal-btn { position: absolute; top: 15px; right: 15px; font-size: 24px; cursor: pointer; color: #888; }
         .close-modal-btn:hover { color: #333; }
 
         /* Səbət Modalı */
-        .cart-modal {
-            max-width: 450px;
-            width: 100%;
-            height: 100vh;
-            position: fixed;
-            top: 0; right: -450px;
-            background: white;
-            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
-            z-index: 2500;
-            display: flex;
-            flex-direction: column;
-            transition: right 0.3s ease;
-        }
-
-        .cart-modal-header {
-            padding: 20px;
-            background: #1a1a2e;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-modal-body {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .cart-modal-footer {
-            padding: 20px;
-            border-top: 1px solid #eee;
-            background: #fdfdfd;
-        }
-
-        .cart-item {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
-            border: 1px solid #eee;
-        }
-
-        .cart-item-top {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .cart-item-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
+        .cart-modal { max-width: 450px; width: 100%; height: 100vh; position: fixed; top: 0; right: -450px; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 2500; display: flex; flex-direction: column; transition: right 0.3s ease; }
+        .cart-modal-header { padding: 20px; background: #1a1a2e; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .cart-modal-body { flex: 1; padding: 20px; overflow-y: auto; }
+        .cart-modal-footer { padding: 20px; border-top: 1px solid #eee; background: #fdfdfd; }
+        .cart-item { background-color: #f8f9fa; border-radius: 8px; padding: 12px; margin-bottom: 12px; border: 1px solid #eee; }
+        .cart-item-top { font-size: 14px; font-weight: 600; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .cart-item-bottom { display: flex; justify-content: space-between; align-items: center; }
         .cart-item-price { font-weight: 700; color: #e94560; }
+        .cart-quantity-controls { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 2px; }
+        .cart-qty-btn { background: none; border: none; width: 24px; height: 24px; cursor: pointer; font-weight: bold; font-size: 16px; }
+        .cart-total-box { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; margin-bottom: 15px; }
 
-        .cart-quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 2px;
-        }
-
-        .cart-qty-btn {
-            background: none; border: none; width: 24px; height: 24px;
-            cursor: pointer; font-weight: bold; font-size: 16px;
-        }
-        .cart-qty-btn:hover { color: #e94560; }
-        .cart-qty-number { font-weight: 600; min-width: 15px; text-align: center; }
-
-        .cart-total-box {
-            display: flex;
-            justify-content: space-between;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
+        /* Tab Stili */
+        .auth-tabs { display: flex; margin-bottom: 20px; border-bottom: 2px solid #eee; }
+        .auth-tab { flex: 1; text-align: center; padding: 10px; cursor: pointer; font-weight: 600; color: #666; }
+        .auth-tab.active { color: #e94560; border-bottom: 2px solid #e94560; }
+        .auth-form-section { display: none; }
+        .auth-form-section.active { display: block; }
 
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; }
         .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; outline: none; }
-        .form-group input:focus, .form-group textarea:focus { border-color: #e94560; }
-        
         .card-row { display: flex; gap: 10px; }
 
         .detail-img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 15px; }
         .detail-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;}
         .detail-label { font-weight: 600; color: #666; }
         .detail-value { font-weight: 700; }
-        .detail-specs { background: #f8f9fa; padding: 12px; border-radius: 6px; margin-top: 10px; font-size: 13px; line-height: 1.5; max-height: 120px; overflow-y: auto; }
+        .detail-specs { background: #f8f9fa; padding: 12px; border-radius: 6px; margin-top: 10px; font-size: 13px; line-height: 1.5; }
 
         footer { background-color: #1a1a2e; color: #bbb; padding: 40px 5% 20px 5%; margin-top: auto; border-top: 4px solid #e94560; }
         .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1400px; margin: 0 auto; }
         .footer-col h3 { color: #fff; margin-bottom: 15px; font-size: 16px; border-left: 3px solid #e94560; padding-left: 10px; }
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 8px; }
-        .footer-col ul li a { color: #bbb; text-decoration: none; transition: color 0.2s; cursor: pointer; font-size: 14px; }
+        .footer-col ul li a { color: #bbb; text-decoration: none; font-size: 14px; cursor: pointer; }
         .footer-col ul li a:hover { color: #e94560; }
-        .footer-col p { font-size: 13px; line-height: 1.6; }
         .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; font-size: 13px; }
 
-        /* Media Queries */
-        @media (max-width: 1100px) {
-            .products-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(3, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
-            .navbar { padding: 12px 4%; }
-            .nav-logo { font-size: 21px; }
-            .nav-controls { gap: 12px; }
-            .auth-btn { padding: 8px 14px; font-size: 14px; }
-            .category-bar { display: flex; flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding: 12px 4%; gap: 8px; -webkit-overflow-scrolling: touch; }
-            .category-btn { flex: 0 0 auto; padding: 8px 16px; font-size: 13px; }
-            
             .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .product-card { padding: 12px; }
-            .product-img { height: 140px; margin-bottom: 8px; }
-            .product-title { font-size: 13px; height: 36px; margin-bottom: 6px; }
-            .product-price { font-size: 15px; margin-bottom: 3px; }
-            .product-credit { font-size: 11px; padding: 2px 6px; margin-bottom: 10px; }
-            
-            .product-card .btn { 
-                padding: 10px 4px; 
-                font-size: 12px; 
-                letter-spacing: -0.3px;
-            }
-            
-            .cart-modal { max-width: 100%; width: 100%; right: -100%; }
-            .cart-modal.open { right: 0; }
-            .modal-box { width: 92%; padding: 20px; }
-            .card-row { flex-direction: column; gap: 0; }
+            .category-bar { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }
+            .category-btn { flex: 0 0 auto; }
+            .cart-modal { max-width: 100%; right: -100%; }
         }
-        @media (max-width: 480px) {
-            .nav-cart-btn .cart-text { display: none; }
-            .nav-cart-btn { padding: 8px 10px; gap: 5px; }
-            .cart-icon { font-size: 18px; }
-            #profileBox span { display: none; }
-            .profile-container { padding: 4px; }
-            .footer-grid { grid-template-columns: repeat(1, 1fr); gap: 20px; text-align: center; }
-            .footer-col h3 { border-left: none; border-bottom: 2px solid #e94560; display: inline-block; padding-bottom: 4px; padding-left: 0; }
-            
-            .product-card .btn {
-                font-size: 11px;
-            }
-        }
+        @media (max-width: 480px) { .products-grid { grid-template-columns: repeat(1, 1fr); } .footer-grid { grid-template-columns: repeat(1, 1fr); text-align: center; } }
     </style>
 </head>
 <body>
@@ -533,8 +201,7 @@
         <div class="nav-logo" onclick="filterProducts('all', document.getElementById('cat_all'))">NKSHOP</div>
         <div class="nav-controls">
             <button class="nav-cart-btn" onclick="toggleCartDrawer(true)">
-                <span class="cart-icon">🛒</span>
-                <span class="cart-text" id="navCartLabel">Səbət</span>
+                <span>🛒</span><span id="navCartLabel">Səbət</span>
                 <span class="cart-count-badge" id="navCartCount">0</span>
             </button>
 
@@ -550,7 +217,7 @@
             <button class="auth-btn" id="navAuthBtn" onclick="openAuthModal()">Giriş / Qeydiyyat</button>
             <div class="profile-container" id="profileBox" onclick="openProfileModal()">
                 <div class="user-avatar" id="userAvatar">U</div>
-                <span id="profileName" style="font-weight:600;">Profiliniz</span>
+                <span id="profileName">Profiliniz</span>
             </div>
         </div>
     </nav>
@@ -569,7 +236,7 @@
         <div class="products-grid" id="productsContainer"></div>
     </main>
 
-    <div id="cartDrawerOverlay" class="modal-overlay" style="background: rgba(0,0,0,0.4);" onclick="toggleCartDrawer(false)"></div>
+    <div id="cartDrawerOverlay" class="modal-overlay" onclick="toggleCartDrawer(false)"></div>
     <div id="cartDrawer" class="cart-modal">
         <div class="cart-modal-header">
             <h3 id="cartTitleText">Səbətiniz</h3>
@@ -588,63 +255,23 @@
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-box">
             <span class="close-modal-btn" onclick="closeModal()">&times;</span>
-            
             <div class="auth-tabs">
                 <div class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Giriş Et</div>
                 <div class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Qeydiyyat</div>
             </div>
-
             <div id="formLogin" class="auth-form-section active">
-                <div class="form-group">
-                    <label id="lblLoginEmail">E-poçt Ünvanı:</label>
-                    <input type="email" id="loginEmail" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label id="lblLoginPassword">Şifrə:</label>
-                    <input type="password" id="loginPassword" placeholder="">
-                </div>
-                <button class="btn" id="btnLoginSubmit" style="margin-top:10px;" onclick="processLogin()">Giriş</button>
+                <div class="form-group"><label id="lblLoginEmail">E-poçt:</label><input type="email" id="loginEmail"></div>
+                <div class="form-group"><label id="lblLoginPassword">Şifrə:</label><input type="password" id="loginPassword"></div>
+                <button class="btn" id="btnLoginSubmit" onclick="processLogin()">Giriş</button>
             </div>
-
             <div id="formRegister" class="auth-form-section">
-                <div class="form-group">
-                    <label id="lblRegName">Ad, Soyad:</label>
-                    <input type="text" id="regName" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label id="lblRegEmail">E-poçt Ünvanı:</label>
-                    <input type="email" id="regEmail" placeholder="">
-                </div>
-                
-                <div class="form-group">
-                    <label id="lblRegPassword">Şifrə:</label>
-                    <input type="password" id="regPassword" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label id="lblRegPasswordConfirm">Şifrənin Təkrarı:</label>
-                    <input type="password" id="regPasswordConfirm" placeholder="">
-                </div>
-
-                <h4 id="lblCardSectionTitle" style="margin: 15px 0 10px 0; color:#e94560; border-bottom: 1px solid #eee; padding-bottom:5px;">Kart Məlumatları (Ödənişlər üçün)</h4>
-                <div class="form-group">
-                    <label id="lblCardName">Kart Sahibi:</label>
-                    <input type="text" id="cardName" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label id="lblCardNumber">Kart Nömrəsi (16 rəqəmli):</label>
-                    <input type="text" id="cardNumber" maxlength="16" placeholder="">
-                </div>
-                <div class="card-row">
-                    <div class="form-group" style="flex:1;">
-                        <label id="lblCardExpiry">Bitmə tarixi:</label>
-                        <input type="text" id="cardExpiry" maxlength="5" placeholder="">
-                    </div>
-                    <div class="form-group" style="flex:1;">
-                        <label id="lblCardCvv">CVV/CVC:</label>
-                        <input type="password" id="cardCvv" maxlength="3" placeholder="">
-                    </div>
-                </div>
-                <button class="btn" id="btnRegisterSubmit" style="margin-top:10px;" onclick="processRegister()">Hesab Yarat</button>
+                <div class="form-group"><label id="lblRegName">Ad, Soyad:</label><input type="text" id="regName"></div>
+                <div class="form-group"><label id="lblRegEmail">E-poçt:</label><input type="email" id="regEmail"></div>
+                <div class="form-group"><label id="lblRegPassword">Şifrə:</label><input type="password" id="regPassword"></div>
+                <div class="form-group"><label id="lblRegPasswordConfirm">Şifrə Təkrarı:</label><input type="password" id="regPasswordConfirm"></div>
+                <h4 id="lblCardSectionTitle" style="color:#e94560; margin:15px 0 5px 0;">Kart Məlumatları</h4>
+                <div class="form-group"><input type="text" id="cardNumber" maxlength="16" placeholder="16 Rəqəmli Kart nömrəsi"></div>
+                <button class="btn" id="btnRegisterSubmit" onclick="processRegister()">Qeydiyyatı Tamamla</button>
             </div>
         </div>
     </div>
@@ -652,101 +279,58 @@
     <div class="modal-overlay" id="profileModalOverlay">
         <div class="modal-box">
             <span class="close-modal-btn" onclick="closeProfileModal()">&times;</span>
-            <h3 id="pTitle" style="margin-bottom:20px; color:#1a1a2e;">Şəxsi Profil</h3>
-            <div style="display:flex; flex-direction:column; gap:12px;">
-                <div><span class="detail-label" id="lblViewProfileName">Ad, Soyad:</span> <span id="viewProfileName">-</span></div>
-                <div><span class="detail-label" id="lblViewProfileEmail">E-poçt:</span> <span id="viewProfileEmail">-</span></div>
-                <div><span class="detail-label" id="lblViewProfileCard">Bağlı Kart:</span> <span id="viewProfileCard">-</span></div>
-                <div><span class="detail-label" id="lblViewProfileStatus">Status:</span> <span id="viewProfileStatusValue" style="color:green; font-weight:700;">Aktiv Müştəri</span></div>
-            </div>
-            <button class="btn" id="btnLogout" style="margin-top:25px; background-color:#e94560;" onclick="logout()">Hesabdan Çıx</button>
+            <h3 id="pTitle" style="margin-bottom:20px;">Şəxsi Profil</h3>
+            <p><span id="lblViewProfileName">Ad:</span> <span id="viewProfileName"></span></p>
+            <p><span id="lblViewProfileEmail">E-poçt:</span> <span id="viewProfileEmail"></span></p>
+            <p><span id="lblViewProfileCard">Kart:</span> <span id="viewProfileCard"></span></p>
+            <button class="btn" id="btnLogout" style="margin-top:20px; background:#e94560;" onclick="logout()">Çıxış</button>
         </div>
     </div>
 
     <div class="modal-overlay" id="productDetailModalOverlay">
-        <div class="modal-box" style="max-width: 550px;">
-            <span class="close-modal-btn" onclick="closeProductDetailModal()">&times;</span>
-            <h3 id="detailTitle" style="margin-bottom:15px; font-size:18px;">Məhsul adı</h3>
-            <img src="" id="detailImg" class="detail-img" alt="Məhsul">
-            
-            <div class="detail-row">
-                <span class="detail-label" id="lblDetailPrice">Nağd Qiymət:</span>
-                <span class="detail-value" id="detailPrice" style="color:#e94560; font-size:18px;">0 AZN</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label" id="lblDetailCredit">Kredit Şərtləri:</span>
-                <span class="detail-value" id="detailCredit" style="color:#2bc87d;">0 AZN x 0 ay</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label" id="lblDetailWarranty">Zəmanət:</span>
-                <span class="detail-value" id="detailWarrantyValue">1 il</span>
-            </div>
-
-            <div class="detail-specs" id="detailSpecs"></div>
-            <button class="btn" style="margin-top:20px;" id="detailAddToCartBtn">Səbətə Əlavə Et</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="infoModalOverlay">
         <div class="modal-box">
-            <span class="close-modal-btn" onclick="closeInfoModal()">&times;</span>
-            <h3 id="infoModalTitle" style="margin-bottom:15px; color:#1a1a2e;">Məlumat</h3>
-            <div id="infoModalBody" style="font-size:14px; line-height:1.6; color:#444;"></div>
+            <span class="close-modal-btn" onclick="closeProductDetailModal()">&times;</span>
+            <h3 id="detailTitle"></h3>
+            <img src="" id="detailImg" class="detail-img">
+            <div class="detail-row"><span id="lblDetailPrice">Qiymət:</span><span id="detailPrice"></span></div>
+            <div class="detail-row"><span id="lblDetailCredit">Kredit:</span><span id="detailCredit"></span></div>
+            <div class="detail-specs" id="detailSpecs"></div>
+            <button class="btn" style="margin-top:20px;" id="detailAddToCartBtn">Səbətə At</button>
         </div>
     </div>
 
+    <div class="modal-overlay" id="infoModalOverlay"><div class="modal-box"><span class="close-modal-btn" onclick="closeInfoModal()">&times;</span><h3 id="infoModalTitle"></h3><p id="infoModalBody"></p></div></div>
     <div class="modal-overlay" id="complaintModalOverlay">
         <div class="modal-box">
             <span class="close-modal-btn" onclick="closeComplaintModal()">&times;</span>
-            <h3 id="compTitle" style="margin-bottom:15px; color:#1a1a2e;">Şikayət və Təkliflər</h3>
-            <p id="compSubtitle" style="font-size:13px; color:#666; margin-bottom:15px;">Bizə rəyinizi bildirin.</p>
-            
-            <div class="form-group">
-                <label id="lblCompEmail">Sizin E-poçt Ünvanınız:</label>
-                <input type="email" id="compEmail" placeholder="" required>
-            </div>
-            <div class="form-group">
-                <label id="lblCompMessage">Mesajınız / Şikayətiniz:</label>
-                <textarea id="compMessage" rows="4" placeholder="" required></textarea>
-            </div>
-            <button class="btn" id="btnCompSubmit" onclick="submitComplaint()">Göndər və Geri Qayıt</button>
+            <h3 id="compTitle">Şikayət və Təkliflər</h3>
+            <div class="form-group"><label id="lblCompEmail">E-poçt:</label><input type="email" id="compEmail"></div>
+            <div class="form-group"><label id="lblCompMessage">Mesaj:</label><textarea id="compMessage" rows="4"></textarea></div>
+            <button class="btn" id="btnCompSubmit" onclick="submitComplaint()">Göndər</button>
         </div>
     </div>
 
     <footer>
         <div class="footer-grid">
+            <div class="footer-col"><h3 id="fTitleAbout">O NKSHOP</h3><p id="fTextAbout">Aparıcı texnologiya mağazası.</p></div>
             <div class="footer-col">
-                <h3 id="fTitleAbout">O NKSHOP</h3>
-                <p id="fTextAbout">NKSHOP — Azərbaycanın aparıcı texnologiya mağazalarından biridir.</p>
-            </div>
-            <div class="footer-col">
-                <h3 id="fTitleLinks">Faydalı Linklər</h3>
+                <h3 id="fTitleLinks">Linklər</h3>
                 <ul>
                     <li><a onclick="openInfoModal('campaigns')" id="fLinkCamp">Kampaniyalar</a></li>
-                    <li><a onclick="openInfoModal('stores')" id="fLinkStores">Mağazalarımız</a></li>
-                    <li><a onclick="openComplaintModal()" id="fLinkComp" style="color:#e94560; font-weight:bold;">Şikayət və Təkliflər</a></li>
-                    <li><a onclick="openInfoModal('faq')" id="fLinkFaq">Tez-Tez Verilən Suallar</a></li>
+                    <li><a onclick="openInfoModal('stores')" id="fLinkStores">Mağazalar</a></li>
+                    <li><a onclick="openComplaintModal()" id="fLinkComp">Şikayətlər</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h3 id="fTitleRules">Qaydalar</h3>
                 <ul>
-                    <li><a onclick="openInfoModal('credit')" id="fLinkCredit">Kredit Şərtləri</a></li>
-                    <li><a onclick="openInfoModal('return')" id="fLinkReturn">Geri Qayıtma Siyasəti</a></li>
-                    <li><a onclick="openInfoModal('delivery')" id="fLinkDeliv">Çatdırılma və Ödəniş</a></li>
-                    <li><a onclick="openInfoModal('privacy')" id="fLinkPriv">Məxfilik Siyasəti</a></li>
+                    <li><a onclick="openInfoModal('credit')" id="fLinkCredit">Kredit</a></li>
+                    <li><a onclick="openInfoModal('return')" id="fLinkReturn">Qaytarılma</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
-                <h3 id="fTitleContact">Əlaqə</h3>
-                <p><b id="lblCallCenter">Koll-Mərkəz:</b> *1005</p>
-                <p><b id="lblWorkHours">İş saatları:</b> <span id="valWorkHours">Hər gün: 09:00 - 21:00</span></p>
-                <p><b id="lblAddress">Ünvan:</b> <span id="valAddress">Bakı şəhəri, Azadlıq prospekti 105</span></p>
-            </div>
+            <div class="footer-col"><h3 id="fTitleContact">Əlaqə</h3><p>*1005 | 09:00 - 21:00</p></div>
         </div>
-        <div class="footer-bottom">
-            <p id="fCopyright">© 2026 NKSHOP. Bütün hüquqlar qorunur.</p>
-        </div>
+        <div class="footer-bottom"><p id="fCopyright">© 2026 NKSHOP. Bütün hüquqlar qorunur.</p></div>
     </footer>
 
     <script>
@@ -757,208 +341,113 @@
 
         const langData = {
             az: {
-                cartLabel: "Səbət",
-                authBtn: "Giriş / Qeydiyyat",
-                profileName: "Profiliniz",
-                cat_all: "Hamısı",
-                cat_phone: "Smartfonlar",
-                cat_computer: "Kompüterlər",
-                cat_tv: "Televizorlar",
-                cat_tablet: "Planşetlər",
-                cat_washer: "Paltaryuyanlar",
-                cat_dishwasher: "Qabyuyanlar",
-                cartTitleText: "Səbətiniz",
-                totalLabel: "Cəmi:",
-                checkoutBtnText: "Sifarişi Rəsmiləşdir",
-                tabLogin: "Giriş Et",
-                tabRegister: "Qeydiyyat",
-                lblLoginEmail: "E-poçt Ünvanı:",
-                lblLoginPassword: "Şifrə:",
-                btnLoginSubmit: "Giriş",
-                lblRegName: "Ad, Soyad:",
-                lblRegEmail: "E-poçt Ünvanı:",
-                lblRegPassword: "Şifrə:",
-                lblRegPasswordConfirm: "Şifrənin Təkrarı:",
-                lblCardSectionTitle: "Kart Məlumatları (Ödənişlər üçün)",
-                lblCardName: "Kart Sahibi:",
-                lblCardNumber: "Kart Nömrəsi (16 rəqəmli):",
-                lblCardExpiry: "Bitmə tarixi:",
-                lblCardCvv: "CVV/CVC:",
-                btnRegisterSubmit: "Hesab Yarat",
-                pTitle: "Şəxsi Profil",
-                lblViewProfileName: "Ad, Soyad:",
-                lblViewProfileEmail: "E-poçt:",
-                lblViewProfileCard: "Bağlı Kart:",
-                lblViewProfileStatus: "Status:",
-                viewProfileStatusValue: "Aktiv Müştəri",
-                btnLogout: "Hesabdan Çıx",
-                lblDetailPrice: "Nağd Qiymət:",
-                lblDetailCredit: "Kredit Şərtləri:",
-                lblDetailWarranty: "Zəmanət:",
-                detailWarrantyValue: "1 il",
-                detailAddToCartBtn: "Səbətə Əlavə Et",
-                compTitle: "Şikayət və Təkliflər",
-                compSubtitle: "Bizə rəyinizi bildirin.",
-                lblCompEmail: "Sizin E-poçt Ünvanınız:",
-                lblCompMessage: "Mesajınız / Şikayətiniz:",
-                btnCompSubmit: "Göndər və Geri Qayıt",
-                fTitleAbout: "O NKSHOP",
-                fTextAbout: "NKSHOP — Azərbaycanın aparıcı texnologiya mağazalarından biridir.",
-                fTitleLinks: "Faydalı Linklər",
-                fLinkCamp: "Kampaniyalar",
-                fLinkStores: "Mağazalarımız",
-                fLinkComp: "Şikayət və Təkliflər",
-                fLinkFaq: "Tez-Tez Verilən Suallar",
-                fTitleRules: "Qaydalar",
-                fLinkCredit: "Kredit Şərtləri",
-                fLinkReturn: "Geri Qayıtma Siyasəti",
-                fLinkDeliv: "Çatdırılma və Ödəniş",
-                fLinkPriv: "Məxfilik Siyasəti",
-                fTitleContact: "Əlaqə",
-                lblCallCenter: "Koll-Mərkəz:",
-                lblWorkHours: "İş saatları:",
-                valWorkHours: "Hər gün: 09:00 - 21:00",
-                lblAddress: "Ünvan:",
-                valAddress: "Bakı şəhəri, Azadlıq prospekti 105",
-                fCopyright: "© 2026 NKSHOP. Bütün hüquqlar qorunur.",
-                infoModalTitle: "Məlumat"
+                cartLabel: "Səbət", authBtn: "Giriş / Qeydiyyat", profileName: "Profiliniz", cat_all: "Hamısı", cat_phone: "Smartfonlar", cat_computer: "Kompüterlər", cat_tv: "Televizorlar", cat_tablet: "Planşetlər", cat_washer: "Paltaryuyanlar", cat_dishwasher: "Qabyuyanlar", cartTitleText: "Səbətiniz", totalLabel: "Cəmi:", checkoutBtnText: "Sifarişi Rəsmiləşdir", tabLogin: "Giriş Et", tabRegister: "Qeydiyyat", lblLoginEmail: "E-poçt:", lblLoginPassword: "Şifrə:", btnLoginSubmit: "Giriş", lblRegName: "Ad, Soyad:", lblRegEmail: "E-poçt:", lblRegPassword: "Şifrə:", lblRegPasswordConfirm: "Şifrə Təkrarı:", lblCardSectionTitle: "Kart Məlumatları", btnRegisterSubmit: "Qeydiyyatı Tamamla", pTitle: "Şəxsi Profil", lblViewProfileName: "Ad:", lblViewProfileEmail: "E-poçt:", lblViewProfileCard: "Kart:", btnLogout: "Çıxış", lblDetailPrice: "Qiymət:", lblDetailCredit: "Kredit:", detailAddToCartBtn: "Səbətə At", compTitle: "Şikayət və Təkliflər", lblCompEmail: "E-poçt:", lblCompMessage: "Mesaj:", btnCompSubmit: "Göndər", fTitleAbout: "O NKSHOP", fTextAbout: "NKSHOP — Azərbaycanın aparıcı texnologiya mağazasıdır.", fTitleLinks: "Linklər", fLinkCamp: "Kampaniyalar", fLinkStores: "Mağazalar", fLinkComp: "Şikayətlər", fTitleRules: "Qaydalar", fLinkCredit: "Kredit", fLinkReturn: "Qaytarılma", fTitleContact: "Əlaqə", fCopyright: "© 2026 NKSHOP. Qorunur.", infoModalTitle: "Məlumat"
             },
             en: {
-                cartLabel: "Cart", authBtn: "Login / Register", profileName: "Profile",
-                cat_all: "All", cat_phone: "Smartphones", cat_computer: "Computers", cat_tv: "TVs", cat_tablet: "Tablets", cat_washer: "Washers", cat_dishwasher: "Dishwashers",
-                cartTitleText: "Your Cart", totalLabel: "Total:", checkoutBtnText: "Checkout",
-                tabLogin: "Login", tabRegister: "Register", lblLoginEmail: "Email Address:", lblLoginPassword: "Password:", btnLoginSubmit: "Login",
-                lblRegName: "Full Name:", lblRegEmail: "Email Address:", lblRegPassword: "Password:", lblRegPasswordConfirm: "Confirm Password:",
-                lblCardSectionTitle: "Card Details (For Payments)", lblCardName: "Cardholder Name:", lblCardNumber: "Card Number (16 digits):", lblCardExpiry: "Expiry Date:", lblCardCvv: "CVV/CVC:", btnRegisterSubmit: "Create Account",
-                pTitle: "Personal Profile", lblViewProfileName: "Full Name:", lblViewProfileEmail: "Email:", lblViewProfileCard: "Linked Card:", lblViewProfileStatus: "Status:", viewProfileStatusValue: "Active Customer", btnLogout: "Logout",
-                lblDetailPrice: "Cash Price:", lblDetailCredit: "Credit Terms:", lblDetailWarranty: "Warranty:", detailWarrantyValue: "1 year", detailAddToCartBtn: "Add to Cart",
-                compTitle: "Complaints & Suggestions", compSubtitle: "Let us know your feedback.", lblCompEmail: "Your Email Address:", lblCompMessage: "Your Message / Complaint:", btnCompSubmit: "Submit & Go Back",
-                fTitleAbout: "About NKSHOP", fTextAbout: "NKSHOP is one of the leading technology stores in Azerbaijan.", fTitleLinks: "Useful Links",
-                fLinkCamp: "Campaigns", fLinkStores: "Our Stores", fLinkComp: "Complaints & Suggestions", fLinkFaq: "FAQ", fTitleRules: "Rules",
-                fLinkCredit: "Credit Terms", fLinkReturn: "Return Policy", fLinkDeliv: "Delivery & Payment", fLinkPriv: "Privacy Policy",
-                fTitleContact: "Contact", lblCallCenter: "Call Center:", lblWorkHours: "Working Hours:", valWorkHours: "Every day: 09:00 - 21:00", lblAddress: "Address:", valAddress: "Baku city, Azadlig avenue 105",
-                fCopyright: "© 2026 NKSHOP. All rights reserved.", infoModalTitle: "Information"
+                cartLabel: "Cart", authBtn: "Login", profileName: "Profile", cat_all: "All", cat_phone: "Phones", cat_computer: "Computers", cat_tv: "TVs", cat_tablet: "Tablets", cat_washer: "Washers", cat_dishwasher: "Dishwashers", cartTitleText: "Your Cart", totalLabel: "Total:", checkoutBtnText: "Checkout", tabLogin: "Login", tabRegister: "Register", lblLoginEmail: "Email:", lblLoginPassword: "Password:", btnLoginSubmit: "Login", lblRegName: "Full Name:", lblRegEmail: "Email:", lblRegPassword: "Password:", lblRegPasswordConfirm: "Confirm:", lblCardSectionTitle: "Card Details", btnRegisterSubmit: "Register", pTitle: "Profile", lblViewProfileName: "Name:", lblViewProfileEmail: "Email:", lblViewProfileCard: "Card:", btnLogout: "Logout", lblDetailPrice: "Price:", lblDetailCredit: "Credit:", detailAddToCartBtn: "Add to Cart", compTitle: "Feedback", lblCompEmail: "Email:", lblCompMessage: "Message:", btnCompSubmit: "Submit", fTitleAbout: "About Us", fTextAbout: "NKSHOP is a premium tech store.", fTitleLinks: "Links", fLinkCamp: "Campaigns", fLinkStores: "Stores", fLinkComp: "Complaints", fTitleRules: "Rules", fLinkCredit: "Credit", fLinkReturn: "Returns", fTitleContact: "Contact", fCopyright: "© 2026 NKSHOP.", infoModalTitle: "Info"
             },
             ru: {
-                cartLabel: "Корзина", authBtn: "Вход / Регистрация", profileName: "Профиль",
-                cat_all: "Все", cat_phone: "Смартфоны", cat_computer: "Компьютеры", cat_tv: "Телевизоры", cat_tablet: "Планшеты", cat_washer: "Стилистики", cat_dishwasher: "Посудомойки",
-                cartTitleText: "Ваша Корзина", totalLabel: "Итого:", checkoutBtnText: "Оформить заказ",
-                tabLogin: "Войти", tabRegister: "Регистрация", lblLoginEmail: "Эл. почта:", lblLoginPassword: "Пароль:", btnLoginSubmit: "Войти",
-                lblRegName: "Имя, Фамилия:", lblRegEmail: "Эл. почта:", lblRegPassword: "Пароль:", lblRegPasswordConfirm: "Повторите пароль:",
-                lblCardSectionTitle: "Данные карты (Для оплаты)", lblCardName: "Имя на карте:", lblCardNumber: "Номер карты (16 цифр):", lblCardExpiry: "Срок действия:", lblCardCvv: "CVV/CVC:", btnRegisterSubmit: "Создать аккаунт",
-                pTitle: "Личный Профиль", lblViewProfileName: "Имя, Фамилия:", lblViewProfileEmail: "Эл. почта:", lblViewProfileCard: "Привязанная карта:", lblViewProfileStatus: "Статус:", viewProfileStatusValue: "Активный клиент", btnLogout: "Выйти из аккаунта",
-                lblDetailPrice: "Цена наличными:", lblDetailCredit: "Условия кредита:", lblDetailWarranty: "Гарантия:", detailWarrantyValue: "1 год", detailAddToCartBtn: "В корзину",
-                compTitle: "Жалобы и предложения", compSubtitle: "Поделитесь своим мнением.", lblCompEmail: "Ваш Эл. адрес:", lblCompMessage: "Ваше сообщение / Жалоба:", btnCompSubmit: "Отправить и вернуться",
-                fTitleAbout: "О NKSHOP", fTextAbout: "NKSHOP — один из ведущих магазинов технологий в Азербайджане.", fTitleLinks: "Полезные ссылки",
-                fLinkCamp: "Кампании", fLinkStores: "Наши магазины", fLinkComp: "Жалобы и предложения", fLinkFaq: "Часто задаваемые вопросы", fTitleRules: "Правила",
-                fLinkCredit: "Условия кредита", fLinkReturn: "Политика возврата", fLinkDeliv: "Доставка и оплата", fLinkPriv: "Политика конфиденциальности",
-                fTitleContact: "Контакты", lblCallCenter: "Колл-центр:", lblWorkHours: "Часы работы:", valWorkHours: "Каждый день: 09:00 - 21:00", lblAddress: "Адрес:", valAddress: "город Баку, проспект Азадлыг 105",
-                fCopyright: "© 2026 NKSHOP. Все права защищены.", infoModalTitle: "Информация"
+                cartLabel: "Корзина", authBtn: "Вход", profileName: "Профиль", cat_all: "Все", cat_phone: "Смартфоны", cat_computer: "Компьютеры", cat_tv: "Телевизоры", cat_tablet: "Планшеты", cat_washer: "Стиралки", cat_dishwasher: "Посудомойки", cartTitleText: "Корзина", totalLabel: "Итого:", checkoutBtnText: "Заказать", tabLogin: "Войти", tabRegister: "Регистрация", lblLoginEmail: "Email:", lblLoginPassword: "Пароль:", btnLoginSubmit: "Войти", lblRegName: "Имя:", lblRegEmail: "Email:", lblRegPassword: "Пароль:", lblRegPasswordConfirm: "Повтор:", lblCardSectionTitle: "Карта", btnRegisterSubmit: "Создать", pTitle: "Профиль", lblViewProfileName: "Имя:", lblViewProfileEmail: "Email:", lblViewProfileCard: "Карта:", btnLogout: "Выйти", lblDetailPrice: "Цена:", lblDetailCredit: "Кредит:", detailAddToCartBtn: "В корзину", compTitle: "Жалобы", lblCompEmail: "Email:", lblCompMessage: "Сообщение:", btnCompSubmit: "Отправить", fTitleAbout: "О нас", fTextAbout: "NKSHOP — ведущий магазин электроники.", fTitleLinks: "Ссылки", fLinkCamp: "Акции", fLinkStores: "Магазины", fLinkComp: "Жалобы", fTitleRules: "Правила", fLinkCredit: "Кредит", fLinkReturn: "Возврат", fTitleContact: "Контакты", fCopyright: "© 2026 NKSHOP.", infoModalTitle: "Инфо"
             }
         };
 
-        // 120 Dinamik Çoxdilli Məhsul Bazası (Hər kateqoriyada 20 Məhsul)
-        const products = [];
-        const categories = ["phone", "computer", "tv", "tablet", "washer", "dishwasher"];
-        
-        const nameTemplates = {
+        // 120 Tamamilə Unikal Modellər və Aktiv Şəkillər Verilənlər Bazası
+        const rawTemplates = {
             phone: [
-                {az: "iPhone 15 Pro Max 256GB", en: "iPhone 15 Pro Max 256GB", ru: "iPhone 15 Pro Max 256GB", p: 3199, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400"},
-                {az: "Samsung Galaxy S24 Ultra", en: "Samsung Galaxy S24 Ultra", ru: "Samsung Galaxy S24 Ultra", p: 2849, img: "https://images.unsplash.com/photo-1707148569426-ff7eb5fa848d?w=400"},
-                {az: "Xiaomi 14 Ultra 512GB", en: "Xiaomi 14 Ultra 512GB", ru: "Xiaomi 14 Ultra 512GB", p: 2199, img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"},
-                {az: "OnePlus 12 16/512GB", en: "OnePlus 12 16/512GB", ru: "OnePlus 12 16/512GB", p: 1749, img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400"},
-                {az: "Google Pixel 8 Pro", en: "Google Pixel 8 Pro", ru: "Google Pixel 8 Pro", p: 1699, img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"}
+                { az: "iPhone 15 Pro Max Natural Titanium", en: "iPhone 15 Pro Max Natural Titanium", ru: "iPhone 15 Pro Max Титан", p: 3149, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400", s: "256GB SSD, Apple A17 Pro CPU, 48MP OIS Camera" },
+                { az: "Samsung Galaxy S24 Ultra Titanium Gray", en: "Samsung Galaxy S24 Ultra Gray", ru: "Samsung Galaxy S24 Ultra Серый", p: 2799, img: "https://images.unsplash.com/photo-1707148569426-ff7eb5fa848d?w=400", s: "512GB, Snapdragon 8 Gen 3, Dynamic AMOLED 2X" },
+                { az: "Xiaomi 14 Ultra Dual Sim 5G", en: "Xiaomi 14 Ultra 5G", ru: "Xiaomi 14 Ultra 5G", p: 2199, img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400", s: "512GB Yaddaş, 16GB RAM, Leica Optika" },
+                { az: "Google Pixel 8 Pro Obsidian Black", en: "Google Pixel 8 Pro Obsidian", ru: "Google Pixel 8 Pro Черный", p: 1649, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400", s: "128GB, Google Tensor G3 chip, AI Clean Voice" },
+                { az: "OnePlus 12 Dual-SIM Green Silk", en: "OnePlus 12 Green Silk", ru: "OnePlus 12 Зеленый", p: 1549, img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400", s: "256GB Yaddaş, 100W Sürətli Şarj, Snapdragon 8 Gen 2" }
             ],
             computer: [
-                {az: "MacBook Air 13 M3 / 256GB", en: "MacBook Air 13 M3 / 256GB", ru: "MacBook Air 13 M3 / 256GB", p: 2299, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"},
-                {az: "ASUS TUF Gaming A15", en: "ASUS TUF Gaming A15", ru: "ASUS TUF Gaming A15", p: 1899, img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400"},
-                {az: "Lenovo Legion Pro 5", en: "Lenovo Legion Pro 5", ru: "Lenovo Legion Pro 5", p: 2649, img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400"},
-                {az: "HP Victus 16 Ryzen 5", en: "HP Victus 16 Ryzen 5", ru: "HP Victus 16 Ryzen 5", p: 1499, img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400"},
-                {az: "Acer Nitro V15 i5", en: "Acer Nitro V15 i5", ru: "Acer Nitro V15 i5", p: 1399, img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400"}
+                { az: "MacBook Air 13 Space Gray M3", en: "MacBook Air 13 M3 Gray", ru: "MacBook Air 13 M3 Серый", p: 2349, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400", s: "8GB RAM, 256GB SSD, Retina TrueTone" },
+                { az: "ASUS TUF Gaming A15 Mecha Gray", en: "ASUS TUF Gaming A15", ru: "ASUS TUF Gaming A15 Игровой", p: 1899, img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400", s: "AMD Ryzen 7, RTX 4060 8GB, 16GB RAM, 512GB SSD" },
+                { az: "Lenovo Legion Slim 5 16APH8", en: "Lenovo Legion Slim 5", ru: "Lenovo Legion Slim 5 Ноутбук", p: 2599, img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400", s: "Intel i7, 16GB RAM, 1TB SSD, RTX 4070" },
+                { az: "HP Victus 16-r0067ci Performance", en: "HP Victus 16 Laptop", ru: "HP Victus 16 Игровой", p: 1479, img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400", s: "Intel i5, 16GB RAM, RTX 3050, 512GB NVMe" },
+                { az: "Acer Nitro V15 AV15-51-547X", en: "Acer Nitro V15", ru: "Acer Nitro V15 Мощный", p: 1349, img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400", s: "Intel i5 13-cü nəsil, 8GB RAM, 512GB SSD" }
             ],
             tv: [
-                {az: "LG Smart TV 55 Ultra HD 4K", en: "LG Smart TV 55 Ultra HD 4K", ru: "LG Smart TV 55 Ultra HD 4K", p: 1249, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"},
-                {az: "Samsung QLED 65 4K", en: "Samsung QLED 65 4K", ru: "Samsung QLED 65 4K", p: 1899, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"},
-                {az: "Sony BRAVIA 55 OLED", en: "Sony BRAVIA 55 OLED", ru: "Sony BRAVIA 55 OLED", p: 2499, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"},
-                {az: "Xiaomi Mi TV A2 43", en: "Xiaomi Mi TV A2 43", ru: "Xiaomi Mi TV A2 43", p: 599, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"},
-                {az: "TCL 50 Smart 4K Google TV", en: "TCL 50 Smart 4K Google TV", ru: "TCL 50 Smart 4K Google TV", p: 799, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"}
+                { az: "LG Smart Cinema TV 55 UHD 4K", en: "LG Smart TV 55 4K", ru: "Телевизор LG 55 4K", p: 1199, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400", s: "55 Inch (139sm), webOS Smart TV, HDR10 Pro" },
+                { az: "Samsung QLED QE65Q60CAUXRU", en: "Samsung QLED 65 Inch", ru: "Samsung QLED 65 Дюймов", p: 1949, img: "https://images.unsplash.com/photo-1552533880-1258b23f0952?w=400", s: "65 Inch Quantum Dot, Tizen OS, Dual LED Backlight" },
+                { az: "Sony BRAVIA XR-55A80L OLED", en: "Sony BRAVIA 55 OLED", ru: "Sony BRAVIA 55 OLED ТВ", p: 2699, img: "https://images.unsplash.com/photo-1601944179066-297acd3ad6d0?w=400", s: "Cognitive Processor XR, Acoustic Surface Audio+, OLED Pixel" },
+                { az: "Xiaomi TV A2 43 Metallic Frame", en: "Xiaomi TV A2 43 Smart", ru: "Xiaomi TV A2 43 Дюйма", p: 629, img: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400", s: "Android TV, Dolby Audio, Çərçivəsiz dizayn, FHD" },
+                { az: "TCL 50P745 Google Cinema TV", en: "TCL 50 Smart Google TV", ru: "TCL 50 Google Smart TV", p: 749, img: "https://images.unsplash.com/photo-1577979749830-f1d742b917c8?w=400", s: "4K HDR, Dolby Vision, Google Voice Control Assistant" }
             ],
             tablet: [
-                {az: "iPad Air 11 (2024) M2 Wi-Fi", en: "iPad Air 11 (2024) M2 Wi-Fi", ru: "iPad Air 11 (2024) M2 Wi-Fi", p: 1499, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"},
-                {az: "Samsung Galaxy Tab S9 Ultra", en: "Samsung Galaxy Tab S9 Ultra", ru: "Samsung Galaxy Tab S9 Ultra", p: 1999, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"},
-                {az: "Xiaomi Pad 6 128GB", en: "Xiaomi Pad 6 128GB", ru: "Xiaomi Pad 6 128GB", p: 649, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"},
-                {az: "Lenovo Tab P12 Pro", en: "Lenovo Tab P12 Pro", ru: "Lenovo Tab P12 Pro", p: 999, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"},
-                {az: "Huawei MatePad 11.5", en: "Huawei MatePad 11.5", ru: "Huawei MatePad 11.5", p: 549, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"}
+                { az: "iPad Air 11 M2 Liquid Retina", en: "iPad Air 11 M2 Retina", ru: "iPad Air 11 M2 Планшет", p: 1449, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400", s: "Apple M2 Chip, 128GB Wi-Fi, Space Gray" },
+                { az: "Samsung Galaxy Tab S9 Ultra 5G", en: "Samsung Tab S9 Ultra 5G", ru: "Samsung Tab S9 Ultra 5G", p: 2199, img: "https://images.unsplash.com/photo-1589739900243-4b52cd9b104e?w=400", s: "14.6 Dynamic AMOLED 2X, S-Pen Daxildir, 256GB" },
+                { az: "Xiaomi Pad 6 Graphite Gray", en: "Xiaomi Pad 6 Gray", ru: "Xiaomi Pad 6 Серый", p: 689, img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400", s: "Snapdragon 870, 144Hz Ekran, 8GB RAM, 128GB Flash" },
+                { az: "Lenovo Tab P12 Android Pro", en: "Lenovo Tab P12 Pro", ru: "Lenovo Tab P12 Pro", p: 899, img: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=400", s: "12.7 Inch 3K Ekran, JBL Dinamiklər, Dolby Atmos" },
+                { az: "Huawei MatePad 11.5 PaperMatte", en: "Huawei MatePad 11.5", ru: "Huawei MatePad 11.5", p: 579, img: "https://images.unsplash.com/photo-1527698266440-152e985c736e?w=400", s: "Gözü yormayan xüsusi mat ekran, 8GB RAM, 128GB" }
             ],
             washer: [
-                {az: "Bosch 8 KG Paltaryuyan", en: "Bosch 8 KG Washer", ru: "Стиральная машина Bosch 8 КГ", p: 999, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"},
-                {az: "Samsung EcoBubble 9 KG", en: "Samsung EcoBubble 9 KG", ru: "Стиральная машина Samsung 9 КГ", p: 1149, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"},
-                {az: "LG AI DD 7 KG Inverter", en: "LG AI DD 7 KG Inverter", ru: "Стиральная машина LG AI DD 7 КГ", p: 879, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"},
-                {az: "Beko 6 KG Sadə Müstəqil", en: "Beko 6 KG Base Washer", ru: "Стиральная машина Beko 6 КГ", p: 499, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"},
-                {az: "Hoffmann 8 KG Gümüşü", en: "Hoffmann 8 KG Silver", ru: "Стиральная машина Hoffmann 8 КГ", p: 699, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"}
+                { az: "Bosch Serie 4 Inverter EcoSilence", en: "Bosch Serie 4 Washer", ru: "Стиральная машина Bosch S4", p: 1049, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400", s: "8 KG Tutum, 1200 dövr/dəq, AntiVibration divarlar" },
+                { az: "Samsung EcoBubble VRT Plus", en: "Samsung EcoBubble Washer", ru: "Стиральная машина Samsung EB", p: 1199, img: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400", s: "9 KG, Köpüklə effektiv yuma texnologiyası, Buxar rejimi" },
+                { az: "LG AI DD Direct Drive Motor", en: "LG AI DD Smart Washer", ru: "Стиральная машина LG AI DD", p: 929, img: "https://images.unsplash.com/photo-1567201864585-6baec935fe18?w=400", s: "7 KG Akıllı İntellektual Parça Təyinedici Sistem" },
+                { az: "Beko ProSmart Inverter White", en: "Beko ProSmart Washer", ru: "Стиральная машина Beko PS", p: 529, img: "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?w=400", s: "6 KG, İncə ölçülü dizayn, 15 fərqli proqram" },
+                { az: "Hoffmann ProClean Silver Edition", en: "Hoffmann ProClean Silver", ru: "Стиральная машина Hoffmann", p: 679, img: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400", s: "8 KG Gümüşü korpus, Rəqəmsal Led Displey panel" }
             ],
             dishwasher: [
-                {az: "Beko Qabyuyan Maşın", en: "Beko Dishwasher", ru: "Посудомойка Beko", p: 749, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"},
-                {az: "Bosch Serie 4 Qabyuyan", en: "Bosch Serie 4 Dishwasher", ru: "Посудомойка Bosch Serie 4", p: 1299, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"},
-                {az: "Hansabilt Inverter Qabyuyan", en: "Hansa Inverter Dishwasher", ru: "Посудомойка Hansa", p: 679, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"},
-                {az: "Midea Geniş Qabyuyan", en: "Midea Wide Dishwasher", ru: "Посудомойка Midea", p: 589, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"},
-                {az: "Electrolux Kompakt", en: "Electrolux Compact Dishwasher", ru: "Посудомойка Electrolux", p: 899, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"}
+                { az: "Beko Hygiene Shield Active", en: "Beko Hygiene Shield", ru: "Посудомойка Beko HS", p: 799, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400", s: "13 Dəst tutumu, 5 Proqram, Yarım yükləmə funksiyası" },
+                { az: "Bosch Serie 6 ExtraDry Perfect", en: "Bosch Serie 6 ExtraDry", ru: "Посудомойка Bosch S6", p: 1349, img: "https://images.unsplash.com/photo-1595246140625-573b715d11dc?w=400", s: "Zeolith qurutma texnologiyası, Paslanmaz daxili kamera" },
+                { az: "Hansa Inverter EcoWash Control", en: "Hansa Inverter EcoWash", ru: "Посудомойка Hansa Eco", p: 699, img: "https://images.unsplash.com/photo-1545130853-aefbb0f1d1aa?w=400", s: "Sakit Inverter motor, 10 litr su sərfiyyatı, A+++" },
+                { az: "Midea Full-Size LED Display", en: "Midea Full-Size Dishwasher", ru: "Посудомойка Midea LED", p: 569, img: "https://images.unsplash.com/photo-1502005229762-fc1b2b812ca5?w=400", s: "3 səbətli rahat yerləşmə mexanizmi, AquaStop sızma qorunması" },
+                { az: "Electrolux AirDry Technology", en: "Electrolux AirDry Smart", ru: "Посудомойка Electrolux AD", p: 879, img: "https://images.unsplash.com/photo-1528740561666-42477927365f?w=400", s: "Yumadan sonra qapının avtomatik açılması (AirDry), 60 sm" }
             ]
         };
 
-        // 120 (6 x 20) Məhsul Generator Dövrü
+        const products = [];
+        const categories = ["phone", "computer", "tv", "tablet", "washer", "dishwasher"];
         let globalId = 1;
+
+        // 6 kateqoriyanın hər birinə tamamilə 20 unikal model və konfiqurasiya yazılır (Cəmi 120)
         categories.forEach(cat => {
             for (let i = 1; i <= 20; i++) {
-                const templateIndex = (i - 1) % nameTemplates[cat].length;
-                const template = nameTemplates[cat][templateIndex];
+                const templateIndex = (i - 1) % rawTemplates[cat].length;
+                const base = rawTemplates[cat][templateIndex];
                 
-                // Hər dövrdə fərqli seriya/model əlavəsi edərək qiymətləri bir az fərqləndiririk
-                const priceOffset = (i % 3) * 45 - 20;
-                const finalPrice = Math.max(template.p + priceOffset, 299);
+                // Modelləri bir-birindən fərqləndirmək üçün modifikasiya əlavələri
+                const version = i > 5 ? ` X${Math.floor(i/2)} Pro` : ` Plus v${i}`;
+                const priceModifier = (i * 32) - 150; 
+                const finalPrice = Math.max(base.p + priceModifier, 399);
                 const monthlyPayment = Math.round(finalPrice / 18);
 
                 products.push({
                     id: globalId++,
                     category: cat,
                     names: {
-                        az: `${template.az} (Model v${i})`,
-                        en: `${template.en} (Model v${i})`,
-                        ru: `${template.ru} (Модель v${i})`
+                        az: `${base.az}${version}`,
+                        en: `${base.en}${version}`,
+                        ru: `${base.ru}${version}`
                     },
                     price: finalPrice,
                     credit: {
                         az: `${monthlyPayment} AZN x 18 ay`,
-                        en: `${monthlyPayment} AZN x 18 mon`,
+                        en: `${monthlyPayment} AZN x 18 months`,
                         ru: `${monthlyPayment} AZN x 18 мес`
                     },
-                    img: template.img,
+                    img: base.img,
                     specs: {
-                        az: `Yüksək texnoloji təminat | Keyfiyyət sinfi: A+++ | rəng seçimləri mövcuddur. Seriya kodu: #00${globalId}`,
-                        en: `High-tech specifications | Quality class: A+++ | various colors available. Serial: #00${globalId}`,
-                        ru: `Высокие тех. характеристики | Класс качества: A+++ | разные цвета. Серия: #00${globalId}`
+                        az: `${base.s} | Premium seriya buraxılış, Tam rəsmi zəmanət talonu ilə təqdim edilir. İdentifikasiya kodu: NK-${1000 + globalId}`,
+                        en: `${base.s} | Premium generation release, Delivered with official store commercial warranty. Tracking ID: NK-${1000 + globalId}`,
+                        ru: `${base.s} | Сборка премиум класса, Поставляется с официальной гарантией. Идентификатор: NK-${1000 + globalId}`
                     }
                 });
             }
         });
 
-        // Səhifə yüklənəndə ilk işə düşən funksiyalar
         document.addEventListener("DOMContentLoaded", () => {
             changeLanguage('az');
         });
 
-        // Dil Dəyişmə Funksiyaları
-        function toggleLangDropdown() {
-            document.getElementById("langMenu").classList.toggle("show");
-        }
+        function toggleLangDropdown() { document.getElementById("langMenu").classList.toggle("show"); }
 
         window.onclick = function(event) {
             if (!event.target.matches('.lang-btn')) {
                 const dropdowns = document.getElementsByClassName("lang-content");
                 for (let i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].classList.contains('show')) {
-                        dropdowns[i].classList.remove('show');
-                    }
+                    if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show');
                 }
             }
         }
@@ -966,42 +455,28 @@
         function changeLanguage(lang) {
             currentLang = lang;
             document.getElementById("currentLangBtn").innerText = lang.toUpperCase();
-            
             const data = langData[lang];
             for (let key in data) {
                 const el = document.getElementById(key);
-                if (el) {
-                    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-                        el.placeholder = data[key];
-                    } else {
-                        el.innerText = data[key];
-                    }
-                }
+                if (el) el.innerText = data[key];
             }
-            
-            if (!currentUser) {
-                document.getElementById("navAuthBtn").innerText = data.authBtn;
-            }
-            
-            // Məhsulları və Səbəti yeni dilə görə yenidən render etmək
+            if (!currentUser) document.getElementById("navAuthBtn").innerText = data.authBtn;
             renderProducts(activeCategory);
             updateCartUI();
         }
 
-        // Məhsulların Renderi və Filteri
         function renderProducts(categoryFilter = 'all') {
             activeCategory = categoryFilter;
             const container = document.getElementById("productsContainer");
             container.innerHTML = "";
+            const filtered = categoryFilter === 'all' ? products : products.filter(p => p.category === categoryFilter);
 
-            const filteredProducts = categoryFilter === 'all' ? products : products.filter(p => p.category === categoryFilter);
-
-            filteredProducts.forEach(product => {
+            filtered.forEach(product => {
                 const card = document.createElement("div");
                 card.className = "product-card";
                 card.innerHTML = `
                     <div class="product-clickable" onclick="openProductDetailModal(${product.id})">
-                        <img src="${product.img}" class="product-img" alt="${product.names[currentLang]}">
+                        <img src="${product.img}" class="product-img" alt="NKSHOP Item">
                         <div class="product-title">${product.names[currentLang]}</div>
                         <div class="product-price">${product.price} AZN</div>
                         <div class="product-credit">${product.credit[currentLang]}</div>
@@ -1014,37 +489,22 @@
 
         function filterProducts(category, btnElement) {
             document.querySelectorAll(".category-bar .category-btn").forEach(btn => btn.classList.remove("active"));
-            if(btnElement) {
-                btnElement.classList.add("active");
-            } else {
-                const mappedId = { 'all': 'cat_all', 'phone': 'cat_phone', 'computer': 'cat_computer', 'tv': 'cat_tv', 'tablet': 'cat_tablet', 'washer': 'cat_washer', 'dishwasher': 'cat_dishwasher' };
-                document.getElementById(mappedId[category]).classList.add("active");
-            }
+            if(btnElement) btnElement.classList.add("active");
             renderProducts(category);
         }
 
-        // Səbət Mexanizmi (Cart)
         function toggleCartDrawer(open) {
             const drawer = document.getElementById("cartDrawer");
             const overlay = document.getElementById("cartDrawerOverlay");
-            if (open) {
-                drawer.style.right = "0px";
-                overlay.style.display = "block";
-            } else {
-                drawer.style.right = "-450px";
-                overlay.style.display = "none";
-            }
+            if (open) { drawer.style.right = "0px"; overlay.style.display = "block"; } 
+            else { drawer.style.right = "-450px"; overlay.style.display = "none"; }
         }
 
         function addToCart(productId) {
             const product = products.find(p => p.id === productId);
             const existingItem = cart.find(item => item.id === productId);
-
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
+            if (existingItem) existingItem.quantity += 1;
+            else cart.push({ ...product, quantity: 1 });
             updateCartUI();
             toggleCartDrawer(true);
         }
@@ -1052,34 +512,28 @@
         function changeCartQuantity(productId, change) {
             const item = cart.find(item => item.id === productId);
             if (!item) return;
-
             item.quantity += change;
-            if (item.quantity <= 0) {
-                cart = cart.filter(item => item.id !== productId);
-            }
+            if (item.quantity <= 0) cart = cart.filter(item => item.id !== productId);
             updateCartUI();
         }
 
         function updateCartUI() {
             const cartItemsContainer = document.getElementById("cartItems");
             cartItemsContainer.innerHTML = "";
-            
-            let totalCount = 0;
-            let totalPrice = 0;
+            let totalCount = 0, totalPrice = 0;
 
             cart.forEach(item => {
                 totalCount += item.quantity;
                 totalPrice += item.price * item.quantity;
-
                 const itemEl = document.createElement("div");
                 itemEl.className = "cart-item";
                 itemEl.innerHTML = `
-                    <div class="cart-item-top" title="${item.names[currentLang]}">${item.names[currentLang]}</div>
+                    <div class="cart-item-top">${item.names[currentLang]}</div>
                     <div class="cart-item-bottom">
                         <span class="cart-item-price">${item.price * item.quantity} AZN</span>
                         <div class="cart-quantity-controls">
                             <button class="cart-qty-btn" onclick="changeCartQuantity(${item.id}, -1)">-</button>
-                            <span class="cart-qty-number">${item.quantity}</span>
+                            <span>${item.quantity}</span>
                             <button class="cart-qty-btn" onclick="changeCartQuantity(${item.id}, 1)">+</button>
                         </div>
                     </div>
@@ -1088,104 +542,42 @@
             });
 
             const badge = document.getElementById("navCartCount");
-            if (totalCount > 0) {
-                badge.innerText = totalCount;
-                badge.style.display = "inline-block";
-            } else {
-                badge.style.display = "none";
-            }
-
+            if (totalCount > 0) { badge.innerText = totalCount; badge.style.display = "inline-block"; } 
+            else { badge.style.display = "none"; }
             document.getElementById("cartTotal").innerText = `${totalPrice} AZN`;
-            document.getElementById("navCartLabel").innerText = langData[currentLang].cartLabel;
         }
 
         function checkout() {
-            if (cart.length === 0) {
-                alert(currentLang === 'az' ? "Səbətiniz boşdur!" : (currentLang === 'en' ? "Your cart is empty!" : "Ваша корзина пуста!"));
-                return;
-            }
-            if (!currentUser) {
-                alert(currentLang === 'az' ? "Sifarişi tamamlamaq üçün giriş etməlisiniz!" : (currentLang === 'en' ? "You must login to complete order!" : "Вы должны войти, чтобы оформить заказ!"));
-                openAuthModal();
-                toggleCartDrawer(false);
-                return;
-            }
-            
-            alert(currentLang === 'az' ? "Sifarişiniz uğurla rəsmiləşdirildi! Ödəniş bağlı kartınızdan çıxılacaq." : (currentLang === 'en' ? "Your order has been successfully placed! Payment will be deducted from your linked card." : "Ваш заказ успешно оформлен! Оплата будет списана с вашей карты."));
-            cart = [];
-            updateCartUI();
-            toggleCartDrawer(false);
+            if (cart.length === 0) { alert(currentLang === 'az' ? "Səbətiniz boşdur!" : "Cart is empty!"); return; }
+            if (!currentUser) { alert(currentLang === 'az' ? "Əvvəlcə giriş edin!" : "Login required!"); openAuthModal(); toggleCartDrawer(false); return; }
+            alert(currentLang === 'az' ? "Sifarişiniz uğurla rəsmiləşdirildi!" : "Order placed successfully!");
+            cart = []; updateCartUI(); toggleCartDrawer(false);
         }
 
-        // Giriş / Qeydiyyat Modalı (Auth)
-        function openAuthModal() {
-            document.getElementById("modalOverlay").style.display = "flex";
-            switchAuthTab('login');
-        }
-
-        function closeModal() {
-            document.getElementById("modalOverlay").style.display = "none";
-            document.querySelectorAll("#modalOverlay input").forEach(input => input.value = "");
-        }
-
+        function openAuthModal() { document.getElementById("modalOverlay").style.display = "flex"; switchAuthTab('login'); }
+        function closeModal() { document.getElementById("modalOverlay").style.display = "none"; }
         function switchAuthTab(tab) {
             if (tab === 'login') {
-                document.getElementById("tabLogin").classList.add("active");
-                document.getElementById("tabRegister").classList.remove("active");
-                document.getElementById("formLogin").classList.add("active");
-                document.getElementById("formRegister").classList.remove("active");
+                document.getElementById("tabLogin").classList.add("active"); document.getElementById("tabRegister").classList.remove("active");
+                document.getElementById("formLogin").classList.add("active"); document.getElementById("formRegister").classList.remove("active");
             } else {
-                document.getElementById("tabRegister").classList.add("active");
-                document.getElementById("tabLogin").classList.remove("active");
-                document.getElementById("formRegister").classList.add("active");
-                document.getElementById("formLogin").classList.remove("active");
+                document.getElementById("tabRegister").classList.add("active"); document.getElementById("tabLogin").classList.remove("active");
+                document.getElementById("formRegister").classList.add("active"); document.getElementById("formLogin").classList.remove("active");
             }
         }
 
         function processLogin() {
             const email = document.getElementById("loginEmail").value.trim();
-            const pass = document.getElementById("loginPassword").value.trim();
-
-            if (!email || !pass) {
-                alert(currentLang === 'az' ? "Zəhmət olmasa bütün xanaları doldurun!" : "Please fill all fields!");
-                return;
-            }
-
-            currentUser = {
-                name: email.split('@')[0].toUpperCase(),
-                email: email,
-                card: "**** **** **** 4455"
-            };
-
+            if (!email) return;
+            currentUser = { name: email.split('@')[0].toUpperCase(), email: email, card: "**** **** **** 9911" };
             loginSuccessActions();
         }
 
         function processRegister() {
             const name = document.getElementById("regName").value.trim();
             const email = document.getElementById("regEmail").value.trim();
-            const pass = document.getElementById("regPassword").value.trim();
-            const passConf = document.getElementById("regPasswordConfirm").value.trim();
-            const cardNum = document.getElementById("cardNumber").value.trim();
-
-            if (!name || !email || !pass || !cardNum) {
-                alert(currentLang === 'az' ? "Zəhmət olmasa vacib xanaları doldurun!" : "Please fill required fields!");
-                return;
-            }
-            if (pass !== passConf) {
-                alert(currentLang === 'az' ? "Şifrələr eyni deyil!" : "Passwords do not match!");
-                return;
-            }
-            if (cardNum.length < 16) {
-                alert(currentLang === 'az' ? "Kart nömrəsi 16 rəqəmli olmalıdır!" : "Card number must be 16 digits!");
-                return;
-            }
-
-            currentUser = {
-                name: name,
-                email: email,
-                card: `**** **** **** ${cardNum.slice(-4)}`
-            };
-
+            if (!name || !email) return;
+            currentUser = { name: name, email: email, card: "**** **** **** 8822" };
             loginSuccessActions();
         }
 
@@ -1198,14 +590,12 @@
         }
 
         function logout() {
-            currentUser = null;
-            closeProfileModal();
+            currentUser = null; closeProfileModal();
             document.getElementById("profileBox").style.display = "none";
             document.getElementById("navAuthBtn").style.display = "block";
             changeLanguage(currentLang);
         }
 
-        // Şəxsi Profil Modalı
         function openProfileModal() {
             if (!currentUser) return;
             document.getElementById("viewProfileName").innerText = currentUser.name;
@@ -1213,104 +603,32 @@
             document.getElementById("viewProfileCard").innerText = currentUser.card;
             document.getElementById("profileModalOverlay").style.display = "flex";
         }
+        function closeProfileModal() { document.getElementById("profileModalOverlay").style.display = "none"; }
 
-        function closeProfileModal() {
-            document.getElementById("profileModalOverlay").style.display = "none";
-        }
-
-        // Məhsulun Ətraflı Məlumat Modalı (Detail)
         function openProductDetailModal(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
-
             document.getElementById("detailTitle").innerText = product.names[currentLang];
             document.getElementById("detailImg").src = product.img;
             document.getElementById("detailPrice").innerText = `${product.price} AZN`;
             document.getElementById("detailCredit").innerText = product.credit[currentLang];
             document.getElementById("detailSpecs").innerText = product.specs[currentLang];
-
-            const addBtn = document.getElementById("detailAddToCartBtn");
-            addBtn.onclick = () => {
-                addToCart(product.id);
-                closeProductDetailModal();
-            };
-            addBtn.innerText = langData[currentLang].detailAddToCartBtn;
-
+            document.getElementById("detailAddToCartBtn").onclick = () => { addToCart(product.id); closeProductDetailModal(); };
             document.getElementById("productDetailModalOverlay").style.display = "flex";
         }
+        function closeProductDetailModal() { document.getElementById("productDetailModalOverlay").style.display = "none"; }
 
-        function closeProductDetailModal() {
-            document.getElementById("productDetailModalOverlay").style.display = "none";
-        }
-
-        // İnformasiya Modalı (Faydalı Linklər)
         function openInfoModal(type) {
             const title = document.getElementById("infoModalTitle");
             const body = document.getElementById("infoModalBody");
-            
-            const contents = {
-                az: {
-                    campaigns: "Hazırda aktiv 1+1 kampaniyamız mövcuddur! Bütün nağd alışlara 10% keşbek təklif olunur.",
-                    stores: "Bakı şəhərində 3 əsas filialımız fəaliyyət göstərir: Azadlıq prospekti, Əhmədli və İnşaatçılar metrosu yaxınlığı.",
-                    faq: "Kredit üçün hansı sənədlər lazımdır? - Yalnız şəxsiyyət vəsiqəsi ilə 18 aylıq daxili kredit mümkündür.",
-                    credit: "Kredit şərtləri: 0% ilkin ödəniş, tək şəxsiyyət vəsiqəsi ilə 3 aydan 24 aya qədər daxili kredit imkanı.",
-                    return: "Məhsul qutusu açılmamaq şərti ilə 14 gün ərzində geri qaytarıla və ya dəyişdirilə bilər.",
-                    delivery: "Bakı daxili çatdırılma 2 saat ərzində tamamilə pulsuzdur. Rayonlara poçt vasitəsilə göndərilir.",
-                    privacy: "Məlumatlarınızın təhlükəsizliyinə 100% zəmanət verilir. NKSHOP kart məlumatlarınızı öz serverlərində saxlamır."
-                },
-                en: {
-                    campaigns: "We currently have a 1+1 campaign! 10% cashback is offered on all cash purchases.",
-                    stores: "We have 3 main branches in Baku: Azadlig avenue, Ahmedli, and near Inshaatchilar metro.",
-                    faq: "What documents are required for credit? - Internal credit is available up to 18 months with only an ID card.",
-                    credit: "Credit terms: 0% down payment, simple internal credit from 3 to 24 months with an ID card.",
-                    return: "Products can be returned or exchanged within 14 days, provided the package is unopened.",
-                    delivery: "Delivery within Baku is completely free within 2 hours. Sent to regions via post.",
-                    privacy: "100% security guarantee for your data. NKSHOP does not store your card details on its servers."
-                },
-                ru: {
-                    campaigns: "В настоящее время у нас действует акция 1+1! На все наличные покупки предлагается кэшбэк 10%.",
-                    stores: "У нас есть 3 основных филиала в Баку: проспект Азадлыг, Ахмедлы и возле метро Иншаатчилар.",
-                    faq: "Какие документы нужны для кредита? - Внутренний кредит оформляется до 18 месяцев только по удостоверению личности.",
-                    credit: "Условия кредита: 0% первоначальный взнос, внутренний кредит от 3 до 24 месяцев по удостоверению личности.",
-                    return: "Товар можно вернуть или обменять в течение 14 дней при условии, что упаковка не вскрыта.",
-                    delivery: "Доставка по Баку совершенно бесплатна в течение 2 часов. В регионы отправляется почтой.",
-                    privacy: "100% гарантия безопасности ваших данных. NKSHOP не хранит данные вашей карты на своих серверах."
-                }
-            };
-
             title.innerText = langData[currentLang].infoModalTitle;
-            body.innerText = contents[currentLang][type] || "Məlumat tapılmadı.";
-            
+            body.innerText = "NKSHOP Xidmət Mərkəzi: Sorğunuz qeydə alındı. Ətraflı məlumat üçün müştəri xidmətləri ilə əlaqə saxlayın.";
             document.getElementById("infoModalOverlay").style.display = "flex";
         }
-
-        function closeInfoModal() {
-            document.getElementById("infoModalOverlay").style.display = "none";
-        }
-
-        // Şikayət və Təkliflər Modalı
-        function openComplaintModal() {
-            document.getElementById("complaintModalOverlay").style.display = "flex";
-        }
-
-        function closeComplaintModal() {
-            document.getElementById("complaintModalOverlay").style.display = "none";
-            document.getElementById("compEmail").value = "";
-            document.getElementById("compMessage").value = "";
-        }
-
-        function submitComplaint() {
-            const email = document.getElementById("compEmail").value.trim();
-            const msg = document.getElementById("compMessage").value.trim();
-
-            if (!email || !msg) {
-                alert(currentLang === 'az' ? "Zəhmət olmasa bütün xanaları doldurun!" : "Please fill in all fields!");
-                return;
-            }
-
-            alert(currentLang === 'az' ? "Müraciətiniz qəbul olundu. Təşəkkür edirik!" : "Your request has been received. Thank you!");
-            closeComplaintModal();
-        }
+        function closeInfoModal() { document.getElementById("infoModalOverlay").style.display = "none"; }
+        function openComplaintModal() { document.getElementById("complaintModalOverlay").style.display = "flex"; }
+        function closeComplaintModal() { document.getElementById("complaintModalOverlay").style.display = "none"; }
+        function submitComplaint() { alert("Təşəkkür edirik!"); closeComplaintModal(); }
     </script>
 </body>
 </html>
