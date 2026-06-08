@@ -2,633 +2,90 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NKSHOP — Texnologiya Mağazası</title>
+    <title>LUST SUMMER CAFE</title>
     <style>
-        /* Ümumi Stil və Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            user-select: none;
+        /* "Lust Summer" Estetikası */
+        :root {
+            --primary: #e67e22; /* Gün batımı narıncısı */
+            --bg: #fdf6e4;      /* Qum rəngi */
+            --text: #2c3e50;    /* Dəniz mavisi tonunda tünd */
         }
 
         body {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.03) 0%, rgba(15, 52, 96, 0.05) 100%),
-                        radial-gradient(circle at 20% 30%, rgba(233, 69, 96, 0.02) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(15, 52, 96, 0.03) 0%, transparent 50%),
-                        #f8fafd;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            position: relative;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Georgia', serif; /* Daha nostalji şrift */
         }
 
-        body::before {
-            content: "💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚  💻  📱  📟  ⌚";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.08;
-            font-size: 28px;
-            letter-spacing: 45px;
-            line-height: 90px;
-            word-break: break-all;
-            pointer-events: none;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        /* Naviqasiya Paneli */
-        .navbar {
-            background-color: #1a1a2e;
-            color: #fff;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .nav-logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #e94560;
-            cursor: pointer;
-            letter-spacing: 1px;
-        }
-
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .nav-cart-btn {
-            background-color: #e94560;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-            position: relative;
-        }
-
-        .nav-cart-btn:hover { background-color: #cf3a53; }
-
-        .cart-count-badge {
-            display: none;
-            background-color: #fff;
-            color: #e94560;
-            font-size: 12px;
-            font-weight: bold;
-            border-radius: 50%;
-            padding: 2px 7px;
-            min-width: 20px;
-            text-align: center;
-        }
-
-        .lang-dropdown { position: relative; display: inline-block; }
-        .lang-btn { background-color: #161625; color: #fff; padding: 10px 15px; border: 1px solid #333; border-radius: 6px; cursor: pointer; font-weight: 600; }
-        .lang-content { display: none; position: absolute; right: 0; background-color: #ffffff; min-width: 100px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); border-radius: 6px; z-index: 1100; overflow: hidden; }
-        .lang-content a { color: #333; padding: 12px 16px; text-decoration: none; display: block; font-weight: 500; }
-        .lang-content a:hover { background-color: #f1f1f1; }
-        .show { display: block; }
-
-        .auth-btn { background-color: #0f3460; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.2s; }
-        .auth-btn:hover { background-color: #164b8a; }
-
-        .profile-container {
-            display: none; align-items: center; gap: 10px; cursor: pointer; background: rgba(255,255,255,0.1); padding: 5px 12px; border-radius: 20px;
-        }
-
-        .user-avatar { width: 32px; height: 32px; background-color: #e94560; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; }
-
-        /* Kateqoriyalar */
-        .category-bar { display: flex; justify-content: center; gap: 12px; padding: 20px 5%; background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); box-shadow: 0 2px 5px rgba(0,0,0,0.05); flex-wrap: wrap; }
-        .category-btn { background-color: rgba(240, 242, 245, 0.8); border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: 600; color: #555; transition: all 0.2s; }
-        .category-btn.active, .category-btn:hover { background-color: #e94560; color: white; box-shadow: 0 4px 10px rgba(233, 69, 96, 0.3); }
-
-        /* Əsas Səhifə */
-        .main-content { max-width: 1400px; width: 100%; margin: 30px auto; padding: 0 5%; flex: 1; }
-        .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
-
+        .navbar { background-color: #2c3e50; }
+        .nav-logo { color: var(--primary); font-family: 'Playfair Display', serif; }
+        
+        .category-btn.active { background-color: var(--primary); }
+        
         .product-card {
-            background-color: rgba(255, 255, 255, 0.9); border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid rgba(234, 234, 234, 0.8);
+            border-radius: 30px 0 30px 0; /* Daha maraqlı kəsim */
+            border: 2px solid #e67e22;
+            background: #fff;
         }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); background-color: #ffffff; }
-        .product-clickable { cursor: pointer; }
-        .product-img { width: 100%; height: 180px; object-fit: cover; margin-bottom: 15px; border-radius: 8px; background-color: #f7f7f7; }
-        .product-title { font-size: 14px; font-weight: 600; margin-bottom: 10px; height: 42px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color: #222; }
-        .product-price { font-size: 19px; font-weight: 700; color: #1a1a2e; margin-bottom: 5px; }
-        .product-credit { font-size: 12px; color: #2bc87d; background-color: #eafaf1; padding: 4px 8px; border-radius: 4px; display: inline-block; font-weight: 600; margin-bottom: 15px; }
 
-        .btn { background-color: #1a1a2e; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%; transition: background 0.2s; text-align: center; }
-        .btn:hover { background-color: #e94560; }
-
-        /* Modallar */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(4px); }
-        .modal-box { background: #fff; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); position: relative; max-height: 90vh; overflow-y: auto; }
-        .close-modal-btn { position: absolute; top: 15px; right: 15px; font-size: 24px; cursor: pointer; color: #888; }
-        .close-modal-btn:hover { color: #333; }
-
-        /* Səbət Modalı */
-        .cart-modal { max-width: 450px; width: 100%; height: 100vh; position: fixed; top: 0; right: -450px; background: white; box-shadow: -5px 0 25px rgba(0,0,0,0.15); z-index: 2500; display: flex; flex-direction: column; transition: right 0.3s ease; }
-        .cart-modal-header { padding: 20px; background: #1a1a2e; color: white; display: flex; justify-content: space-between; align-items: center; }
-        .cart-modal-body { flex: 1; padding: 20px; overflow-y: auto; }
-        .cart-modal-footer { padding: 20px; border-top: 1px solid #eee; background: #fdfdfd; }
-        .cart-item { background-color: #f8f9fa; border-radius: 8px; padding: 12px; margin-bottom: 12px; border: 1px solid #eee; }
-        .cart-item-top { font-size: 14px; font-weight: 600; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .cart-item-bottom { display: flex; justify-content: space-between; align-items: center; }
-        .cart-item-price { font-weight: 700; color: #e94560; }
-        .cart-quantity-controls { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 2px; }
-        .cart-qty-btn { background: none; border: none; width: 24px; height: 24px; cursor: pointer; font-weight: bold; font-size: 16px; }
-        .cart-total-box { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; margin-bottom: 15px; }
-
-        /* Tab Stili */
-        .auth-tabs { display: flex; margin-bottom: 20px; border-bottom: 2px solid #eee; }
-        .auth-tab { flex: 1; text-align: center; padding: 10px; cursor: pointer; font-weight: 600; color: #666; }
-        .auth-tab.active { color: #e94560; border-bottom: 2px solid #e94560; }
-        .auth-form-section { display: none; }
-        .auth-form-section.active { display: block; }
-
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; outline: none; }
-        .card-row { display: flex; gap: 10px; }
-
-        .detail-img { width: 100%; height: 220px; object-fit: contain; margin-bottom: 15px; }
-        .detail-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px;}
-        .detail-label { font-weight: 600; color: #666; }
-        .detail-value { font-weight: 700; }
-        .detail-specs { background: #f8f9fa; padding: 12px; border-radius: 6px; margin-top: 10px; font-size: 13px; line-height: 1.5; }
-
-        footer { background-color: #1a1a2e; color: #bbb; padding: 40px 5% 20px 5%; margin-top: auto; border-top: 4px solid #e94560; }
-        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1400px; margin: 0 auto; }
-        .footer-col h3 { color: #fff; margin-bottom: 15px; font-size: 16px; border-left: 3px solid #e94560; padding-left: 10px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 8px; }
-        .footer-col ul li a { color: #bbb; text-decoration: none; font-size: 14px; cursor: pointer; }
-        .footer-col ul li a:hover { color: #e94560; }
-        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; font-size: 13px; }
-
-        @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(3, 1fr); } .footer-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) {
-            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .category-bar { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }
-            .category-btn { flex: 0 0 auto; }
-            .cart-modal { max-width: 100%; right: -100%; }
-        }
-        @media (max-width: 480px) { .products-grid { grid-template-columns: repeat(1, 1fr); } .footer-grid { grid-template-columns: repeat(1, 1fr); text-align: center; } }
+        .btn { background-color: var(--primary); }
+        
+        /* Kafe üçün menyu başlıqları */
+        .menu-header { text-align: center; padding: 40px; font-size: 30px; font-style: italic; }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="nav-logo" onclick="filterProducts('all', document.getElementById('cat_all'))">NKSHOP</div>
+        <div class="nav-logo">LUST SUMMER CAFE</div>
         <div class="nav-controls">
-            <button class="nav-cart-btn" onclick="toggleCartDrawer(true)">
-                <span>🛒</span><span id="navCartLabel">Səbət</span>
-                <span class="cart-count-badge" id="navCartCount">0</span>
-            </button>
-
-            <div class="lang-dropdown">
-                <button onclick="toggleLangDropdown()" class="lang-btn" id="currentLangBtn">AZ</button>
-                <div id="langMenu" class="lang-content">
-                    <a href="javascript:void(0)" onclick="changeLanguage('az')">AZ</a>
-                    <a href="javascript:void(0)" onclick="changeLanguage('en')">EN</a>
-                    <a href="javascript:void(0)" onclick="changeLanguage('ru')">RU</a>
-                </div>
-            </div>
-
-            <button class="auth-btn" id="navAuthBtn" onclick="openAuthModal()">Giriş / Qeydiyyat</button>
-            <div class="profile-container" id="profileBox" onclick="openProfileModal()">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <span id="profileName">Profiliniz</span>
-            </div>
+            <button class="nav-cart-btn" onclick="toggleCartDrawer(true)">☕ Səbət</button>
         </div>
     </nav>
 
+    <div class="menu-header">"Həyat bir yay kimidir, qısa və unudulmaz..."</div>
+
     <div class="category-bar">
-        <button class="category-btn active" id="cat_all" onclick="filterProducts('all', this)">Hamısı</button>
-        <button class="category-btn" id="cat_phone" onclick="filterProducts('phone', this)">Smartfonlar</button>
-        <button class="category-btn" id="cat_computer" onclick="filterProducts('computer', this)">Kompüterlər</button>
-        <button class="category-btn" id="cat_tv" onclick="filterProducts('tv', this)">Televizorlar</button>
-        <button class="category-btn" id="cat_tablet" onclick="filterProducts('tablet', this)">Planşetlər</button>
-        <button class="category-btn" id="cat_washer" onclick="filterProducts('washer', this)">Paltaryuyanlar</button>
-        <button class="category-btn" id="cat_dishwasher" onclick="filterProducts('dishwasher', this)">Qabyuyanlar</button>
+        <button class="category-btn active" onclick="filterMenu('coffee', this)">Qəhvələr</button>
+        <button class="category-btn" onclick="filterMenu('dessert', this)">Desertlər</button>
+        <button class="category-btn" onclick="filterMenu('cocktail', this)">Kokteyllər</button>
     </div>
 
     <main class="main-content">
         <div class="products-grid" id="productsContainer"></div>
     </main>
 
-    <div id="cartDrawerOverlay" class="modal-overlay" onclick="toggleCartDrawer(false)"></div>
-    <div id="cartDrawer" class="cart-modal">
-        <div class="cart-modal-header">
-            <h3 id="cartTitleText">Səbətiniz</h3>
-            <span class="close-modal-btn" style="color: white; top:12px;" onclick="toggleCartDrawer(false)">&times;</span>
-        </div>
-        <div class="cart-modal-body" id="cartItems"></div>
-        <div class="cart-modal-footer">
-            <div class="cart-total-box">
-                <span id="totalLabel">Cəmi:</span>
-                <span id="cartTotal">0 AZN</span>
-            </div>
-            <button class="btn" onclick="checkout()" id="checkoutBtnText">Sifarişi Rəsmiləşdir</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-box">
-            <span class="close-modal-btn" onclick="closeModal()">&times;</span>
-            <div class="auth-tabs">
-                <div class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Giriş Et</div>
-                <div class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Qeydiyyat</div>
-            </div>
-            <div id="formLogin" class="auth-form-section active">
-                <div class="form-group"><label id="lblLoginEmail">E-poçt:</label><input type="email" id="loginEmail"></div>
-                <div class="form-group"><label id="lblLoginPassword">Şifrə:</label><input type="password" id="loginPassword"></div>
-                <button class="btn" id="btnLoginSubmit" onclick="processLogin()">Giriş</button>
-            </div>
-            <div id="formRegister" class="auth-form-section">
-                <div class="form-group"><label id="lblRegName">Ad, Soyad:</label><input type="text" id="regName"></div>
-                <div class="form-group"><label id="lblRegEmail">E-poçt:</label><input type="email" id="regEmail"></div>
-                <div class="form-group"><label id="lblRegPassword">Şifrə:</label><input type="password" id="regPassword"></div>
-                <div class="form-group"><label id="lblRegPasswordConfirm">Şifrə Təkrarı:</label><input type="password" id="regPasswordConfirm"></div>
-                <h4 id="lblCardSectionTitle" style="color:#e94560; margin:15px 0 5px 0;">Kart Məlumatları</h4>
-                <div class="form-group"><input type="text" id="cardNumber" maxlength="16" placeholder="16 Rəqəmli Kart nömrəsi"></div>
-                <button class="btn" id="btnRegisterSubmit" onclick="processRegister()">Qeydiyyatı Tamamla</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="profileModalOverlay">
-        <div class="modal-box">
-            <span class="close-modal-btn" onclick="closeProfileModal()">&times;</span>
-            <h3 id="pTitle" style="margin-bottom:20px;">Şəxsi Profil</h3>
-            <p><span id="lblViewProfileName">Ad:</span> <span id="viewProfileName"></span></p>
-            <p><span id="lblViewProfileEmail">E-poçt:</span> <span id="viewProfileEmail"></span></p>
-            <p><span id="lblViewProfileCard">Kart:</span> <span id="viewProfileCard"></span></p>
-            <button class="btn" id="btnLogout" style="margin-top:20px; background:#e94560;" onclick="logout()">Çıxış</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="productDetailModalOverlay">
-        <div class="modal-box">
-            <span class="close-modal-btn" onclick="closeProductDetailModal()">&times;</span>
-            <h3 id="detailTitle"></h3>
-            <img src="" id="detailImg" class="detail-img">
-            <div class="detail-row"><span id="lblDetailPrice">Qiymət:</span><span id="detailPrice"></span></div>
-            <div class="detail-row"><span id="lblDetailCredit">Kredit:</span><span id="detailCredit"></span></div>
-            <div class="detail-specs" id="detailSpecs"></div>
-            <button class="btn" style="margin-top:20px;" id="detailAddToCartBtn">Səbətə At</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="infoModalOverlay"><div class="modal-box"><span class="close-modal-btn" onclick="closeInfoModal()">&times;</span><h3 id="infoModalTitle"></h3><p id="infoModalBody"></p></div></div>
-    <div class="modal-overlay" id="complaintModalOverlay">
-        <div class="modal-box">
-            <span class="close-modal-btn" onclick="closeComplaintModal()">&times;</span>
-            <h3 id="compTitle">Şikayət və Təkliflər</h3>
-            <div class="form-group"><label id="lblCompEmail">E-poçt:</label><input type="email" id="compEmail"></div>
-            <div class="form-group"><label id="lblCompMessage">Mesaj:</label><textarea id="compMessage" rows="4"></textarea></div>
-            <button class="btn" id="btnCompSubmit" onclick="submitComplaint()">Göndər</button>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col"><h3 id="fTitleAbout">O NKSHOP</h3><p id="fTextAbout">Aparıcı texnologiya mağazası.</p></div>
-            <div class="footer-col">
-                <h3 id="fTitleLinks">Linklər</h3>
-                <ul>
-                    <li><a onclick="openInfoModal('campaigns')" id="fLinkCamp">Kampaniyalar</a></li>
-                    <li><a onclick="openInfoModal('stores')" id="fLinkStores">Mağazalar</a></li>
-                    <li><a onclick="openComplaintModal()" id="fLinkComp">Şikayətlər</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3 id="fTitleRules">Qaydalar</h3>
-                <ul>
-                    <li><a onclick="openInfoModal('credit')" id="fLinkCredit">Kredit</a></li>
-                    <li><a onclick="openInfoModal('return')" id="fLinkReturn">Qaytarılma</a></li>
-                </ul>
-            </div>
-            <div class="footer-col"><h3 id="fTitleContact">Əlaqə</h3><p>*1005 | 09:00 - 21:00</p></div>
-        </div>
-        <div class="footer-bottom"><p id="fCopyright">© 2026 NKSHOP. Bütün hüquqlar qorunur.</p></div>
-    </footer>
-
     <script>
-        let currentLang = 'az';
-        let cart = [];
-        let currentUser = null;
-        let activeCategory = 'all';
+        // Kafe menyusu verilənlər bazası
+        const menuItems = [
+            { id: 1, cat: 'coffee', name: 'Yay Qəhvəsi (Signature)', price: 7, img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400' },
+            { id: 2, cat: 'coffee', name: 'Soyuq Brew', price: 6, img: 'https://images.unsplash.com/photo-1517701160238-8e6d27575298?w=400' },
+            { id: 3, cat: 'dessert', name: 'Limonlu Tart', price: 9, img: 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400' },
+            { id: 4, cat: 'cocktail', name: 'Sunset Breeze', price: 12, img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400' }
+        ];
 
-        const langData = {
-            az: {
-                cartLabel: "Səbət", authBtn: "Giriş / Qeydiyyat", profileName: "Profiliniz", cat_all: "Hamısı", cat_phone: "Smartfonlar", cat_computer: "Kompüterlər", cat_tv: "Televizorlar", cat_tablet: "Planşetlər", cat_washer: "Paltaryuyanlar", cat_dishwasher: "Qabyuyanlar", cartTitleText: "Səbətiniz", totalLabel: "Cəmi:", checkoutBtnText: "Sifarişi Rəsmiləşdir", tabLogin: "Giriş Et", tabRegister: "Qeydiyyat", lblLoginEmail: "E-poçt:", lblLoginPassword: "Şifrə:", btnLoginSubmit: "Giriş", lblRegName: "Ad, Soyad:", lblRegEmail: "E-poçt:", lblRegPassword: "Şifrə:", lblRegPasswordConfirm: "Şifrə Təkrarı:", lblCardSectionTitle: "Kart Məlumatları", btnRegisterSubmit: "Qeydiyyatı Tamamla", pTitle: "Şəxsi Profil", lblViewProfileName: "Ad:", lblViewProfileEmail: "E-poçt:", lblViewProfileCard: "Kart:", btnLogout: "Çıxış", lblDetailPrice: "Qiymət:", lblDetailCredit: "Kredit:", detailAddToCartBtn: "Səbətə At", compTitle: "Şikayət və Təkliflər", lblCompEmail: "E-poçt:", lblCompMessage: "Mesaj:", btnCompSubmit: "Göndər", fTitleAbout: "O NKSHOP", fTextAbout: "NKSHOP — Azərbaycanın aparıcı texnologiya mağazasıdır.", fTitleLinks: "Linklər", fLinkCamp: "Kampaniyalar", fLinkStores: "Mağazalar", fLinkComp: "Şikayətlər", fTitleRules: "Qaydalar", fLinkCredit: "Kredit", fLinkReturn: "Qaytarılma", fTitleContact: "Əlaqə", fCopyright: "© 2026 NKSHOP. Qorunur.", infoModalTitle: "Məlumat"
-            },
-            en: {
-                cartLabel: "Cart", authBtn: "Login", profileName: "Profile", cat_all: "All", cat_phone: "Phones", cat_computer: "Computers", cat_tv: "TVs", cat_tablet: "Tablets", cat_washer: "Washers", cat_dishwasher: "Dishwashers", cartTitleText: "Your Cart", totalLabel: "Total:", checkoutBtnText: "Checkout", tabLogin: "Login", tabRegister: "Register", lblLoginEmail: "Email:", lblLoginPassword: "Password:", btnLoginSubmit: "Login", lblRegName: "Full Name:", lblRegEmail: "Email:", lblRegPassword: "Password:", lblRegPasswordConfirm: "Confirm:", lblCardSectionTitle: "Card Details", btnRegisterSubmit: "Register", pTitle: "Profile", lblViewProfileName: "Name:", lblViewProfileEmail: "Email:", lblViewProfileCard: "Card:", btnLogout: "Logout", lblDetailPrice: "Price:", lblDetailCredit: "Credit:", detailAddToCartBtn: "Add to Cart", compTitle: "Feedback", lblCompEmail: "Email:", lblCompMessage: "Message:", btnCompSubmit: "Submit", fTitleAbout: "About Us", fTextAbout: "NKSHOP is a premium tech store.", fTitleLinks: "Links", fLinkCamp: "Campaigns", fLinkStores: "Stores", fLinkComp: "Complaints", fTitleRules: "Rules", fLinkCredit: "Credit", fLinkReturn: "Returns", fTitleContact: "Contact", fCopyright: "© 2026 NKSHOP.", infoModalTitle: "Info"
-            },
-            ru: {
-                cartLabel: "Корзина", authBtn: "Вход", profileName: "Профиль", cat_all: "Все", cat_phone: "Смартфоны", cat_computer: "Компьютеры", cat_tv: "Телевизоры", cat_tablet: "Планшеты", cat_washer: "Стиралки", cat_dishwasher: "Посудомойки", cartTitleText: "Корзина", totalLabel: "Итого:", checkoutBtnText: "Заказать", tabLogin: "Войти", tabRegister: "Регистрация", lblLoginEmail: "Email:", lblLoginPassword: "Пароль:", btnLoginSubmit: "Войти", lblRegName: "Имя:", lblRegEmail: "Email:", lblRegPassword: "Пароль:", lblRegPasswordConfirm: "Повтор:", lblCardSectionTitle: "Карта", btnRegisterSubmit: "Создать", pTitle: "Профиль", lblViewProfileName: "Имя:", lblViewProfileEmail: "Email:", lblViewProfileCard: "Карта:", btnLogout: "Выйти", lblDetailPrice: "Цена:", lblDetailCredit: "Кредит:", detailAddToCartBtn: "В корзину", compTitle: "Жалобы", lblCompEmail: "Email:", lblCompMessage: "Сообщение:", btnCompSubmit: "Отправить", fTitleAbout: "О нас", fTextAbout: "NKSHOP — ведущий магазин электроники.", fTitleLinks: "Ссылки", fLinkCamp: "Акции", fLinkStores: "Магазины", fLinkComp: "Жалобы", fTitleRules: "Правила", fLinkCredit: "Кредит", fLinkReturn: "Возврат", fTitleContact: "Контакты", fCopyright: "© 2026 NKSHOP.", infoModalTitle: "Инфо"
-            }
-        };
-
-        // 120 Tamamilə Unikal Modellər və Aktiv Şəkillər Verilənlər Bazası
-        const rawTemplates = {
-            phone: [
-                { az: "iPhone 15 Pro Max Natural Titanium", en: "iPhone 15 Pro Max Natural Titanium", ru: "iPhone 15 Pro Max Титан", p: 3149, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400", s: "256GB SSD, Apple A17 Pro CPU, 48MP OIS Camera" },
-                { az: "Samsung Galaxy S24 Ultra Titanium Gray", en: "Samsung Galaxy S24 Ultra Gray", ru: "Samsung Galaxy S24 Ultra Серый", p: 2799, img: "https://images.unsplash.com/photo-1707148569426-ff7eb5fa848d?w=400", s: "512GB, Snapdragon 8 Gen 3, Dynamic AMOLED 2X" },
-                { az: "Xiaomi 14 Ultra Dual Sim 5G", en: "Xiaomi 14 Ultra 5G", ru: "Xiaomi 14 Ultra 5G", p: 2199, img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400", s: "512GB Yaddaş, 16GB RAM, Leica Optika" },
-                { az: "Google Pixel 8 Pro Obsidian Black", en: "Google Pixel 8 Pro Obsidian", ru: "Google Pixel 8 Pro Черный", p: 1649, img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400", s: "128GB, Google Tensor G3 chip, AI Clean Voice" },
-                { az: "OnePlus 12 Dual-SIM Green Silk", en: "OnePlus 12 Green Silk", ru: "OnePlus 12 Зеленый", p: 1549, img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400", s: "256GB Yaddaş, 100W Sürətli Şarj, Snapdragon 8 Gen 2" }
-            ],
-            computer: [
-                { az: "MacBook Air 13 Space Gray M3", en: "MacBook Air 13 M3 Gray", ru: "MacBook Air 13 M3 Серый", p: 2349, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400", s: "8GB RAM, 256GB SSD, Retina TrueTone" },
-                { az: "ASUS TUF Gaming A15 Mecha Gray", en: "ASUS TUF Gaming A15", ru: "ASUS TUF Gaming A15 Игровой", p: 1899, img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400", s: "AMD Ryzen 7, RTX 4060 8GB, 16GB RAM, 512GB SSD" },
-                { az: "Lenovo Legion Slim 5 16APH8", en: "Lenovo Legion Slim 5", ru: "Lenovo Legion Slim 5 Ноутбук", p: 2599, img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400", s: "Intel i7, 16GB RAM, 1TB SSD, RTX 4070" },
-                { az: "HP Victus 16-r0067ci Performance", en: "HP Victus 16 Laptop", ru: "HP Victus 16 Игровой", p: 1479, img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400", s: "Intel i5, 16GB RAM, RTX 3050, 512GB NVMe" },
-                { az: "Acer Nitro V15 AV15-51-547X", en: "Acer Nitro V15", ru: "Acer Nitro V15 Мощный", p: 1349, img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400", s: "Intel i5 13-cü nəsil, 8GB RAM, 512GB SSD" }
-            ],
-            tv: [
-                { az: "LG Smart Cinema TV 55 UHD 4K", en: "LG Smart TV 55 4K", ru: "Телевизор LG 55 4K", p: 1199, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400", s: "55 Inch (139sm), webOS Smart TV, HDR10 Pro" },
-                { az: "Samsung QLED QE65Q60CAUXRU", en: "Samsung QLED 65 Inch", ru: "Samsung QLED 65 Дюймов", p: 1949, img: "https://images.unsplash.com/photo-1552533880-1258b23f0952?w=400", s: "65 Inch Quantum Dot, Tizen OS, Dual LED Backlight" },
-                { az: "Sony BRAVIA XR-55A80L OLED", en: "Sony BRAVIA 55 OLED", ru: "Sony BRAVIA 55 OLED ТВ", p: 2699, img: "https://images.unsplash.com/photo-1601944179066-297acd3ad6d0?w=400", s: "Cognitive Processor XR, Acoustic Surface Audio+, OLED Pixel" },
-                { az: "Xiaomi TV A2 43 Metallic Frame", en: "Xiaomi TV A2 43 Smart", ru: "Xiaomi TV A2 43 Дюйма", p: 629, img: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400", s: "Android TV, Dolby Audio, Çərçivəsiz dizayn, FHD" },
-                { az: "TCL 50P745 Google Cinema TV", en: "TCL 50 Smart Google TV", ru: "TCL 50 Google Smart TV", p: 749, img: "https://images.unsplash.com/photo-1577979749830-f1d742b917c8?w=400", s: "4K HDR, Dolby Vision, Google Voice Control Assistant" }
-            ],
-            tablet: [
-                { az: "iPad Air 11 M2 Liquid Retina", en: "iPad Air 11 M2 Retina", ru: "iPad Air 11 M2 Планшет", p: 1449, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400", s: "Apple M2 Chip, 128GB Wi-Fi, Space Gray" },
-                { az: "Samsung Galaxy Tab S9 Ultra 5G", en: "Samsung Tab S9 Ultra 5G", ru: "Samsung Tab S9 Ultra 5G", p: 2199, img: "https://images.unsplash.com/photo-1589739900243-4b52cd9b104e?w=400", s: "14.6 Dynamic AMOLED 2X, S-Pen Daxildir, 256GB" },
-                { az: "Xiaomi Pad 6 Graphite Gray", en: "Xiaomi Pad 6 Gray", ru: "Xiaomi Pad 6 Серый", p: 689, img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400", s: "Snapdragon 870, 144Hz Ekran, 8GB RAM, 128GB Flash" },
-                { az: "Lenovo Tab P12 Android Pro", en: "Lenovo Tab P12 Pro", ru: "Lenovo Tab P12 Pro", p: 899, img: "https://images.unsplash.com/photo-1561154464-82e9adf32764?w=400", s: "12.7 Inch 3K Ekran, JBL Dinamiklər, Dolby Atmos" },
-                { az: "Huawei MatePad 11.5 PaperMatte", en: "Huawei MatePad 11.5", ru: "Huawei MatePad 11.5", p: 579, img: "https://images.unsplash.com/photo-1527698266440-152e985c736e?w=400", s: "Gözü yormayan xüsusi mat ekran, 8GB RAM, 128GB" }
-            ],
-            washer: [
-                { az: "Bosch Serie 4 Inverter EcoSilence", en: "Bosch Serie 4 Washer", ru: "Стиральная машина Bosch S4", p: 1049, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400", s: "8 KG Tutum, 1200 dövr/dəq, AntiVibration divarlar" },
-                { az: "Samsung EcoBubble VRT Plus", en: "Samsung EcoBubble Washer", ru: "Стиральная машина Samsung EB", p: 1199, img: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400", s: "9 KG, Köpüklə effektiv yuma texnologiyası, Buxar rejimi" },
-                { az: "LG AI DD Direct Drive Motor", en: "LG AI DD Smart Washer", ru: "Стиральная машина LG AI DD", p: 929, img: "https://images.unsplash.com/photo-1567201864585-6baec935fe18?w=400", s: "7 KG Akıllı İntellektual Parça Təyinedici Sistem" },
-                { az: "Beko ProSmart Inverter White", en: "Beko ProSmart Washer", ru: "Стиральная машина Beko PS", p: 529, img: "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?w=400", s: "6 KG, İncə ölçülü dizayn, 15 fərqli proqram" },
-                { az: "Hoffmann ProClean Silver Edition", en: "Hoffmann ProClean Silver", ru: "Стиральная машина Hoffmann", p: 679, img: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400", s: "8 KG Gümüşü korpus, Rəqəmsal Led Displey panel" }
-            ],
-            dishwasher: [
-                { az: "Beko Hygiene Shield Active", en: "Beko Hygiene Shield", ru: "Посудомойка Beko HS", p: 799, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400", s: "13 Dəst tutumu, 5 Proqram, Yarım yükləmə funksiyası" },
-                { az: "Bosch Serie 6 ExtraDry Perfect", en: "Bosch Serie 6 ExtraDry", ru: "Посудомойка Bosch S6", p: 1349, img: "https://images.unsplash.com/photo-1595246140625-573b715d11dc?w=400", s: "Zeolith qurutma texnologiyası, Paslanmaz daxili kamera" },
-                { az: "Hansa Inverter EcoWash Control", en: "Hansa Inverter EcoWash", ru: "Посудомойка Hansa Eco", p: 699, img: "https://images.unsplash.com/photo-1545130853-aefbb0f1d1aa?w=400", s: "Sakit Inverter motor, 10 litr su sərfiyyatı, A+++" },
-                { az: "Midea Full-Size LED Display", en: "Midea Full-Size Dishwasher", ru: "Посудомойка Midea LED", p: 569, img: "https://images.unsplash.com/photo-1502005229762-fc1b2b812ca5?w=400", s: "3 səbətli rahat yerləşmə mexanizmi, AquaStop sızma qorunması" },
-                { az: "Electrolux AirDry Technology", en: "Electrolux AirDry Smart", ru: "Посудомойка Electrolux AD", p: 879, img: "https://images.unsplash.com/photo-1528740561666-42477927365f?w=400", s: "Yumadan sonra qapının avtomatik açılması (AirDry), 60 sm" }
-            ]
-        };
-
-        const products = [];
-        const categories = ["phone", "computer", "tv", "tablet", "washer", "dishwasher"];
-        let globalId = 1;
-
-        // 6 kateqoriyanın hər birinə tamamilə 20 unikal model və konfiqurasiya yazılır (Cəmi 120)
-        categories.forEach(cat => {
-            for (let i = 1; i <= 20; i++) {
-                const templateIndex = (i - 1) % rawTemplates[cat].length;
-                const base = rawTemplates[cat][templateIndex];
-                
-                // Modelləri bir-birindən fərqləndirmək üçün modifikasiya əlavələri
-                const version = i > 5 ? ` X${Math.floor(i/2)} Pro` : ` Plus v${i}`;
-                const priceModifier = (i * 32) - 150; 
-                const finalPrice = Math.max(base.p + priceModifier, 399);
-                const monthlyPayment = Math.round(finalPrice / 18);
-
-                products.push({
-                    id: globalId++,
-                    category: cat,
-                    names: {
-                        az: `${base.az}${version}`,
-                        en: `${base.en}${version}`,
-                        ru: `${base.ru}${version}`
-                    },
-                    price: finalPrice,
-                    credit: {
-                        az: `${monthlyPayment} AZN x 18 ay`,
-                        en: `${monthlyPayment} AZN x 18 months`,
-                        ru: `${monthlyPayment} AZN x 18 мес`
-                    },
-                    img: base.img,
-                    specs: {
-                        az: `${base.s} | Premium seriya buraxılış, Tam rəsmi zəmanət talonu ilə təqdim edilir. İdentifikasiya kodu: NK-${1000 + globalId}`,
-                        en: `${base.s} | Premium generation release, Delivered with official store commercial warranty. Tracking ID: NK-${1000 + globalId}`,
-                        ru: `${base.s} | Сборка премиум класса, Поставляется с официальной гарантией. Идентификатор: NK-${1000 + globalId}`
-                    }
-                });
-            }
-        });
-
-        document.addEventListener("DOMContentLoaded", () => {
-            changeLanguage('az');
-        });
-
-        function toggleLangDropdown() { document.getElementById("langMenu").classList.toggle("show"); }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.lang-btn')) {
-                const dropdowns = document.getElementsByClassName("lang-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show');
-                }
-            }
-        }
-
-        function changeLanguage(lang) {
-            currentLang = lang;
-            document.getElementById("currentLangBtn").innerText = lang.toUpperCase();
-            const data = langData[lang];
-            for (let key in data) {
-                const el = document.getElementById(key);
-                if (el) el.innerText = data[key];
-            }
-            if (!currentUser) document.getElementById("navAuthBtn").innerText = data.authBtn;
-            renderProducts(activeCategory);
-            updateCartUI();
-        }
-
-        function renderProducts(categoryFilter = 'all') {
-            activeCategory = categoryFilter;
+        function renderMenu(cat = 'coffee') {
             const container = document.getElementById("productsContainer");
             container.innerHTML = "";
-            const filtered = categoryFilter === 'all' ? products : products.filter(p => p.category === categoryFilter);
-
-            filtered.forEach(product => {
-                const card = document.createElement("div");
-                card.className = "product-card";
-                card.innerHTML = `
-                    <div class="product-clickable" onclick="openProductDetailModal(${product.id})">
-                        <img src="${product.img}" class="product-img" alt="NKSHOP Item">
-                        <div class="product-title">${product.names[currentLang]}</div>
-                        <div class="product-price">${product.price} AZN</div>
-                        <div class="product-credit">${product.credit[currentLang]}</div>
+            menuItems.filter(i => i.cat === cat).forEach(item => {
+                container.innerHTML += `
+                    <div class="product-card">
+                        <img src="${item.img}" class="product-img">
+                        <h3>${item.name}</h3>
+                        <p>${item.price} AZN</p>
+                        <button class="btn">Sifariş Et</button>
                     </div>
-                    <button class="btn" onclick="addToCart(${product.id})">${currentLang === 'az' ? 'Səbətə At' : (currentLang === 'en' ? 'Add to Cart' : 'В корзину')}</button>
                 `;
-                container.appendChild(card);
             });
         }
 
-        function filterProducts(category, btnElement) {
-            document.querySelectorAll(".category-bar .category-btn").forEach(btn => btn.classList.remove("active"));
-            if(btnElement) btnElement.classList.add("active");
-            renderProducts(category);
+        function filterMenu(cat, btn) {
+            document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderMenu(cat);
         }
 
-        function toggleCartDrawer(open) {
-            const drawer = document.getElementById("cartDrawer");
-            const overlay = document.getElementById("cartDrawerOverlay");
-            if (open) { drawer.style.right = "0px"; overlay.style.display = "block"; } 
-            else { drawer.style.right = "-450px"; overlay.style.display = "none"; }
-        }
-
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) existingItem.quantity += 1;
-            else cart.push({ ...product, quantity: 1 });
-            updateCartUI();
-            toggleCartDrawer(true);
-        }
-
-        function changeCartQuantity(productId, change) {
-            const item = cart.find(item => item.id === productId);
-            if (!item) return;
-            item.quantity += change;
-            if (item.quantity <= 0) cart = cart.filter(item => item.id !== productId);
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const cartItemsContainer = document.getElementById("cartItems");
-            cartItemsContainer.innerHTML = "";
-            let totalCount = 0, totalPrice = 0;
-
-            cart.forEach(item => {
-                totalCount += item.quantity;
-                totalPrice += item.price * item.quantity;
-                const itemEl = document.createElement("div");
-                itemEl.className = "cart-item";
-                itemEl.innerHTML = `
-                    <div class="cart-item-top">${item.names[currentLang]}</div>
-                    <div class="cart-item-bottom">
-                        <span class="cart-item-price">${item.price * item.quantity} AZN</span>
-                        <div class="cart-quantity-controls">
-                            <button class="cart-qty-btn" onclick="changeCartQuantity(${item.id}, -1)">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="cart-qty-btn" onclick="changeCartQuantity(${item.id}, 1)">+</button>
-                        </div>
-                    </div>
-                `;
-                cartItemsContainer.appendChild(itemEl);
-            });
-
-            const badge = document.getElementById("navCartCount");
-            if (totalCount > 0) { badge.innerText = totalCount; badge.style.display = "inline-block"; } 
-            else { badge.style.display = "none"; }
-            document.getElementById("cartTotal").innerText = `${totalPrice} AZN`;
-        }
-
-        function checkout() {
-            if (cart.length === 0) { alert(currentLang === 'az' ? "Səbətiniz boşdur!" : "Cart is empty!"); return; }
-            if (!currentUser) { alert(currentLang === 'az' ? "Əvvəlcə giriş edin!" : "Login required!"); openAuthModal(); toggleCartDrawer(false); return; }
-            alert(currentLang === 'az' ? "Sifarişiniz uğurla rəsmiləşdirildi!" : "Order placed successfully!");
-            cart = []; updateCartUI(); toggleCartDrawer(false);
-        }
-
-        function openAuthModal() { document.getElementById("modalOverlay").style.display = "flex"; switchAuthTab('login'); }
-        function closeModal() { document.getElementById("modalOverlay").style.display = "none"; }
-        function switchAuthTab(tab) {
-            if (tab === 'login') {
-                document.getElementById("tabLogin").classList.add("active"); document.getElementById("tabRegister").classList.remove("active");
-                document.getElementById("formLogin").classList.add("active"); document.getElementById("formRegister").classList.remove("active");
-            } else {
-                document.getElementById("tabRegister").classList.add("active"); document.getElementById("tabLogin").classList.remove("active");
-                document.getElementById("formRegister").classList.add("active"); document.getElementById("formLogin").classList.remove("active");
-            }
-        }
-
-        function processLogin() {
-            const email = document.getElementById("loginEmail").value.trim();
-            if (!email) return;
-            currentUser = { name: email.split('@')[0].toUpperCase(), email: email, card: "**** **** **** 9911" };
-            loginSuccessActions();
-        }
-
-        function processRegister() {
-            const name = document.getElementById("regName").value.trim();
-            const email = document.getElementById("regEmail").value.trim();
-            if (!name || !email) return;
-            currentUser = { name: name, email: email, card: "**** **** **** 8822" };
-            loginSuccessActions();
-        }
-
-        function loginSuccessActions() {
-            closeModal();
-            document.getElementById("navAuthBtn").style.display = "none";
-            document.getElementById("profileBox").style.display = "flex";
-            document.getElementById("userAvatar").innerText = currentUser.name.charAt(0);
-            document.getElementById("profileName").innerText = currentUser.name;
-        }
-
-        function logout() {
-            currentUser = null; closeProfileModal();
-            document.getElementById("profileBox").style.display = "none";
-            document.getElementById("navAuthBtn").style.display = "block";
-            changeLanguage(currentLang);
-        }
-
-        function openProfileModal() {
-            if (!currentUser) return;
-            document.getElementById("viewProfileName").innerText = currentUser.name;
-            document.getElementById("viewProfileEmail").innerText = currentUser.email;
-            document.getElementById("viewProfileCard").innerText = currentUser.card;
-            document.getElementById("profileModalOverlay").style.display = "flex";
-        }
-        function closeProfileModal() { document.getElementById("profileModalOverlay").style.display = "none"; }
-
-        function openProductDetailModal(productId) {
-            const product = products.find(p => p.id === productId);
-            if (!product) return;
-            document.getElementById("detailTitle").innerText = product.names[currentLang];
-            document.getElementById("detailImg").src = product.img;
-            document.getElementById("detailPrice").innerText = `${product.price} AZN`;
-            document.getElementById("detailCredit").innerText = product.credit[currentLang];
-            document.getElementById("detailSpecs").innerText = product.specs[currentLang];
-            document.getElementById("detailAddToCartBtn").onclick = () => { addToCart(product.id); closeProductDetailModal(); };
-            document.getElementById("productDetailModalOverlay").style.display = "flex";
-        }
-        function closeProductDetailModal() { document.getElementById("productDetailModalOverlay").style.display = "none"; }
-
-        function openInfoModal(type) {
-            const title = document.getElementById("infoModalTitle");
-            const body = document.getElementById("infoModalBody");
-            title.innerText = langData[currentLang].infoModalTitle;
-            body.innerText = "NKSHOP Xidmət Mərkəzi: Sorğunuz qeydə alındı. Ətraflı məlumat üçün müştəri xidmətləri ilə əlaqə saxlayın.";
-            document.getElementById("infoModalOverlay").style.display = "flex";
-        }
-        function closeInfoModal() { document.getElementById("infoModalOverlay").style.display = "none"; }
-        function openComplaintModal() { document.getElementById("complaintModalOverlay").style.display = "flex"; }
-        function closeComplaintModal() { document.getElementById("complaintModalOverlay").style.display = "none"; }
-        function submitComplaint() { alert("Təşəkkür edirik!"); closeComplaintModal(); }
+        renderMenu();
     </script>
 </body>
 </html>
