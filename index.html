@@ -753,6 +753,7 @@
         let currentLang = 'az';
         let cart = [];
         let currentUser = null;
+        let activeCategory = 'all';
 
         const langData = {
             az: {
@@ -820,592 +821,496 @@
                 lblAddress: "Ünvan:",
                 valAddress: "Bakı şəhəri, Azadlıq prospekti 105",
                 fCopyright: "© 2026 NKSHOP. Bütün hüquqlar qorunur.",
-                infoModalTitle: "Məlumat",
-                infoSoon: "Bu bölmə yaxın zamanlarda aktivləşəcək.",
-                alertFillAuth: "Zəhmət olmasa Ad və E-poçt sahələrini doldurun!",
-                alertPassShort: "Şifrə ən azı 6 simvoldan ibarət olmalıdır!",
-                alertPassMismatch: "Daxil etdiyiniz şifrələr bir-biri ilə üst-üstə düşmür!",
-                alertCardIncomplete: "Zəhmət olmasa bank kartı məlumatlarını doğru daxil edin!",
-                alertUserExists: "Bu e-poçt ünvanı ilə artıq qeydiyyatdan keçilib! Giriş bölməsinə keçin.",
-                alertRegSuccess: "Qeydiyyatınız uğurla tamamlandı!",
-                alertLoginEmpty: "Zəhmət olmasa e-poçt və şifrənizi daxil edin!",
-                alertWelcome: "Xoş gəldiniz",
-                alertWrongPass: "Daxil etdiyiniz şifrə yanlışdır!",
-                alertUserNotFound: "Bu e-poçt ünvanı tapılmadı! Zəhmət olmasa öncə Qeydiyyatdan keçin.",
-                alertLogout: "Hesabdan çıxış edildi.",
-                alertCartEmpty: "Səbətiniz boşdur!",
-                alertCheckoutAuth: "Sifarişi tamamlamaq üçün öncə Giriş edin və ya Qeydiyyatdan keçin!",
-                alertCheckoutSuccess: "Hörmətli {name}, {total} məbləğində ödəniş qeydiyyatda olan {card} nömrəli kartınızdan uğurla çıxıldı! Sifarişiniz təsdiqləndi.",
-                alertCompSuccess: "Rəyiniz göndərildi!",
-                cartEmptyText: "Səbətiniz boşdur.",
-                creditText: "ay",
-                addToCartBtnText: "Səbətə Əlavə Et"
+                infoModalTitle: "Məlumat"
             },
             en: {
-                cartLabel: "Cart",
-                authBtn: "Login / Register",
-                profileName: "Your Profile",
-                cat_all: "All",
-                cat_phone: "Smartphones",
-                cat_computer: "Computers",
-                cat_tv: "TVs",
-                cat_tablet: "Tablets",
-                cat_washer: "Washing Machines",
-                cat_dishwasher: "Dishwashers",
-                cartTitleText: "Your Cart",
-                totalLabel: "Total:",
-                checkoutBtnText: "Checkout",
-                tabLogin: "Login",
-                tabRegister: "Register",
-                lblLoginEmail: "Email Address:",
-                lblLoginPassword: "Password:",
-                btnLoginSubmit: "Login",
-                lblRegName: "Full Name:",
-                lblRegEmail: "Email Address:",
-                lblRegPassword: "Password:",
-                lblRegPasswordConfirm: "Confirm Password:",
-                lblCardSectionTitle: "Card Details (For Payments)",
-                lblCardName: "Cardholder Name:",
-                lblCardNumber: "Card Number (16 digits):",
-                lblCardExpiry: "Expiry Date:",
-                lblCardCvv: "CVV/CVC:",
-                btnRegisterSubmit: "Create Account",
-                pTitle: "Personal Profile",
-                lblViewProfileName: "Full Name:",
-                lblViewProfileEmail: "Email:",
-                lblViewProfileCard: "Linked Card:",
-                lblViewProfileStatus: "Status:",
-                viewProfileStatusValue: "Active Customer",
-                btnLogout: "Logout",
-                lblDetailPrice: "Cash Price:",
-                lblDetailCredit: "Credit Terms:",
-                lblDetailWarranty: "Warranty:",
-                detailWarrantyValue: "1 year",
-                detailAddToCartBtn: "Add to Cart",
-                compTitle: "Complaints & Suggestions",
-                compSubtitle: "Let us know your feedback.",
-                lblCompEmail: "Your Email Address:",
-                lblCompMessage: "Your Message / Complaint:",
-                btnCompSubmit: "Submit and Return",
-                fTitleAbout: "About NKSHOP",
-                fTextAbout: "NKSHOP — One of the leading technology stores in Azerbaijan.",
-                fTitleLinks: "Useful Links",
-                fLinkCamp: "Campaigns",
-                fLinkStores: "Our Stores",
-                fLinkComp: "Complaints & Suggestions",
-                fLinkFaq: "FAQ",
-                fTitleRules: "Regulations",
-                fLinkCredit: "Credit Conditions",
-                fLinkReturn: "Return Policy",
-                fLinkDeliv: "Delivery & Payment",
-                fLinkPriv: "Privacy Policy",
-                fTitleContact: "Contact",
-                lblCallCenter: "Call Center:",
-                lblWorkHours: "Working Hours:",
-                valWorkHours: "Every day: 09:00 - 21:00",
-                lblAddress: "Address:",
-                valAddress: "Baku city, Azadlig avenue 105",
-                fCopyright: "© 2026 NKSHOP. All rights reserved.",
-                infoModalTitle: "Information",
-                infoSoon: "This section will be activated soon.",
-                alertFillAuth: "Please fill in Name and Email fields!",
-                alertPassShort: "Password must be at least 6 characters long!",
-                alertPassMismatch: "The passwords you entered do not match!",
-                alertCardIncomplete: "Please enter correct bank card details!",
-                alertUserExists: "This email address is already registered! Go to login section.",
-                alertRegSuccess: "Your registration has been successfully completed!",
-                alertLoginEmpty: "Please enter your email and password!",
-                alertWelcome: "Welcome",
-                alertWrongPass: "The password you entered is incorrect!",
-                alertUserNotFound: "This email address was not found! Please register first.",
-                alertLogout: "Logged out of account.",
-                alertCartEmpty: "Your cart is empty!",
-                alertCheckoutAuth: "Please login or register first to complete the order!",
-                alertCheckoutSuccess: "Dear {name}, the payment of {total} was successfully deducted from your registered card ending in {card}! Your order is confirmed.",
-                alertCompSuccess: "Your feedback has been sent!",
-                cartEmptyText: "Your cart is empty.",
-                creditText: "months",
-                addToCartBtnText: "Add to Cart"
+                cartLabel: "Cart", authBtn: "Login / Register", profileName: "Profile",
+                cat_all: "All", cat_phone: "Smartphones", cat_computer: "Computers", cat_tv: "TVs", cat_tablet: "Tablets", cat_washer: "Washers", cat_dishwasher: "Dishwashers",
+                cartTitleText: "Your Cart", totalLabel: "Total:", checkoutBtnText: "Checkout",
+                tabLogin: "Login", tabRegister: "Register", lblLoginEmail: "Email Address:", lblLoginPassword: "Password:", btnLoginSubmit: "Login",
+                lblRegName: "Full Name:", lblRegEmail: "Email Address:", lblRegPassword: "Password:", lblRegPasswordConfirm: "Confirm Password:",
+                lblCardSectionTitle: "Card Details (For Payments)", lblCardName: "Cardholder Name:", lblCardNumber: "Card Number (16 digits):", lblCardExpiry: "Expiry Date:", lblCardCvv: "CVV/CVC:", btnRegisterSubmit: "Create Account",
+                pTitle: "Personal Profile", lblViewProfileName: "Full Name:", lblViewProfileEmail: "Email:", lblViewProfileCard: "Linked Card:", lblViewProfileStatus: "Status:", viewProfileStatusValue: "Active Customer", btnLogout: "Logout",
+                lblDetailPrice: "Cash Price:", lblDetailCredit: "Credit Terms:", lblDetailWarranty: "Warranty:", detailWarrantyValue: "1 year", detailAddToCartBtn: "Add to Cart",
+                compTitle: "Complaints & Suggestions", compSubtitle: "Let us know your feedback.", lblCompEmail: "Your Email Address:", lblCompMessage: "Your Message / Complaint:", btnCompSubmit: "Submit & Go Back",
+                fTitleAbout: "About NKSHOP", fTextAbout: "NKSHOP is one of the leading technology stores in Azerbaijan.", fTitleLinks: "Useful Links",
+                fLinkCamp: "Campaigns", fLinkStores: "Our Stores", fLinkComp: "Complaints & Suggestions", fLinkFaq: "FAQ", fTitleRules: "Rules",
+                fLinkCredit: "Credit Terms", fLinkReturn: "Return Policy", fLinkDeliv: "Delivery & Payment", fLinkPriv: "Privacy Policy",
+                fTitleContact: "Contact", lblCallCenter: "Call Center:", lblWorkHours: "Working Hours:", valWorkHours: "Every day: 09:00 - 21:00", lblAddress: "Address:", valAddress: "Baku city, Azadlig avenue 105",
+                fCopyright: "© 2026 NKSHOP. All rights reserved.", infoModalTitle: "Information"
             },
             ru: {
-                cartLabel: "Корзина",
-                authBtn: "Вход / Регистрация",
-                profileName: "Ваш профиль",
-                cat_all: "Все",
-                cat_phone: "Смартфоны",
-                cat_computer: "Компьютеры",
-                cat_tv: "Телевизоры",
-                cat_tablet: "Планшеты",
-                cat_washer: "Стиральные машины",
-                cat_dishwasher: "Посудомоечные",
-                cartTitleText: "Ваша корзина",
-                totalLabel: "Итого:",
-                checkoutBtnText: "Оформить заказ",
-                tabLogin: "Войти",
-                tabRegister: "Регистрация",
-                lblLoginEmail: "Эл. адрес:",
-                lblLoginPassword: "Пароль:",
-                btnLoginSubmit: "Войти",
-                lblRegName: "Имя, Фамилия:",
-                lblRegEmail: "Эл. адрес:",
-                lblRegPassword: "Пароль:",
-                lblRegPasswordConfirm: "Повторите пароль:",
-                lblCardSectionTitle: "Данные карты (Для оплаты)",
-                lblCardName: "Владелец карты:",
-                lblCardNumber: "Номер карты (16 цифр):",
-                lblCardExpiry: "Срок действия:",
-                lblCardCvv: "CVV/CVC:",
-                btnRegisterSubmit: "Создать аккаунт",
-                pTitle: "Личный профиль",
-                lblViewProfileName: "Имя, Фамилия:",
-                lblViewProfileEmail: "Эл. адрес:",
-                lblViewProfileCard: "Привязанная карта:",
-                lblViewProfileStatus: "Status:",
-                viewProfileStatusValue: "Активный клиент",
-                btnLogout: "Выйти из аккаунта",
-                lblDetailPrice: "Цена наличными:",
-                lblDetailCredit: "Условия кредита:",
-                lblDetailWarranty: "Гарантия:",
-                detailWarrantyValue: "1 год",
-                detailAddToCartBtn: "Добавить в корзину",
-                compTitle: "Жалобы и предложения",
-                compSubtitle: "Оставьте свой отзыв.",
-                lblCompEmail: "Ваш эл. адрес:",
-                lblCompMessage: "Ваше сообщение / Жалоба:",
-                btnCompSubmit: "Отправить и вернуться",
-                fTitleAbout: "О NKSHOP",
-                fTextAbout: "NKSHOP — один из ведущих магазинов технологий в Азербайджане.",
-                fTitleLinks: "Полезные ссылки",
-                fLinkCamp: "Кампании",
-                fLinkStores: "Наши магазины",
-                fLinkComp: "Жалобы и предложения",
-                fLinkFaq: "Часто задаваемые вопросы",
-                fTitleRules: "Правила",
-                fLinkCredit: "Условия кредита",
-                fLinkReturn: "Политика возврата",
-                fLinkDeliv: "Доставка и оплата",
-                fLinkPriv: "Политика конфиденциальности",
-                fTitleContact: "Контакты",
-                lblCallCenter: "Колл-центр:",
-                lblWorkHours: "Рабочие часы:",
-                valWorkHours: "Каждый день: 09:00 - 21:00",
-                lblAddress: "Адрес:",
-                valAddress: "город Баку, проспект Азадлыг 105",
-                fCopyright: "© 2026 NKSHOP. Все права защищены.",
-                infoModalTitle: "Информация",
-                infoSoon: "Этот раздел будет активирован в ближайшее время.",
-                alertFillAuth: "Пожалуйста, заполните поля Имя и Эл. адрес!",
-                alertPassShort: "Пароль должен состоять минимум из 6 символов!",
-                alertPassMismatch: "Введенные вами пароли не совпадают!",
-                alertCardIncomplete: "Пожалуйста, введите правильные данные банковской карты!",
-                alertUserExists: "Этот эл. адрес уже зарегистрирован! Перейдите в раздел входа.",
-                alertRegSuccess: "Ваша регистрация успешно завершена!",
-                alertLoginEmpty: "Пожалуйста, введите эл. адрес и пароль!",
-                alertWelcome: "Добро пожаловать",
-                alertWrongPass: "Введенный вами пароль неверный!",
-                alertUserNotFound: "Этот эл. адрес не найден! Пожалуйста, сначала зарегистрируйтесь.",
-                alertLogout: "Вышли из аккаунта.",
-                alertCartEmpty: "Ваша корзина пуста!",
-                alertCheckoutAuth: "Пожалуйста, сначала войдите или зарегистрируйтесь, чтобы завершить заказ!",
-                alertCheckoutSuccess: "Уважаемый(ая) {name}, платеж в размере {total} был успешно списан с вашей зарегистрированной карты, заканчивающейся на {card}! Ваш заказ подтвержден.",
-                alertCompSuccess: "Ваш отзыв отправлен!",
-                cartEmptyText: "Ваша корзина пуста.",
-                creditText: "мес",
-                addToCartBtnText: "В корзину"
+                cartLabel: "Корзина", authBtn: "Вход / Регистрация", profileName: "Профиль",
+                cat_all: "Все", cat_phone: "Смартфоны", cat_computer: "Компьютеры", cat_tv: "Телевизоры", cat_tablet: "Планшеты", cat_washer: "Стилистики", cat_dishwasher: "Посудомойки",
+                cartTitleText: "Ваша Корзина", totalLabel: "Итого:", checkoutBtnText: "Оформить заказ",
+                tabLogin: "Войти", tabRegister: "Регистрация", lblLoginEmail: "Эл. почта:", lblLoginPassword: "Пароль:", btnLoginSubmit: "Войти",
+                lblRegName: "Имя, Фамилия:", lblRegEmail: "Эл. почта:", lblRegPassword: "Пароль:", lblRegPasswordConfirm: "Повторите пароль:",
+                lblCardSectionTitle: "Данные карты (Для оплаты)", lblCardName: "Имя на карте:", lblCardNumber: "Номер карты (16 цифр):", lblCardExpiry: "Срок действия:", lblCardCvv: "CVV/CVC:", btnRegisterSubmit: "Создать аккаунт",
+                pTitle: "Личный Профиль", lblViewProfileName: "Имя, Фамилия:", lblViewProfileEmail: "Эл. почта:", lblViewProfileCard: "Привязанная карта:", lblViewProfileStatus: "Статус:", viewProfileStatusValue: "Активный клиент", btnLogout: "Выйти из аккаунта",
+                lblDetailPrice: "Цена наличными:", lblDetailCredit: "Условия кредита:", lblDetailWarranty: "Гарантия:", detailWarrantyValue: "1 год", detailAddToCartBtn: "В корзину",
+                compTitle: "Жалобы и предложения", compSubtitle: "Поделитесь своим мнением.", lblCompEmail: "Ваш Эл. адрес:", lblCompMessage: "Ваше сообщение / Жалоба:", btnCompSubmit: "Отправить и вернуться",
+                fTitleAbout: "О NKSHOP", fTextAbout: "NKSHOP — один из ведущих магазинов технологий в Азербайджане.", fTitleLinks: "Полезные ссылки",
+                fLinkCamp: "Кампании", fLinkStores: "Наши магазины", fLinkComp: "Жалобы и предложения", fLinkFaq: "Часто задаваемые вопросы", fTitleRules: "Правила",
+                fLinkCredit: "Условия кредита", fLinkReturn: "Политика возврата", fLinkDeliv: "Доставка и оплата", fLinkPriv: "Политика конфиденциальности",
+                fTitleContact: "Контакты", lblCallCenter: "Колл-центр:", lblWorkHours: "Часы работы:", valWorkHours: "Каждый день: 09:00 - 21:00", lblAddress: "Адрес:", valAddress: "город Баку, проспект Азадлыг 105",
+                fCopyright: "© 2026 NKSHOP. Все права защищены.", infoModalTitle: "Информация"
             }
         };
 
-        const products = [
-            { id: 1, name: "iPhone 15 Pro Max 256GB", price: 3199, category: "phone", image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400", specs: "A17 Pro Chip, 48MP Kamera, Titanium Dizayn" },
-            { id: 2, name: "Samsung Galaxy S24 Ultra", price: 2799, category: "phone", image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400", specs: "Snapdragon 8 Gen 3, 200MP Kamera, S-Pen" },
-            { id: 3, name: "MacBook Pro 14 M3", price: 3899, category: "computer", image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400", specs: "Apple M3 Chip, 8GB RAM, 512GB SSD" },
-            { id: 4, name: "LG UltraGear OLED TV 55\"", price: 1999, category: "tv", image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400", specs: "4K Smart TV, 120Hz Refresh Rate" }
-        ];
-
-        window.onload = function() {
-            changeLanguage('az');
-            
-            const savedUser = localStorage.getItem('nkshop_logged_in_user');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                loginUserInterface();
-            }
+        // 120 Dinamik Çoxdilli Məhsul Bazası (Hər kateqoriyada 20 Məhsul)
+        const products = [];
+        const categories = ["phone", "computer", "tv", "tablet", "washer", "dishwasher"];
+        
+        const nameTemplates = {
+            phone: [
+                {az: "iPhone 15 Pro Max 256GB", en: "iPhone 15 Pro Max 256GB", ru: "iPhone 15 Pro Max 256GB", p: 3199, img: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400"},
+                {az: "Samsung Galaxy S24 Ultra", en: "Samsung Galaxy S24 Ultra", ru: "Samsung Galaxy S24 Ultra", p: 2849, img: "https://images.unsplash.com/photo-1707148569426-ff7eb5fa848d?w=400"},
+                {az: "Xiaomi 14 Ultra 512GB", en: "Xiaomi 14 Ultra 512GB", ru: "Xiaomi 14 Ultra 512GB", p: 2199, img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"},
+                {az: "OnePlus 12 16/512GB", en: "OnePlus 12 16/512GB", ru: "OnePlus 12 16/512GB", p: 1749, img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400"},
+                {az: "Google Pixel 8 Pro", en: "Google Pixel 8 Pro", ru: "Google Pixel 8 Pro", p: 1699, img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400"}
+            ],
+            computer: [
+                {az: "MacBook Air 13 M3 / 256GB", en: "MacBook Air 13 M3 / 256GB", ru: "MacBook Air 13 M3 / 256GB", p: 2299, img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400"},
+                {az: "ASUS TUF Gaming A15", en: "ASUS TUF Gaming A15", ru: "ASUS TUF Gaming A15", p: 1899, img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400"},
+                {az: "Lenovo Legion Pro 5", en: "Lenovo Legion Pro 5", ru: "Lenovo Legion Pro 5", p: 2649, img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400"},
+                {az: "HP Victus 16 Ryzen 5", en: "HP Victus 16 Ryzen 5", ru: "HP Victus 16 Ryzen 5", p: 1499, img: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400"},
+                {az: "Acer Nitro V15 i5", en: "Acer Nitro V15 i5", ru: "Acer Nitro V15 i5", p: 1399, img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400"}
+            ],
+            tv: [
+                {az: "LG Smart TV 55 Ultra HD 4K", en: "LG Smart TV 55 Ultra HD 4K", ru: "LG Smart TV 55 Ultra HD 4K", p: 1249, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"},
+                {az: "Samsung QLED 65 4K", en: "Samsung QLED 65 4K", ru: "Samsung QLED 65 4K", p: 1899, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"},
+                {az: "Sony BRAVIA 55 OLED", en: "Sony BRAVIA 55 OLED", ru: "Sony BRAVIA 55 OLED", p: 2499, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"},
+                {az: "Xiaomi Mi TV A2 43", en: "Xiaomi Mi TV A2 43", ru: "Xiaomi Mi TV A2 43", p: 599, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"},
+                {az: "TCL 50 Smart 4K Google TV", en: "TCL 50 Smart 4K Google TV", ru: "TCL 50 Smart 4K Google TV", p: 799, img: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400"}
+            ],
+            tablet: [
+                {az: "iPad Air 11 (2024) M2 Wi-Fi", en: "iPad Air 11 (2024) M2 Wi-Fi", ru: "iPad Air 11 (2024) M2 Wi-Fi", p: 1499, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"},
+                {az: "Samsung Galaxy Tab S9 Ultra", en: "Samsung Galaxy Tab S9 Ultra", ru: "Samsung Galaxy Tab S9 Ultra", p: 1999, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"},
+                {az: "Xiaomi Pad 6 128GB", en: "Xiaomi Pad 6 128GB", ru: "Xiaomi Pad 6 128GB", p: 649, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"},
+                {az: "Lenovo Tab P12 Pro", en: "Lenovo Tab P12 Pro", ru: "Lenovo Tab P12 Pro", p: 999, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"},
+                {az: "Huawei MatePad 11.5", en: "Huawei MatePad 11.5", ru: "Huawei MatePad 11.5", p: 549, img: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400"}
+            ],
+            washer: [
+                {az: "Bosch 8 KG Paltaryuyan", en: "Bosch 8 KG Washer", ru: "Стиральная машина Bosch 8 КГ", p: 999, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"},
+                {az: "Samsung EcoBubble 9 KG", en: "Samsung EcoBubble 9 KG", ru: "Стиральная машина Samsung 9 КГ", p: 1149, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"},
+                {az: "LG AI DD 7 KG Inverter", en: "LG AI DD 7 KG Inverter", ru: "Стиральная машина LG AI DD 7 КГ", p: 879, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"},
+                {az: "Beko 6 KG Sadə Müstəqil", en: "Beko 6 KG Base Washer", ru: "Стиральная машина Beko 6 КГ", p: 499, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"},
+                {az: "Hoffmann 8 KG Gümüşü", en: "Hoffmann 8 KG Silver", ru: "Стиральная машина Hoffmann 8 КГ", p: 699, img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"}
+            ],
+            dishwasher: [
+                {az: "Beko Qabyuyan Maşın", en: "Beko Dishwasher", ru: "Посудомойка Beko", p: 749, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"},
+                {az: "Bosch Serie 4 Qabyuyan", en: "Bosch Serie 4 Dishwasher", ru: "Посудомойка Bosch Serie 4", p: 1299, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"},
+                {az: "Hansabilt Inverter Qabyuyan", en: "Hansa Inverter Dishwasher", ru: "Посудомойка Hansa", p: 679, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"},
+                {az: "Midea Geniş Qabyuyan", en: "Midea Wide Dishwasher", ru: "Посудомойка Midea", p: 589, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"},
+                {az: "Electrolux Kompakt", en: "Electrolux Compact Dishwasher", ru: "Посудомойка Electrolux", p: 899, img: "https://images.unsplash.com/photo-1585837575652-267c0ee1228b?w=400"}
+            ]
         };
 
-        function renderProducts(items) {
-            const container = document.getElementById('productsContainer');
-            if (!container) return;
-            container.innerHTML = '';
-            
-            if (items.length === 0) {
-                container.innerHTML = `<p style="grid-column: 1/-1; text-align:center; color:#888; padding:40px;">Məhsul tapılmadı.</p>`;
-                return;
-            }
-
-            items.forEach(p => {
-                let creditMonths = langData[currentLang].creditText;
-                let btnText = langData[currentLang].addToCartBtnText;
+        // 120 (6 x 20) Məhsul Generator Dövrü
+        let globalId = 1;
+        categories.forEach(cat => {
+            for (let i = 1; i <= 20; i++) {
+                const templateIndex = (i - 1) % nameTemplates[cat].length;
+                const template = nameTemplates[cat][templateIndex];
                 
-                container.innerHTML += `
-                    <div class="product-card">
-                        <div class="product-clickable" onclick="openProductDetailModal(${p.id})">
-                            <img src="${p.image}" class="product-img" alt="${p.name}">
-                            <div class="product-title">${p.name}</div>
-                            <div class="product-price">${p.price} AZN</div>
-                            <div class="product-credit">${Math.round(p.price/12)} AZN x 12 ${creditMonths}</div>
-                        </div>
-                        <button class="btn" onclick="addToCart(${p.id})">${btnText}</button>
+                // Hər dövrdə fərqli seriya/model əlavəsi edərək qiymətləri bir az fərqləndiririk
+                const priceOffset = (i % 3) * 45 - 20;
+                const finalPrice = Math.max(template.p + priceOffset, 299);
+                const monthlyPayment = Math.round(finalPrice / 18);
+
+                products.push({
+                    id: globalId++,
+                    category: cat,
+                    names: {
+                        az: `${template.az} (Model v${i})`,
+                        en: `${template.en} (Model v${i})`,
+                        ru: `${template.ru} (Модель v${i})`
+                    },
+                    price: finalPrice,
+                    credit: {
+                        az: `${monthlyPayment} AZN x 18 ay`,
+                        en: `${monthlyPayment} AZN x 18 mon`,
+                        ru: `${monthlyPayment} AZN x 18 мес`
+                    },
+                    img: template.img,
+                    specs: {
+                        az: `Yüksək texnoloji təminat | Keyfiyyət sinfi: A+++ | rəng seçimləri mövcuddur. Seriya kodu: #00${globalId}`,
+                        en: `High-tech specifications | Quality class: A+++ | various colors available. Serial: #00${globalId}`,
+                        ru: `Высокие тех. характеристики | Класс качества: A+++ | разные цвета. Серия: #00${globalId}`
+                    }
+                });
+            }
+        });
+
+        // Səhifə yüklənəndə ilk işə düşən funksiyalar
+        document.addEventListener("DOMContentLoaded", () => {
+            changeLanguage('az');
+        });
+
+        // Dil Dəyişmə Funksiyaları
+        function toggleLangDropdown() {
+            document.getElementById("langMenu").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.lang-btn')) {
+                const dropdowns = document.getElementsByClassName("lang-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].classList.contains('show')) {
+                        dropdowns[i].classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.getElementById("currentLangBtn").innerText = lang.toUpperCase();
+            
+            const data = langData[lang];
+            for (let key in data) {
+                const el = document.getElementById(key);
+                if (el) {
+                    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+                        el.placeholder = data[key];
+                    } else {
+                        el.innerText = data[key];
+                    }
+                }
+            }
+            
+            if (!currentUser) {
+                document.getElementById("navAuthBtn").innerText = data.authBtn;
+            }
+            
+            // Məhsulları və Səbəti yeni dilə görə yenidən render etmək
+            renderProducts(activeCategory);
+            updateCartUI();
+        }
+
+        // Məhsulların Renderi və Filteri
+        function renderProducts(categoryFilter = 'all') {
+            activeCategory = categoryFilter;
+            const container = document.getElementById("productsContainer");
+            container.innerHTML = "";
+
+            const filteredProducts = categoryFilter === 'all' ? products : products.filter(p => p.category === categoryFilter);
+
+            filteredProducts.forEach(product => {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `
+                    <div class="product-clickable" onclick="openProductDetailModal(${product.id})">
+                        <img src="${product.img}" class="product-img" alt="${product.names[currentLang]}">
+                        <div class="product-title">${product.names[currentLang]}</div>
+                        <div class="product-price">${product.price} AZN</div>
+                        <div class="product-credit">${product.credit[currentLang]}</div>
                     </div>
+                    <button class="btn" onclick="addToCart(${product.id})">${currentLang === 'az' ? 'Səbətə At' : (currentLang === 'en' ? 'Add to Cart' : 'В корзину')}</button>
                 `;
+                container.appendChild(card);
             });
         }
 
-        function filterProducts(cat, btn) {
-            const buttons = document.querySelectorAll('.category-btn');
-            buttons.forEach(b => b.classList.remove('active'));
-            
-            if(btn) {
-                btn.classList.add('active');
-            }
-            
-            if(cat === 'all') { 
-                renderProducts(products); 
-            } else { 
-                renderProducts(products.filter(p => p.category === cat)); 
-            }
-        }
-
-        function switchAuthTab(type) {
-            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.auth-form-section').forEach(f => f.classList.remove('active'));
-
-            if(type === 'login') {
-                document.getElementById('tabLogin').classList.add('active');
-                document.getElementById('formLogin').classList.add('active');
+        function filterProducts(category, btnElement) {
+            document.querySelectorAll(".category-bar .category-btn").forEach(btn => btn.classList.remove("active"));
+            if(btnElement) {
+                btnElement.classList.add("active");
             } else {
-                document.getElementById('tabRegister').classList.add('active');
-                document.getElementById('formRegister').classList.add('active');
+                const mappedId = { 'all': 'cat_all', 'phone': 'cat_phone', 'computer': 'cat_computer', 'tv': 'cat_tv', 'tablet': 'cat_tablet', 'washer': 'cat_washer', 'dishwasher': 'cat_dishwasher' };
+                document.getElementById(mappedId[category]).classList.add("active");
             }
+            renderProducts(category);
         }
 
-        function processRegister() {
-            const name = document.getElementById('regName').value.trim();
-            const email = document.getElementById('regEmail').value.trim().toLowerCase();
-            const password = document.getElementById('regPassword').value;
-            const passwordConfirm = document.getElementById('regPasswordConfirm').value;
-            const cName = document.getElementById('cardName').value.trim();
-            const cNum = document.getElementById('cardNumber').value.trim();
-            const cExp = document.getElementById('cardExpiry').value.trim();
-            const cCvv = document.getElementById('cardCvv').value.trim();
-
-            if(!name || !email) { alert(langData[currentLang].alertFillAuth); return; }
-            if(password.length < 6) { alert(langData[currentLang].alertPassShort); return; }
-            if(password !== passwordConfirm) { alert(langData[currentLang].alertPassMismatch); return; }
-            if(cNum.length < 16 || !cName || !cExp || cCvv.length < 3) { alert(langData[currentLang].alertCardIncomplete); return; }
-
-            fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    cardName: cName,
-                    cardNumber: cNum,
-                    product: "Yalnız Hesab Yaradıldı"
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    let usersBase = JSON.parse(localStorage.getItem('nkshop_users_db')) || [];
-                    const newUser = { name, email, password, cardNum: cNum, cardName: cName };
-                    usersBase.push(newUser);
-                    localStorage.setItem('nkshop_users_db', JSON.stringify(usersBase));
-
-                    currentUser = newUser;
-                    localStorage.setItem('nkshop_logged_in_user', JSON.stringify(currentUser));
-                    
-                    alert(langData[currentLang].alertRegSuccess);
-                    loginUserInterface();
-                    closeModal();
-                } else {
-                    alert(data.message);
-                }
-            })
-            .catch(err => alert("Xəta baş verdi: " + err.message));
-        }
-
-        function processLogin() {
-            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-            const pass = document.getElementById('loginPassword').value;
-
-            if(!email || !pass) { alert(langData[currentLang].alertLoginEmpty); return; }
-
-            let usersBase = JSON.parse(localStorage.getItem('nkshop_users_db')) || [];
-            const user = usersBase.find(u => u.email === email);
-
-            if(user) {
-                if(user.password === pass) {
-                    currentUser = user;
-                    localStorage.setItem('nkshop_logged_in_user', JSON.stringify(currentUser));
-                    alert(`${langData[currentLang].alertWelcome}, ${user.name}!`);
-                    loginUserInterface();
-                    closeModal();
-                } else {
-                    alert(langData[currentLang].alertWrongPass);
-                }
+        // Səbət Mexanizmi (Cart)
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById("cartDrawer");
+            const overlay = document.getElementById("cartDrawerOverlay");
+            if (open) {
+                drawer.style.right = "0px";
+                overlay.style.display = "block";
             } else {
-                alert(langData[currentLang].alertUserNotFound);
+                drawer.style.right = "-450px";
+                overlay.style.display = "none";
             }
         }
 
-        function loginUserInterface() {
-            document.getElementById('navAuthBtn').style.display = 'none';
-            document.getElementById('profileBox').style.display = 'flex';
-            document.getElementById('userAvatar').innerText = currentUser.name.charAt(0).toUpperCase();
-            document.getElementById('profileName').innerText = currentUser.name;
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCartUI();
+            toggleCartDrawer(true);
         }
 
-        function logout() {
-            localStorage.removeItem('nkshop_logged_in_user');
-            currentUser = null;
-            document.getElementById('navAuthBtn').style.display = 'block';
-            document.getElementById('profileBox').style.display = 'none';
-            closeProfileModal();
-            alert(langData[currentLang].alertLogout);
-        }
+        function changeCartQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
 
-        function addToCart(id) {
-            const item = products.find(p => p.id === id);
-            const exist = cart.find(c => c.id === id);
-            if(exist) { exist.qty++; } else { cart.push({ ...item, qty: 1 }); }
+            item.quantity += change;
+            if (item.quantity <= 0) {
+                cart = cart.filter(item => item.id !== productId);
+            }
             updateCartUI();
         }
 
         function updateCartUI() {
-            const badge = document.getElementById('navCartCount');
-            const totalCount = cart.reduce((acc, curr) => acc + curr.qty, 0);
-            if(totalCount > 0) { badge.innerText = totalCount; badge.style.display = 'inline-block'; } 
-            else { badge.style.display = 'none'; }
-
-            const cartItemsContainer = document.getElementById('cartItems');
-            cartItemsContainer.innerHTML = '';
+            const cartItemsContainer = document.getElementById("cartItems");
+            cartItemsContainer.innerHTML = "";
+            
+            let totalCount = 0;
             let totalPrice = 0;
 
-            if(cart.length === 0) {
-                cartItemsContainer.innerHTML = `<p style="text-align:center; color:#888; padding:20px;">${langData[currentLang].cartEmptyText}</p>`;
-            } else {
-                cart.forEach(c => {
-                    totalPrice += c.price * c.qty;
-                    cartItemsContainer.innerHTML += `
-                        <div class="cart-item">
-                            <div class="cart-item-top">${c.name}</div>
-                            <div class="cart-item-bottom">
-                                <span class="cart-item-price">${c.price * c.qty} AZN</span>
-                                <div class="cart-quantity-controls">
-                                    <button class="cart-qty-btn" onclick="changeQty(${c.id}, -1)">-</button>
-                                    <span class="cart-qty-number">${c.qty}</span>
-                                    <button class="cart-qty-btn" onclick="changeQty(${c.id}, 1)">+</button>
-                                </div>
-                            </div>
+            cart.forEach(item => {
+                totalCount += item.quantity;
+                totalPrice += item.price * item.quantity;
+
+                const itemEl = document.createElement("div");
+                itemEl.className = "cart-item";
+                itemEl.innerHTML = `
+                    <div class="cart-item-top" title="${item.names[currentLang]}">${item.names[currentLang]}</div>
+                    <div class="cart-item-bottom">
+                        <span class="cart-item-price">${item.price * item.quantity} AZN</span>
+                        <div class="cart-quantity-controls">
+                            <button class="cart-qty-btn" onclick="changeCartQuantity(${item.id}, -1)">-</button>
+                            <span class="cart-qty-number">${item.quantity}</span>
+                            <button class="cart-qty-btn" onclick="changeCartQuantity(${item.id}, 1)">+</button>
                         </div>
-                    `;
-                });
-            }
-            document.getElementById('cartTotal').innerText = totalPrice + " AZN";
-        }
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemEl);
+            });
 
-        function changeQty(id, delta) {
-            const item = cart.find(c => c.id === id);
-            if(item) {
-                item.qty += delta;
-                if(item.qty <= 0) { cart = cart.filter(c => c.id !== id); }
+            const badge = document.getElementById("navCartCount");
+            if (totalCount > 0) {
+                badge.innerText = totalCount;
+                badge.style.display = "inline-block";
+            } else {
+                badge.style.display = "none";
             }
-            updateCartUI();
-        }
 
-        function toggleCartDrawer(open) {
-            const drawer = document.getElementById('cartDrawer');
-            const overlay = document.getElementById('cartDrawerOverlay');
-            if(open) { drawer.classList.add('open'); overlay.style.display = 'block'; } 
-            else { drawer.classList.remove('open'); overlay.style.display = 'none'; }
+            document.getElementById("cartTotal").innerText = `${totalPrice} AZN`;
+            document.getElementById("navCartLabel").innerText = langData[currentLang].cartLabel;
         }
 
         function checkout() {
-            if(cart.length === 0) { alert(langData[currentLang].alertCartEmpty); return; }
-            
-            if(!currentUser) {
-                alert(langData[currentLang].alertCheckoutAuth);
-                toggleCartDrawer(false);
+            if (cart.length === 0) {
+                alert(currentLang === 'az' ? "Səbətiniz boşdur!" : (currentLang === 'en' ? "Your cart is empty!" : "Ваша корзина пуста!"));
+                return;
+            }
+            if (!currentUser) {
+                alert(currentLang === 'az' ? "Sifarişi tamamlamaq üçün giriş etməlisiniz!" : (currentLang === 'en' ? "You must login to complete order!" : "Вы должны войти, чтобы оформить заказ!"));
                 openAuthModal();
+                toggleCartDrawer(false);
+                return;
+            }
+            
+            alert(currentLang === 'az' ? "Sifarişiniz uğurla rəsmiləşdirildi! Ödəniş bağlı kartınızdan çıxılacaq." : (currentLang === 'en' ? "Your order has been successfully placed! Payment will be deducted from your linked card." : "Ваш заказ успешно оформлен! Оплата будет списана с вашей карты."));
+            cart = [];
+            updateCartUI();
+            toggleCartDrawer(false);
+        }
+
+        // Giriş / Qeydiyyat Modalı (Auth)
+        function openAuthModal() {
+            document.getElementById("modalOverlay").style.display = "flex";
+            switchAuthTab('login');
+        }
+
+        function closeModal() {
+            document.getElementById("modalOverlay").style.display = "none";
+            document.querySelectorAll("#modalOverlay input").forEach(input => input.value = "");
+        }
+
+        function switchAuthTab(tab) {
+            if (tab === 'login') {
+                document.getElementById("tabLogin").classList.add("active");
+                document.getElementById("tabRegister").classList.remove("active");
+                document.getElementById("formLogin").classList.add("active");
+                document.getElementById("formRegister").classList.remove("active");
+            } else {
+                document.getElementById("tabRegister").classList.add("active");
+                document.getElementById("tabLogin").classList.remove("active");
+                document.getElementById("formRegister").classList.add("active");
+                document.getElementById("formLogin").classList.remove("active");
+            }
+        }
+
+        function processLogin() {
+            const email = document.getElementById("loginEmail").value.trim();
+            const pass = document.getElementById("loginPassword").value.trim();
+
+            if (!email || !pass) {
+                alert(currentLang === 'az' ? "Zəhmət olmasa bütün xanaları doldurun!" : "Please fill all fields!");
                 return;
             }
 
-            const productListString = cart.map(item => `${item.name} (x${item.qty})`).join(', ');
+            currentUser = {
+                name: email.split('@')[0].toUpperCase(),
+                email: email,
+                card: "**** **** **** 4455"
+            };
 
-            fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: currentUser.name,
-                    email: currentUser.email,
-                    cardName: currentUser.cardName,
-                    cardNumber: currentUser.cardNum,
-                    product: productListString
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.success) {
-                    let successMsg = langData[currentLang].alertCheckoutSuccess
-                        .replace('{name}', currentUser.name)
-                        .replace('{total}', document.getElementById('cartTotal').innerText)
-                        .replace('{card}', currentUser.cardNum.slice(-4));
-
-                    alert(successMsg);
-                    cart = [];
-                    updateCartUI();
-                    toggleCartDrawer(false);
-                } else {
-                    alert("Xəta: " + data.message);
-                }
-            })
-            .catch(err => alert("Sifariş göndərilərkən xəta: " + err.message));
+            loginSuccessActions();
         }
 
-        function openAuthModal() { document.getElementById('modalOverlay').style.display = 'flex'; }
-        function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
-        
+        function processRegister() {
+            const name = document.getElementById("regName").value.trim();
+            const email = document.getElementById("regEmail").value.trim();
+            const pass = document.getElementById("regPassword").value.trim();
+            const passConf = document.getElementById("regPasswordConfirm").value.trim();
+            const cardNum = document.getElementById("cardNumber").value.trim();
+
+            if (!name || !email || !pass || !cardNum) {
+                alert(currentLang === 'az' ? "Zəhmət olmasa vacib xanaları doldurun!" : "Please fill required fields!");
+                return;
+            }
+            if (pass !== passConf) {
+                alert(currentLang === 'az' ? "Şifrələr eyni deyil!" : "Passwords do not match!");
+                return;
+            }
+            if (cardNum.length < 16) {
+                alert(currentLang === 'az' ? "Kart nömrəsi 16 rəqəmli olmalıdır!" : "Card number must be 16 digits!");
+                return;
+            }
+
+            currentUser = {
+                name: name,
+                email: email,
+                card: `**** **** **** ${cardNum.slice(-4)}`
+            };
+
+            loginSuccessActions();
+        }
+
+        function loginSuccessActions() {
+            closeModal();
+            document.getElementById("navAuthBtn").style.display = "none";
+            document.getElementById("profileBox").style.display = "flex";
+            document.getElementById("userAvatar").innerText = currentUser.name.charAt(0);
+            document.getElementById("profileName").innerText = currentUser.name;
+        }
+
+        function logout() {
+            currentUser = null;
+            closeProfileModal();
+            document.getElementById("profileBox").style.display = "none";
+            document.getElementById("navAuthBtn").style.display = "block";
+            changeLanguage(currentLang);
+        }
+
+        // Şəxsi Profil Modalı
         function openProfileModal() {
-            if(!currentUser) return;
-            document.getElementById('viewProfileName').innerText = currentUser.name;
-            document.getElementById('viewProfileEmail').innerText = currentUser.email;
-            document.getElementById('viewProfileCard').innerText = `**** **** **** ${currentUser.cardNum.slice(-4)}`;
-            document.getElementById('profileModalOverlay').style.display = 'flex';
+            if (!currentUser) return;
+            document.getElementById("viewProfileName").innerText = currentUser.name;
+            document.getElementById("viewProfileEmail").innerText = currentUser.email;
+            document.getElementById("viewProfileCard").innerText = currentUser.card;
+            document.getElementById("profileModalOverlay").style.display = "flex";
         }
-        function closeProfileModal() { document.getElementById('profileModalOverlay').style.display = 'none'; }
 
-        function openProductDetailModal(id) {
-            const p = products.find(item => item.id === id);
-            if(!p) return;
-            let creditMonths = langData[currentLang].creditText;
-            
-            document.getElementById('detailTitle').innerText = p.name;
-            document.getElementById('detailImg').src = p.image;
-            document.getElementById('detailPrice').innerText = p.price + " AZN";
-            document.getElementById('detailCredit').innerText = Math.round(p.price/12) + " AZN x 12 " + creditMonths;
-            document.getElementById('detailSpecs').innerText = p.specs;
-            document.getElementById('detailAddToCartBtn').onclick = function() { addToCart(p.id); closeProductDetailModal(); };
-            document.getElementById('productDetailModalOverlay').style.display = 'flex';
+        function closeProfileModal() {
+            document.getElementById("profileModalOverlay").style.display = "none";
         }
-        function closeProductDetailModal() { document.getElementById('productDetailModalOverlay').style.display = 'none'; }
 
-        function toggleLangDropdown() { document.getElementById('langMenu').classList.toggle('show'); }
-        
-        function changeLanguage(lang) {
-            currentLang = lang;
-            document.getElementById('currentLangBtn').innerText = lang.toUpperCase();
-            document.getElementById('langMenu').classList.remove('show');
+        // Məhsulun Ətraflı Məlumat Modalı (Detail)
+        function openProductDetailModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById("detailTitle").innerText = product.names[currentLang];
+            document.getElementById("detailImg").src = product.img;
+            document.getElementById("detailPrice").innerText = `${product.price} AZN`;
+            document.getElementById("detailCredit").innerText = product.credit[currentLang];
+            document.getElementById("detailSpecs").innerText = product.specs[currentLang];
+
+            const addBtn = document.getElementById("detailAddToCartBtn");
+            addBtn.onclick = () => {
+                addToCart(product.id);
+                closeProductDetailModal();
+            };
+            addBtn.innerText = langData[currentLang].detailAddToCartBtn;
+
+            document.getElementById("productDetailModalOverlay").style.display = "flex";
+        }
+
+        function closeProductDetailModal() {
+            document.getElementById("productDetailModalOverlay").style.display = "none";
+        }
+
+        // İnformasiya Modalı (Faydalı Linklər)
+        function openInfoModal(type) {
+            const title = document.getElementById("infoModalTitle");
+            const body = document.getElementById("infoModalBody");
             
-            const trans = langData[lang];
+            const contents = {
+                az: {
+                    campaigns: "Hazırda aktiv 1+1 kampaniyamız mövcuddur! Bütün nağd alışlara 10% keşbek təklif olunur.",
+                    stores: "Bakı şəhərində 3 əsas filialımız fəaliyyət göstərir: Azadlıq prospekti, Əhmədli və İnşaatçılar metrosu yaxınlığı.",
+                    faq: "Kredit üçün hansı sənədlər lazımdır? - Yalnız şəxsiyyət vəsiqəsi ilə 18 aylıq daxili kredit mümkündür.",
+                    credit: "Kredit şərtləri: 0% ilkin ödəniş, tək şəxsiyyət vəsiqəsi ilə 3 aydan 24 aya qədər daxili kredit imkanı.",
+                    return: "Məhsul qutusu açılmamaq şərti ilə 14 gün ərzində geri qaytarıla və ya dəyişdirilə bilər.",
+                    delivery: "Bakı daxili çatdırılma 2 saat ərzində tamamilə pulsuzdur. Rayonlara poçt vasitəsilə göndərilir.",
+                    privacy: "Məlumatlarınızın təhlükəsizliyinə 100% zəmanət verilir. NKSHOP kart məlumatlarınızı öz serverlərində saxlamır."
+                },
+                en: {
+                    campaigns: "We currently have a 1+1 campaign! 10% cashback is offered on all cash purchases.",
+                    stores: "We have 3 main branches in Baku: Azadlig avenue, Ahmedli, and near Inshaatchilar metro.",
+                    faq: "What documents are required for credit? - Internal credit is available up to 18 months with only an ID card.",
+                    credit: "Credit terms: 0% down payment, simple internal credit from 3 to 24 months with an ID card.",
+                    return: "Products can be returned or exchanged within 14 days, provided the package is unopened.",
+                    delivery: "Delivery within Baku is completely free within 2 hours. Sent to regions via post.",
+                    privacy: "100% security guarantee for your data. NKSHOP does not store your card details on its servers."
+                },
+                ru: {
+                    campaigns: "В настоящее время у нас действует акция 1+1! На все наличные покупки предлагается кэшбэк 10%.",
+                    stores: "У нас есть 3 основных филиала в Баку: проспект Азадлыг, Ахмедлы и возле метро Иншаатчилар.",
+                    faq: "Какие документы нужны для кредита? - Внутренний кредит оформляется до 18 месяцев только по удостоверению личности.",
+                    credit: "Условия кредита: 0% первоначальный взнос, внутренний кредит от 3 до 24 месяцев по удостоверению личности.",
+                    return: "Товар можно вернуть или обменять в течение 14 дней при условии, что упаковка не вскрыта.",
+                    delivery: "Доставка по Баку совершенно бесплатна в течение 2 часов. В регионы отправляется почтой.",
+                    privacy: "100% гарантия безопасности ваших данных. NKSHOP не хранит данные вашей карты на своих серверах."
+                }
+            };
+
+            title.innerText = langData[currentLang].infoModalTitle;
+            body.innerText = contents[currentLang][type] || "Məlumat tapılmadı.";
             
-            document.getElementById('navCartLabel').innerText = trans.cartLabel;
-            if(!currentUser) {
-                document.getElementById('navAuthBtn').innerText = trans.authBtn;
-            } else {
-                document.getElementById('profileName').innerText = trans.profileName;
+            document.getElementById("infoModalOverlay").style.display = "flex";
+        }
+
+        function closeInfoModal() {
+            document.getElementById("infoModalOverlay").style.display = "none";
+        }
+
+        // Şikayət və Təkliflər Modalı
+        function openComplaintModal() {
+            document.getElementById("complaintModalOverlay").style.display = "flex";
+        }
+
+        function closeComplaintModal() {
+            document.getElementById("complaintModalOverlay").style.display = "none";
+            document.getElementById("compEmail").value = "";
+            document.getElementById("compMessage").value = "";
+        }
+
+        function submitComplaint() {
+            const email = document.getElementById("compEmail").value.trim();
+            const msg = document.getElementById("compMessage").value.trim();
+
+            if (!email || !msg) {
+                alert(currentLang === 'az' ? "Zəhmət olmasa bütün xanaları doldurun!" : "Please fill in all fields!");
+                return;
             }
-            
-            document.getElementById('cat_all').innerText = trans.cat_all;
-            document.getElementById('cat_phone').innerText = trans.cat_phone;
-            document.getElementById('cat_computer').innerText = trans.cat_computer;
-            document.getElementById('cat_tv').innerText = trans.cat_tv;
-            document.getElementById('cat_tablet').innerText = trans.cat_tablet;
-            document.getElementById('cat_washer').innerText = trans.cat_washer;
-            document.getElementById('cat_dishwasher').innerText = trans.cat_dishwasher;
-            
-            document.getElementById('cartTitleText').innerText = trans.cartTitleText;
-            document.getElementById('totalLabel').innerText = trans.totalLabel;
-            document.getElementById('checkoutBtnText').innerText = trans.checkoutBtnText;
-            
-            document.getElementById('tabLogin').innerText = trans.tabLogin;
-            document.getElementById('tabRegister').innerText = trans.tabRegister;
-            document.getElementById('lblLoginEmail').innerText = trans.lblLoginEmail;
-            document.getElementById('lblLoginPassword').innerText = trans.lblLoginPassword;
-            document.getElementById('btnLoginSubmit').innerText = trans.btnLoginSubmit;
-            
-            document.getElementById('lblRegName').innerText = trans.lblRegName;
-            document.getElementById('lblRegEmail').innerText = trans.lblRegEmail;
-            document.getElementById('lblRegPassword').innerText = trans.lblRegPassword;
-            document.getElementById('lblRegPasswordConfirm').innerText = trans.lblRegPasswordConfirm;
-            document.getElementById('lblCardSectionTitle').innerText = trans.lblCardSectionTitle;
-            document.getElementById('lblCardName').innerText = trans.lblCardName;
-            document.getElementById('lblCardNumber').innerText = trans.lblCardNumber;
-            document.getElementById('lblCardExpiry').innerText = trans.lblCardExpiry;
-            document.getElementById('lblCardCvv').innerText = trans.lblCardCvv;
-            document.getElementById('btnRegisterSubmit').innerText = trans.btnRegisterSubmit;
-            
-            document.getElementById('pTitle').innerText = trans.pTitle;
-            document.getElementById('lblViewProfileName').innerText = trans.lblViewProfileName;
-            document.getElementById('lblViewProfileEmail').innerText = trans.lblViewProfileEmail;
-            document.getElementById('lblViewProfileCard').innerText = trans.lblViewProfileCard;
-            document.getElementById('lblViewProfileStatus').innerText = trans.lblViewProfileStatus;
-            document.getElementById('viewProfileStatusValue').innerText = trans.viewProfileStatusValue;
-            document.getElementById('btnLogout').innerText = trans.btnLogout;
-            
-            document.getElementById('lblDetailPrice').innerText = trans.lblDetailPrice;
-            document.getElementById('lblDetailCredit').innerText = trans.lblDetailCredit;
-            document.getElementById('lblDetailWarranty').innerText = trans.lblDetailWarranty;
-            document.getElementById('detailWarrantyValue').innerText = trans.detailWarrantyValue;
-            document.getElementById('detailAddToCartBtn').innerText = trans.detailAddToCartBtn;
-            
-            document.getElementById('compTitle').innerText = trans.compTitle;
-            document.getElementById('compSubtitle').innerText = trans.compSubtitle;
-            document.getElementById('lblCompEmail').innerText = trans.lblCompEmail;
-            document.getElementById('lblCompMessage').innerText = trans.lblCompMessage;
-            document.getElementById('btnCompSubmit').innerText = trans.btnCompSubmit;
-            
-            document.getElementById('fTitleAbout').innerText = trans.fTitleAbout;
-            document.getElementById('fTextAbout').innerText = trans.fTextAbout;
-            document.getElementById('fTitleLinks').innerText = trans.fTitleLinks;
-            document.getElementById('fLinkCamp').innerText = trans.fLinkCamp;
-            document.getElementById('fLinkStores').innerText = trans.fLinkStores;
-            document.getElementById('fLinkComp').innerText = trans.fLinkComp;
-            document.getElementById('fLinkFaq').innerText = trans.fLinkFaq;
-            document.getElementById('fTitleRules').innerText = trans.fTitleRules;
-            document.getElementById('fLinkCredit').innerText = trans.fLinkCredit;
-            document.getElementById('fLinkReturn').innerText = trans.fLinkReturn;
-            document.getElementById('fLinkDeliv').innerText = trans.fLinkDeliv;
-            document.getElementById('fLinkPriv').innerText = trans.fLinkPriv;
-            document.getElementById('fTitleContact').innerText = trans.fTitleContact;
-            document.getElementById('lblCallCenter').innerText = trans.lblCallCenter;
-            document.getElementById('lblWorkHours').innerText = trans.lblWorkHours;
-            document.getElementById('valWorkHours').innerText = trans.valWorkHours;
-            document.getElementById('lblAddress').innerText = trans.lblAddress;
-            document.getElementById('valAddress').innerText = trans.valAddress;
-            document.getElementById('fCopyright').innerText = trans.fCopyright;
-            
-            // Dil dəyişəndə render funksiyasını çağırırıq ki, məhsullar mətni yeniləsin
-            const activeCategoryBtn = document.querySelector('.category-btn.active');
-            const activeCatId = activeCategoryBtn ? activeCategoryBtn.id.replace('cat_', '') : 'all';
-            if(activeCatId === 'all') {
-                renderProducts(products);
-            } else {
-                renderProducts(products.filter(p => p.category === activeCatId));
-            }
-            updateCartUI();
-        }
 
-        function openComplaintModal() { document.getElementById('complaintModalOverlay').style.display = 'flex'; }
-        function closeComplaintModal() { document.getElementById('complaintModalOverlay').style.display = 'none'; }
-        function submitComplaint() { alert(langData[currentLang].alertCompSuccess); closeComplaintModal(); }
-        
-        function openInfoModal(type) { 
-            document.getElementById('infoModalTitle').innerText = langData[currentLang].infoModalTitle;
-            document.getElementById('infoModalBody').innerText = langData[currentLang].infoSoon; 
-            document.getElementById('infoModalOverlay').style.display = 'flex'; 
+            alert(currentLang === 'az' ? "Müraciətiniz qəbul olundu. Təşəkkür edirik!" : "Your request has been received. Thank you!");
+            closeComplaintModal();
         }
-        function closeInfoModal() { document.getElementById('infoModalOverlay').style.display = 'none'; }
     </script>
 </body>
 </html>
